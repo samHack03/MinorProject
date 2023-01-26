@@ -8,6 +8,7 @@ import CategoriesSection from '../Components/CategoriesSection'
 import FindRoommatesContent from '../Components/FindRoommatesContent'
 import Footer from '../Components/footer/Footer.jsx'
 import PreHeader from '../Components/preheader/PreHeader'
+import Services from '../Components/Home component/services/Services'
 
 export default function Home() {
 
@@ -40,10 +41,12 @@ export default function Home() {
       <>
       <PreHeader/>
       <Navbar/>
+      
       <HeroSection/>
       <FeaturedSection/>
       <CategoriesSection/>
       <FindRoommatesContent/>
+      <Services/>
       <Footer/>
       </>
       )
