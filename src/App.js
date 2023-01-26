@@ -13,6 +13,7 @@ function App() {
   <UserContext.Provider value={{user, setUser}}>
      <Signup/>
    </UserContext.Provider>
+    
   );
 
 }
