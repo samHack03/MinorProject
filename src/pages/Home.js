@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Navbar from '../Components/navbar'
 import FeaturedSection from '../Components/featuredSection'
 import HeroSection from '../Components/hero-section'
+import Banner from "../Components/banner/Banner";
 import firebase from 'firebase'
 import CategoriesSection from '../Components/CategoriesSection'
 import FindRoommatesContent from '../Components/FindRoommatesContent'
@@ -40,7 +41,8 @@ export default function Home() {
       <>
       <PreHeader/>
       <Navbar/>
-      <HeroSection/>
+      {/* <HeroSection/> */}
+      <Banner/>
       <FeaturedSection/>
       <CategoriesSection/>
       <FindRoommatesContent/>

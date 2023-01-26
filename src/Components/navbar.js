@@ -11,7 +11,9 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import firebase from 'firebase'
 import { Container } from 'react-bootstrap';
 
-export default function NavigationBar({companyName="DevBud"}) {
+import home1 from '../img/img/home1.jpg'
+
+export default function NavigationBar({companyName="Krish e-Hal"}) {
 
     //Authstate
     const [authState, setAuthState ] = useState(null);
@@ -61,26 +63,27 @@ const Logout = () => {
 
   return (
   <Navbar expand="lg" className="navbar" 
-  style={{backgroundColor: pos === "top" ? "" : "#fff", boxShadow: pos === "top" ? "" : "0.8px 0.8px 0.8px #000"}}
+  style={{backgroundColor: "#219653"}}
   >
-  <Link to="/"><Navbar.Brand  className={pos === "top" ? "text-light brand-name": "text-dark brand-name"}>{companyName}</Navbar.Brand></Link>
+  <Link to="/"><Navbar.Brand  className={"text-light brand-name"}>{companyName}</Navbar.Brand></Link>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="me-auto">
       <Nav.Link as={Link} to="/"
-      className={pos === "top" ? "text-light": "text-dark"}
+      className={"text-light"}
       >Home</Nav.Link>
       {authState ? (
        <React.Fragment>
-      <Nav.Link as={Link} to="/personal-rooms" className={pos === "top" ? "text-light": "text-dark"}>Personal Rooms</Nav.Link>
-      <Nav.Link as={Link} to="/family-apartments" className={pos === "top" ? "text-light": "text-dark"}>Family Apartments</Nav.Link>
-      <Nav.Link as={Link} to="/vacation-villas" className={pos === "top" ? "text-light": "text-dark"}>Villas for Vacation</Nav.Link>
+      <Nav.Link as={Link} to="/personal-rooms" className={"text-light"}>Large Equipment</Nav.Link>
+      <Nav.Link as={Link} to="/family-apartments" className={"text-light"}>Medium Tools</Nav.Link>
+      <Nav.Link as={Link} to="/vacation-villas" className={"text-light"}>Small Tools</Nav.Link>
+      <Nav.Link as={Link} to="/become-host" className={"text-light"}>Add Product</Nav.Link>
       </React.Fragment>
       ):""}
     </Nav>
     <Navbar.Collapse className="justify-content-end">
     <NavDropdown title={<FontAwesomeIcon icon={faUserCircle} size="lg"
-    className={pos === "top" ? "text-light dropdown-menu-bar": "text-dark dropdown-menu-bar"}
+    className={"text-light dropdown-menu-bar"}
     spin/>}>
       {authState ? (
         <>
@@ -107,7 +110,7 @@ const Logout = () => {
     {authState ? (
     <>
     <Navbar.Text>
-      <Link to="/become-host"><Button className="host-btn" variant="outline-primary">Become a Host</Button></Link>
+
     </Navbar.Text>
     </>
       ):""}
