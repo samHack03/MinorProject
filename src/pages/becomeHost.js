@@ -9,7 +9,7 @@ import { database, storage } from "../config";
 import firebase from 'firebase'
 import imageCompression from 'browser-image-compression';
 import {imageConfig} from '../utils/imageConfig'
-
+import Footer from "../Components/footer/Footer";
 
 export default function BecomeHost() {
 
@@ -680,7 +680,7 @@ export default function BecomeHost() {
             </Form>
           </Card.Body>
         </Card>
-     
+     <Footer/>
     </div>
   );
 }

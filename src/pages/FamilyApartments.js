@@ -22,7 +22,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import firebase from "firebase";
 import { auth, database } from "../config";
-
+import Footer from "../Components/footer/Footer";
 export default function FamilyApartments() {
   //Authstate
   const [authState, setAuthState] = useState(null);
@@ -92,7 +92,7 @@ export default function FamilyApartments() {
   return (
     <>
     <Navbar/>
-
+    
     {/* Spinner */}  
     {loading==true ? <div className="sk-cube-grid">
   <div className="sk-cube sk-cube1"></div>
@@ -140,6 +140,7 @@ export default function FamilyApartments() {
       </Container>
       <br />
       <br />
+      <Footer/>
     </>
   );
 }
