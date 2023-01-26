@@ -6,10 +6,15 @@ import HeroSection from '../Components/hero-section'
 import Banner from "../Components/banner/Banner";
 import firebase from 'firebase'
 import CategoriesSection from '../Components/CategoriesSection'
-import FindRoommatesContent from '../Components/FindRoommatesContent'
+// import FindRoommatesContent from '../Components/FindRoommatesContent'
 import Footer from '../Components/footer/Footer.jsx'
 import PreHeader from '../Components/preheader/PreHeader'
 import Equipments from '../Components/equipments/Equipments'
+import Workflow from '../Components/workflow/Workflow'
+import Support from '../Components/support/Support'
+import Ads from '../Components/ads/Ads'
+import Stats from '../Components/stats/Stats'
+import Services from '../Components/services/Services'
 
 export default function Home() {
 
@@ -44,9 +49,18 @@ export default function Home() {
       <Navbar/>
       {/* <HeroSection/> */}
       <Banner/>
+
       <FeaturedSection/>
       <CategoriesSection/>
-      <FindRoommatesContent/>
+  
+      <Support/>
+      <Workflow/>
+      <Services/>
+      <Ads/>
+      <Stats/>
+      
+
+      {/* <FindRoommatesContent/> */}
       <Equipments/>
       <Footer/>
       </>

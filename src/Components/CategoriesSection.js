@@ -48,7 +48,6 @@ export default function CategoriesSection() {
           </Col>
         </Row>
       </Container>
-      <Footer/>
     </div>
   );
 }
