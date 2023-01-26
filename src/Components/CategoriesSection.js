@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import personalRoomsPic from '../pictures/personal-rooms.jpg'
 import familyApartments from '../pictures/family-apartments.jpg'
 import villas from '../pictures/villas.jpg'
-
+import Footer from "./footer/Footer";
 export default function CategoriesSection() {
   return (
     <div>
@@ -48,6 +48,7 @@ export default function CategoriesSection() {
           </Col>
         </Row>
       </Container>
+      <Footer/>
     </div>
   );
 }

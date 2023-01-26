@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
+import Footer from "../Components/footer/Footer";
 import {
   Row,
   Col,
@@ -138,6 +139,7 @@ export default function VacationVillas() {
           ))}
         </Row>
       </Container>
+      <Footer/>
       <br />
       <br />
     </>
