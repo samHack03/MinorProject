@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Components/navbar";
+import Footer from "../Components/footer/Footer";
 import { Link, Redirect } from "react-router-dom";
 import {
   Button,
@@ -451,6 +452,7 @@ export default function SinglePropertyPage() {
               </Col>
             </Row>
           </Container>
+          <Footer/>
           <br />
           <br />
           <br />

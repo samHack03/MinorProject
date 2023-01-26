@@ -9,7 +9,7 @@ import {imageConfig} from '../utils/profileImageConfig'
 import { database, storage } from "../config";
 import firebase from "firebase";
 import Navbar from "../Components/navbar";
-
+import Footer from "../Components/footer/Footer";
 export default function CreateProfile() {
 
 
@@ -235,6 +235,7 @@ if(profileCheck === true){
           </Card.Body>
         </Card>
       </Container>
+      <Footer/>
     </>
   );
 }

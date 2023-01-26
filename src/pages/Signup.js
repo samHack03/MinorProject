@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GoogleButton from 'react-google-button'
 import Navbar from '../Components/navbar'
-
+import Footer from '../Components/footer/Footer';
 export default function Signup() {
 
 const context = useContext(UserContext);
@@ -50,6 +50,7 @@ useEffect(() => {
       <ToastContainer/>
       <Navbar/>
       <GoogleButton className="align-self-center mx-auto auth-btn" onClick={googleAuth}/>
+      <Footer/>
       </div>
   )
   } else {
