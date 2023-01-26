@@ -1,11 +1,11 @@
 import React from "react";
 import "./Footer.css";
-// import { useNavigate } from "react-router-dom";
-// import logo from "../../img//logo.png";
-// import Vector from "../../img//Vector.png";
-// import Vector1 from "../../img//Vector1.png";
-// import Vector2 from "../../img//Vector2.png";
-// import footerBg from "../../img//footerBg.png";
+import { useNavigate } from "react-router-dom";
+import logo1 from "../../img//logo1.png";
+import Vector from "../../img//Vector.png";
+import Vector1 from "../../img//Vector1.png";
+import Vector2 from "../../img//Vector2.png";
+import footerBg from "../../img//footerBg.png";
 
 const Footer = () => {
   // const navigate = useNavigate();
@@ -17,10 +17,10 @@ const Footer = () => {
             className="flex justify-center items-center mx-8 cursor-pointer"
             // onClick={() => navigate("/")}
           >
-            {/* <img src={logo} className="footerLogo" alt="" /> */}
+            <img src={logo1} className="footerLogo" alt="" />
             <div className="ml-4">
               <h3 className="text-2xl text-white font-bold mt-4">
-                Krishi <br /> Sadhan
+                Krish <br /> e-Hal
               </h3>
               <p className="text-md font-normal text-white mt-2">
                 Kisaan upkaran ka ek Matra Sadhan.
@@ -84,28 +84,28 @@ const Footer = () => {
             Give us a follow on social media
           </h1>
           <div className="flex my-5 justify-left">
-            {/* <img
+            <img
               className="socialIcons mx-3 ml-6 cursor-pointer"
               src={Vector}
-              alt="" */}
+              alt=""
             />
-            {/* <img
+            <img
               className="socialIcons mx-3 ml-6 cursor-pointer"
-              // src={Vector1}
+              src={Vector1}
               alt=""
-            /> */}
-            {/* <img
+            />
+            <img
               className="socialIcons mx-3 ml-6 cursor-pointer"
-              // src={Vector2}
+              src={Vector2}
               alt=""
-            /> */}
+            />
           </div>
           <p className="text-lg ml-6 text-white">
-            Made by : <strong>Team Gryffindor</strong>
+            Made by : <strong>By SRK2</strong>
           </p>
         </div>
         <div className="flex-1 flex mr-6">
-          {/* <img src={footerBg} className="footerBgImg" alt="" /> */}
+          <img src={footerBg} className="footerBgImg" alt="" />
           <h1 className="text-xl text-white font-bold mt-6">
             Ministry of Skill Development and Entrepreneurship
           </h1>
