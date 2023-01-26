@@ -142,6 +142,7 @@ export default function SinglePropertyPage() {
         title: heading,
         city: city,
         address: address,
+        name:name
       });
       setSubmit("Submitted");
     }else{

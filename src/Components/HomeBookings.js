@@ -91,7 +91,7 @@ export default function HoneBookings() {
   }, [userUid]);
   //
 
-
+console.log(listings, "listings at 94 line")
 
     return (
         <>

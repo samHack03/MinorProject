@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom"
 import "./Banner.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
@@ -86,16 +87,17 @@ const Banner = () => {
                 <span className="text-[#219653]">Farmer’s Eqipments</span> at
                 reasonable <br /> and affordable prices.
               </h1>
-              <p className="text-lg font-normal mt-2 mb-4 text-white">
+              {/* <p className="text-lg font-normal mt-2 mb-4 text-white">
                 Start now with just one click.
-              </p>
+              </p> */}
               <div className="flex justify-center items-center mx-auto">
-                <button
+                {/* <button
                   // onClick={() => navigate("/dashboard")}
                   className="shadow-md mr-3 tooltip bg-[#219653] hover:bg-[#64a55a] text-white font-semibold text-lg w-[200px] py-2 px-2 rounded"
                 >
                   Book Now
-                </button>
+                </button> */}
+                {/* <Link to="/vacation-villas" className="bg-[#219653] bg-white border-2 transition border-[#219653] text-[#219653] hover:text-white font-bold py-1 px-8 rounded mx-2">Book Now</Link> */}
                 <i
                   // onClick={SpeechRecognition.startListening}
                   className="text-darkgreen tooltip cursor-pointer text-2xl mr-5 fa-solid fa-microphone"

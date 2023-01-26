@@ -139,7 +139,7 @@ const addToast=()=>{
         <Container>
         <Nav.Link as={Link} to="/my-profile" className="text-dark">My Profile</Nav.Link>
         <Nav.Link as={Link} to="/my-bookings" className="text-dark">Bookings</Nav.Link>
-        <Nav.Link as={Link} to="/my-home-bookings" className="text-dark">Host Bookings</Nav.Link>
+        <Nav.Link as={Link} to="/my-home-bookings" className="text-dark">Tools Booked</Nav.Link>
         </Container>
         </>
         ) : (
