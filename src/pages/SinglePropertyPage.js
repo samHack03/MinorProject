@@ -129,20 +129,25 @@ export default function SinglePropertyPage() {
 
   const submitBooking = (e) => {
     e.preventDefault();
-    database.ref("Bookings").push({
-      userUid: userUid,
-      arrivalDate: arrivalDate,
-      departDate: departDate,
-      guests: guests,
-      propertyKey: propertyKey,
-      hostUid: hostUid,
-      imageUrl : imageUrl,
-      price: price,
-      title: heading,
-      city: city,
-      address: address,
-    });
-    setSubmit("Submitted");
+    if(authState){
+      database.ref("Bookings").push({
+        userUid: userUid,
+        arrivalDate: arrivalDate,
+        departDate: departDate,
+        guests: guests,
+        propertyKey: propertyKey,
+        hostUid: hostUid,
+        imageUrl : imageUrl,
+        price: price,
+        title: heading,
+        city: city,
+        address: address,
+      });
+      setSubmit("Submitted");
+    }else{
+      toast.error("Login first to book any equipment");
+    }
+
   };
 
   const submitReview = (e) => {

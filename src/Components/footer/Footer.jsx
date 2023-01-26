@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import logo1 from "../../img//logo1.png";
 import Vector from "../../img//Vector.png";
 import Vector1 from "../../img//Vector1.png";
@@ -33,13 +33,13 @@ const Footer = () => {
             <ul className="list-none mr-24">
               <li
                 className="text-lg text-white font-bold cursor-pointer"
-                // onClick={() => navigate("/")}
               >
-                Home
+                <Link className="text-lg text-white font-bold cursor-pointer" to="/">Home</Link>
               </li>
+              
               {/* <li className='text-lg text-white font-medium cursor-pointer'>Menu</li> */}
               <li className="text-lg text-white font-medium cursor-pointer">
-                Market
+              <Link className="text-lg text-white font-bold cursor-pointer" to="/">Market</Link>
               </li>
             </ul>
             <ul>
@@ -51,21 +51,20 @@ const Footer = () => {
               </li>
               <li
                 className="text-lg text-white font-medium cursor-pointer"
-                // onClick={() => navigate("help")}
-              >
-                Help Center
+                              >
+                <Link className="text-lg text-white font-bold cursor-pointer" to="/help">Help Center</Link>
               </li>
               <li
                 className="text-lg text-white font-medium cursor-pointer"
                 // onClick={() => navigate("/partner-dispute")}
               >
-                Partner Dispute
+                 <Link className="text-lg text-white font-bold cursor-pointer" to="/partner-dispute">Partner Dispute</Link>
               </li>
               <li
                 className="text-lg text-white font-medium cursor-pointer"
                 // onClick={() => navigate("faq")}
               >
-                FAQs
+                 <Link className="text-lg text-white font-bold cursor-pointer" to="/faq">FAQs</Link>
               </li>
             </ul>
           </div>
@@ -75,7 +74,7 @@ const Footer = () => {
               // onClick={() => navigate("/feedback")}
               className="text-xl underline"
             >
-              HERE
+               <Link className="text-lg text-white font-bold cursor-pointer" to="/feedback">HERE</Link>
             </button>
           </p>
         </div>

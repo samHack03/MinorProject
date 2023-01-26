@@ -19,7 +19,10 @@ import FamilyApartments from './pages/FamilyApartments';
 import VacationVillas from './pages/VacationVillas';
 import ScrollToTop from './Components/ScrollToTop';
 import PublicProfilePage from './pages/PublicProfilePage';
-
+import Help from "./Components/help/Help";
+import PartnerDispute from "./Components/dispute/PartnerDispute";
+import FAQ from "./Components/faq/FAQ";
+import Feedback from "./Components/feedback/Feedback"
 
 const routing = (
   
@@ -40,6 +43,12 @@ const routing = (
     <Route exact path="/family-apartments" component={FamilyApartments}/>
     <Route exact path="/vacation-villas" component={VacationVillas}/>
     <Route exact path="/find-roommates" component={PublicProfilePage}/>
+    <Route exact path="/help" component={Help}/>
+    <Route path="faq" element={FAQ} />
+    <Route exact path="/partner-dispute" component={PartnerDispute}/>
+    <Route path="feedback" element={Feedback} />
+    
+        
   </Router>
 )
 

@@ -5,7 +5,7 @@ import "./Ads.css";
 const Ads = () => {
   // const navigate = useNavigate();
   return (
-    <div className="h-1/2 my-20 py-9  bg-green-100 bg-grey" >
+    <div className="h-1/2 bg-green-100 bg-grey" >
       <div className="">
         <div className="flex justify-center flex-col">
           <h1 className="mx-auto tracking-wide text-4xl font-bold uppercase opacity-[0.7]">

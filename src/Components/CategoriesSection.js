@@ -1,21 +1,23 @@
 import React from "react";
 import { Card, Container, Col, Row } from "react-bootstrap";
 import {Link} from "react-router-dom";
-import personalRoomsPic from '../pictures/personal-rooms.jpg'
+import home1 from '../img/Heavy.jpg'
+import home2 from '../img/Sprayer.jpg'
+import home3 from '../img/medium.webp'
 import familyApartments from '../pictures/family-apartments.jpg'
 import villas from '../pictures/villas.jpg'
 import Footer from "./footer/Footer";
 export default function CategoriesSection() {
   return (
-    <div>
+    <div className="mb-5">
       <Container>
-      <h2 className="mt-4">Live Anywhere</h2>
-      <p className="heading-p">EXPLORE OUR SELECTION OF THE BEST PLACES</p>
+      <h2 className="mt-4 " style={{color:"black"}}>Book any Equipment</h2>
+      <p className="heading-p" style={{color:"black"}}>Buy equipment at least cost, save your money and time.</p>
     
         <Row className="mt-5">
-        <Col sm={12} md={4} lg={4}>
+        <Col sm={8} md={4} lg={4}>
           <Link to="/personal-rooms"><Card className="category-cards text-dark mt-3">
-            <Card.Img variant="top" src={personalRoomsPic} className="category-img"/>
+            <Card.Img variant="top" src={home1} className="category-img pa-3"/>
             <Card.Body>
               <Card.Title>Heavy Equipment</Card.Title>
               <Card.Text>
@@ -24,9 +26,9 @@ export default function CategoriesSection() {
             </Card.Body>
           </Card></Link>
           </Col>
-          <Col sm={12} md={4} lg={4}>
+          <Col sm={8} md={4} lg={4}>
           <Link to="/family-apartments"><Card className="category-cards text-dark mt-3">
-            <Card.Img variant="top" src={familyApartments} className="category-img"/>
+            <Card.Img variant="top" src={home2} className="category-img"/>
             <Card.Body>
               <Card.Title>Medium Tools</Card.Title>
               <Card.Text>
@@ -35,9 +37,9 @@ export default function CategoriesSection() {
             </Card.Body>
           </Card></Link>
           </Col>
-          <Col sm={12} md={4} lg={4}>
+          <Col sm={8} md={4} lg={4}>
           <Link to="/vacation-villas"><Card className="category-cards text-dark mt-3">
-            <Card.Img variant="top" src={villas} className="category-img"/>
+            <Card.Img variant="top" src={home3} className="category-img"/>
             <Card.Body>
               <Card.Title>Small Tools</Card.Title>
               <Card.Text>

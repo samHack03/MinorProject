@@ -66,7 +66,7 @@ export default function BecomeHost() {
             setName(user.displayName)
           }
         });
-      }, [])
+      })
 
 
 

@@ -6,14 +6,14 @@ import vector33 from "../../img/vector33.svg";
 
 const Support = () => {
   return (
-    <div className="h-2/5 p-12">
+    <div className="h-2/5 mt-5">
       <h1 className="text-2xl font-semibold uppercase text-center">
         What we offer
       </h1>
       <p className="text-lg text-center mb-[100px] mt-3 opacity-90">
         Being a part of Krish e-Hal, these are the services we are offering you:
       </p>
-      <div className="flex justify-center mediaQuery items-center mb-[100px]">
+      <div className="flex justify-center mediaQuery items-center mb-[50px]">
         <div className="supportItem mx-5 getMargin p-9 rounded-2xl">
           <img className="supportImg" src={vector11} alt="" />
           <h3 className="text-xl mb-1 text-center font-semibold mt-5">
