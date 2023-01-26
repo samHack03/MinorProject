@@ -9,6 +9,7 @@ import CategoriesSection from '../Components/CategoriesSection'
 import FindRoommatesContent from '../Components/FindRoommatesContent'
 import Footer from '../Components/footer/Footer.jsx'
 import PreHeader from '../Components/preheader/PreHeader'
+import Equipments from '../Components/equipments/Equipments'
 
 export default function Home() {
 
@@ -46,6 +47,7 @@ export default function Home() {
       <FeaturedSection/>
       <CategoriesSection/>
       <FindRoommatesContent/>
+      <Equipments/>
       <Footer/>
       </>
       )
