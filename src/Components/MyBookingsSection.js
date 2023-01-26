@@ -111,11 +111,7 @@ export default function MyBookingsSection() {
        
        <Container>
       <div className="outer text-center">
-      <div className="middle">
-      <div className="inner h5">
-       You have not done any bookings
-       </div>
-       </div>
+
        </div>
        </Container>
 

@@ -5,7 +5,7 @@ import videoPic from "../../img/videoPic.png";
 
 const Workflow = () => {
   return (
-    <div className=" mb-10 p-12 bg-[#219653] ">
+    <div className=" mb-10 p-12 bg-[#219653] " style={{width:"100%", heght:"100px"}}>
       <h1 className="text-4xl font-bold uppercase mb-4 text-center">
         How Krish e-Hal works?
       </h1>

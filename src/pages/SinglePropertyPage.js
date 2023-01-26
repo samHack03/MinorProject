@@ -19,6 +19,7 @@ import {
   faArrowCircleRight,
   faCheckSquare,
   faTimesCircle,
+  faScrewdriverWrench
 } from "@fortawesome/free-solid-svg-icons";
 import firebase from "firebase";
 import { auth, database } from "../config";
@@ -218,24 +219,26 @@ export default function SinglePropertyPage() {
               <Col lg={8} md={8} sm={12}>
                 <Card>
                   <h4 className="pl-2 pt-2">{data.title}</h4>
-                  <p className="text-lead pl-2">
+                  <p className={"text-lead pl-2"} >
                     <FontAwesomeIcon icon={faMapMarkerAlt} /> {data.city},
                     {data.address}&nbsp;&nbsp;
-                    <FontAwesomeIcon icon={faHome} /> {data.category}
+                  <span></span>
+                  <FontAwesomeIcon icon={  faScrewdriverWrench } style={{marginLeft:"20px"}} /> {data.category=="Personal Rooms"?"Heavy Equipment":data.category=="Family Apartments"?"Medium Tools":"Small Tools"}
                   </p>
+                  
 
                   <Row className="p-2">
                     <Col lg={4} md={4} sm={4}>
                       <Card className="mt-2">
                         <Card.Body>
-                          <FontAwesomeIcon icon={faHome} /> {data.category}
+                          <FontAwesomeIcon icon={faScrewdriverWrench} /> {data.category=="Personal Rooms"?"Heavy Equipment":data.category=="Family Apartments"?"Medium Tools":"Small Tools"}
                         </Card.Body>
                       </Card>
                     </Col>
                     <Col lg={4} md={4} sm={4} className="mt-2">
                       <Card>
                         <Card.Body>
-                          <FontAwesomeIcon icon={faBed} /> Bedrooms:
+                          <FontAwesomeIcon icon={faBed} /> Purchasing year:
                           {data.bedrooms}
                         </Card.Body>
                       </Card>
@@ -243,21 +246,21 @@ export default function SinglePropertyPage() {
                     <Col lg={4} md={4} sm={4} className="mt-2">
                       <Card>
                         <Card.Body>
-                          <FontAwesomeIcon icon={faShower} /> Bathrooms:
+                          <FontAwesomeIcon icon={faShower} /> Usage duration:
                           {data.bathrooms}
                         </Card.Body>
                       </Card>
                     </Col>
                   </Row>
                   <Container>
-                    <h4 className="mt-4">About this listing</h4>
+                    <h4 className="mt-4">About this Equipment</h4>
                     <p className="text-lead">{data.about}</p>
                     <h4 className="mt-4">Prices</h4>
                     <Row>
                       <Col sm={12} lg={3} md={3}>
                         <p className="text-lead">
                           <FontAwesomeIcon icon={faArrowCircleRight} /> Per
-                          Night: {data.per_night}
+                          Day: {data.per_night}
                         </p>
                       </Col>
                       <Col sm={12} lg={3} md={3}>
@@ -281,58 +284,68 @@ export default function SinglePropertyPage() {
                       </Col>
                     </Row>
 
-                    <h4 className="mt-4">Amenities</h4>
+                    <h4 className="mt-4">Other Details</h4>
                     <Row>
-                      <Col sm={12} lg={3} md={3}>
+                      <Col sm={15} lg={4} md={4}>
                       <p className="text-lead">
-                      Living Room:&nbsp;
+                      Electric Equipment:&nbsp;
                         {data.livingRoom == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
                          
                         </p>
                       </Col>
-                      <Col sm={12} lg={3} md={3}>
+                      <Col sm={15} lg={4} md={4}>
                       <p className="text-lead">
-                     Internet:&nbsp;
+                      Uasge for large area:&nbsp;
                         {data.internet == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
                           
                         </p>
                       </Col>
-                      <Col sm={12} lg={3} md={3}>
+                      <Col sm={15} lg={4} md={4}>
                       <p className="text-lead">
-                     Gym:&nbsp;
+                      Life of Equipment:&nbsp;
                         {data.gym == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
                           
                         </p>
                       </Col>
-                      <Col sm={12} lg={3} md={3}>
-                      <p className="text-lead">
-                     Parking Space:&nbsp;
-                        {data.parking == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
-                          
-                        </p>
-                      </Col>
+
                     </Row>
 
                     <Row>
 
-                    <Col sm={12} lg={3} md={3}>
+                    <Col sm={15} lg={4} md={4}>
                       <p className="text-lead">
-                     Air Conditioner:&nbsp;
-                        {data.ac == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
-                        </p>
-                        </Col>
-                    <Col sm={12} lg={3} md={3}>
-                      <p className="text-lead">
-                     Gated Security:&nbsp;
+                      Weight(More than 100kg):&nbsp;
                         {data.gatedSecurity == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
                         </p>
                         </Col>
-                    <Col sm={12} lg={3} md={3}>
+
+                    <Col sm={15} lg={4} md={4}>
                       <p className="text-lead">
-                     Water Supply:&nbsp;
+                      Indian Manufacture: &nbsp;
                         {data.waterSupply == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
                         </p>
                         </Col>
+
+                        <Col sm={15} lg={4} md={4}>
+                      <p className="text-lead">
+                      Aadhar Linked : &nbsp;
+                        {data.ac == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
+                        </p>
+                        </Col>
+
+                    <Col sm={15} lg={4} md={4}>
+
+  
+                      <p className="text-lead">
+                      KYC:&nbsp;
+                        {data.parking == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
+                          
+                        </p>
+                      </Col>
+
+
+
+
 
                     </Row>
 
@@ -400,7 +413,7 @@ export default function SinglePropertyPage() {
               </Col>
 
               <Col lg={4} md={4} sm={12}>
-                <Card className="text-center booking-form">
+                <Card className="text-center booking-form ml-2">
                   <Card.Header className="card-booking-form-header">
                     ₹ {data.per_night}/Night
                   </Card.Header>
@@ -443,7 +456,7 @@ export default function SinglePropertyPage() {
                   
                   <Card.Footer className="text-muted">
                     <Link to={`/find-roommates?${data.city}Yes`}><Button variant="warning">
-                      Find Roommates in {data.city}
+                      Find Lender in {data.city}
                     </Button></Link>
                   </Card.Footer>
 

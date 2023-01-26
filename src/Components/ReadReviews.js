@@ -49,7 +49,11 @@ export default function ReadReviews() {
       return (
         <>
           <Container>
-          <h4>Reviews:</h4>
+
+            {reviews.length>0}
+
+            <div>
+            <h4>Reviews:</h4>
             <Row>
               {reviews.map((data, id) => (
                <Col sm={12} md={12} lg={12} key={uuidv4()}>
@@ -68,6 +72,8 @@ export default function ReadReviews() {
                
               ))}
             </Row>
+            </div>
+
           </Container>
           <br />
           <br />

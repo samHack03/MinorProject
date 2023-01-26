@@ -49,17 +49,13 @@ export default function Home() {
       <Navbar/>
       {/* <HeroSection/> */}
       <Banner/>
-
+      <Support/>
       <FeaturedSection/>
       <CategoriesSection/>
-  
-      <Support/>
       <Workflow/>
       <Services/>
       <Ads/>
       <Stats/>
-      
-
       {/* <FindRoommatesContent/> */}
       <Equipments/>
       <Footer/>

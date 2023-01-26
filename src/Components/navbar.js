@@ -74,7 +74,7 @@ const Logout = () => {
       >Home</Nav.Link>
       {authState ? (
        <React.Fragment>
-      <Nav.Link as={Link} to="/personal-rooms" className={"text-light"}>Large Equipment</Nav.Link>
+      <Nav.Link as={Link} to="/personal-rooms" className={"text-light"}>Heavy Equipment</Nav.Link>
       <Nav.Link as={Link} to="/family-apartments" className={"text-light"}>Medium Tools</Nav.Link>
       <Nav.Link as={Link} to="/vacation-villas" className={"text-light"}>Small Tools</Nav.Link>
       <Nav.Link as={Link} to="/become-host" className={"text-light"}>Add Product</Nav.Link>

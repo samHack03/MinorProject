@@ -41,6 +41,10 @@ export default function BecomeHost() {
   const [imageTwoURL, setImageTwoURL] = useState("");
   const [imageThreeURL, setImageThreeURL] = useState("");
   const [imageFourURL, setImageFourURL] = useState("");
+  const [imageOneName, setImageOneName] = useState("");
+  const [imageTwoName, setImageTwoName] = useState("");
+  const [imageThreeName, setImageThreeName] = useState("");
+  const [imageFourName, setImageFourName] = useState("");
   //progress status
 
   //form submit status
@@ -70,6 +74,8 @@ export default function BecomeHost() {
     async  function uploadImageFirst(e) {
 
       const imageFile = e.target.files[0];
+
+      setImageOneName(imageFile.name);
      
     
       try {
@@ -119,6 +125,8 @@ export default function BecomeHost() {
    async  function uploadImageSecond(e) {
 
     const imageFile = e.target.files[0];
+
+    setImageTwoName(imageFile.name)
   
     try {
       const compressedFile1 = await imageCompression(imageFile, imageConfig);
@@ -168,6 +176,8 @@ export default function BecomeHost() {
    async  function uploadImageThird(e) {
       
     const imageFile = e.target.files[0];
+
+    setImageThreeName(imageFile.name)
   
     try {
       const compressedFile1 = await imageCompression(imageFile, imageConfig);
@@ -216,6 +226,8 @@ export default function BecomeHost() {
  async  function uploadImageFourth(e) {
       
   const imageFile = e.target.files[0];
+
+  setImageFourName(imageFile.name)
 
   try {
     const compressedFile1 = await imageCompression(imageFile, imageConfig);
@@ -409,11 +421,9 @@ export default function BecomeHost() {
                     onChange={handleChange}
                   >
                     <option>Select</option>
-                    <option value="Personal Rooms">Personal Rooms</option>
-                    <option value="Family Apartments">Family Apartments</option>
-                    <option value="Villas For Vacation">
-                      Villas For Vacation
-                    </option>
+                    <option value="Personal Rooms">Heavy Equipment</option>
+                    <option value="Family Apartments">Medium Tools</option>
+                    <option value="Villas For Vacation"> Small Tools</option>
                   </Form.Control>
                 </Form.Group>
               </Form.Row>
@@ -446,7 +456,7 @@ export default function BecomeHost() {
               <h2 className="mt-3">Specific Details</h2>
 
               <Form.Group controlId="formGridAddress2">
-                <Form.Label>Property Title</Form.Label>
+                <Form.Label>Equipment Name</Form.Label>
                 <Form.Control
                   placeholder="Eg. Amazing Apartment With Sea View"
                   value={title}
@@ -462,7 +472,7 @@ export default function BecomeHost() {
                   sm={12}
                   controlId="formGridZip"
                 >
-                  <Form.Label>Price Per Night</Form.Label>
+                  <Form.Label>Price Per Day</Form.Label>
                   <Form.Control
                     type="number"
                     placeholder="Eg. 1500"
@@ -519,7 +529,7 @@ export default function BecomeHost() {
 
               <Form.Row>
                 <Form.Group as={Col} lg={6} md={6} sm={12}>
-                  <Form.Label>Bedrooms</Form.Label>
+                  <Form.Label>Equipment purchasing year</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Eg. 2"
@@ -528,7 +538,7 @@ export default function BecomeHost() {
                   required/>
                 </Form.Group>
                 <Form.Group as={Col} lg={6} md={6} sm={12}>
-                  <Form.Label>Bathrooms</Form.Label>
+                  <Form.Label>Equipment usage duration (months/year)</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Eg. 1"
@@ -538,38 +548,39 @@ export default function BecomeHost() {
                 </Form.Group>
               </Form.Row>
 
-              <Form.Label>Upload Property Images</Form.Label>
+              <Form.Label>Upload Equipment Images</Form.Label>
               <br />
               <Form.Row>
 
                 <Form.Group as={Col} lg={3} md={3} sm={3} className="file-input">
                 <Form.Control type="file" onChange={uploadImageFirst} required/>
-                  <span className='button'>Upload Property Image</span>
-                  <span className='label' data-js-label>No file selected</span>
+                  <span className='button'>Upload Equipment Image</span>
+                  <p style={{marginLeft:"40px"}}>{imageOneName}</p>
                 </Form.Group>
                 
                 <Form.Group as={Col} lg={3} md={3} sm={3} className="file-input">
                   <Form.Control type="file" onChange={uploadImageSecond} required/>
-                  <span className='button'>Upload Property Image</span>
-                  <span className='label' data-js-label>No file selected</span>
+                  <span className='button'>Upload Equipment Image</span>
+                  <p style={{marginLeft:"40px"}}>{imageTwoName}</p>
                 </Form.Group>
 
                 <Form.Group as={Col} lg={3} md={3} sm={3} className="file-input">
                   <Form.Control type="file" onChange={uploadImageThird} required/>
-                  <span className='button'>Upload Property Image</span>
-                  <span className='label' data-js-label>No file selected</span>
+                  <span className='button'>Upload Equipment Image</span>
+                  <p style={{marginLeft:"40px"}}>{imageThreeName}</p>
                 </Form.Group>
 
 
                 <Form.Group as={Col} lg={3} md={3} sm={3} className="file-input">
                   <Form.Control type="file" onChange={uploadImageFourth} required/>
-                  <span className='button'>Upload Property Image</span>
-                  <span className='label' data-js-label>No file selected</span>
+                  <span className='button'>Upload Equipment Image</span>
+                  <p style={{marginLeft:"40px"}}>{imageFourName}</p>
+                  <span ></span>
                 </Form.Group>
               </Form.Row>
 
               <Form.Group controlId="exampleForm.ControlTextarea1">
-                <Form.Label>About this listing</Form.Label>
+                <Form.Label>About the Equipment</Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
@@ -579,11 +590,11 @@ export default function BecomeHost() {
               </Form.Group>
 
 
-              <h2 className="mt-3">Amenities</h2>
+              <h2 className="mt-3">Other Details</h2>
 
               <Form.Row>
                 <Form.Group as={Col} lg={3} md={3} sm={12} controlId="livingRoom">
-                  <Form.Label>Living Room</Form.Label>
+                  <Form.Label>Electric Equipment</Form.Label>
                   <Form.Control
                     as="select"
                     name="livingRoom"
@@ -592,34 +603,35 @@ export default function BecomeHost() {
                     <option>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
+            
                   </Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} lg={3} md={3} sm={12} controlId="internet">
-                  <Form.Label>Internet</Form.Label>
+                  <Form.Label>Usage</Form.Label>
                   <Form.Control
                     as="select"
                     name="internet"
                     onChange={handleChangeInternet}
                   >
                     <option>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                    <option value="Yes">Less than 20 hectare</option>
+                    <option value="No">More than 20 hectare</option>
                   </Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} lg={3} md={3} sm={12} controlId="gym">
-                  <Form.Label>Gym</Form.Label>
+                  <Form.Label>Life of Equipment</Form.Label>
                   <Form.Control
                     as="select"
                     name="gym"
                     onChange={handleChangeGym}
                   >
                   <option>Select</option>
-                   <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                   <option value="Yes">1 year duraction </option>
+                    <option value="No">More than 1 year</option>
                   </Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} lg={3} md={3} sm={12} controlId="parking">
-                  <Form.Label>Parking Space</Form.Label>
+                  <Form.Label>KYC</Form.Label>
                   <Form.Control
                     as="select"
                     name="parking"
@@ -633,7 +645,7 @@ export default function BecomeHost() {
                 </Form.Row>
                 <Form.Row>
                 <Form.Group as={Col} lg={4} md={4} sm={12} controlId="ac">
-                  <Form.Label>Air Conditioner</Form.Label>
+                  <Form.Label>Aadhar Linked</Form.Label>
                   <Form.Control
                     as="select"
                     name="ac"
@@ -645,27 +657,27 @@ export default function BecomeHost() {
                   </Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} lg={4} md={4} sm={12} controlId="security">
-                  <Form.Label>Gated Security</Form.Label>
+                  <Form.Label>Weight</Form.Label>
                   <Form.Control
                     as="select"
                     name="security"
                     onChange={handleChangeSecurity}
                   >
                   <option>Select</option>
-                   <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                   <option value="Yes">Less than 100kg</option>
+                    <option value="No">More than 100kg</option>
                   </Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} lg={4} md={4} sm={12} controlId="waterSupply">
-                  <Form.Label>Water Supply</Form.Label>
+                  <Form.Label>Country of origin</Form.Label>
                   <Form.Control
                     as="select"
                     name="waterSupply"
                     onChange={handleChangeWaterSupply}
                   >
                   <option>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                    <option value="Yes">India</option>
+                    <option value="No">Out of India</option>
                   </Form.Control>
                 </Form.Group>
                 </Form.Row>
