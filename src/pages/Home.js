@@ -6,7 +6,8 @@ import HeroSection from '../Components/hero-section'
 import firebase from 'firebase'
 import CategoriesSection from '../Components/CategoriesSection'
 import FindRoommatesContent from '../Components/FindRoommatesContent'
-import Footer from '../Components/Footer'
+import Footer from '../Components/footer/Footer.jsx'
+import PreHeader from '../Components/preheader/PreHeader'
 
 export default function Home() {
 
@@ -37,6 +38,7 @@ export default function Home() {
     }else{
       return(
       <>
+      <PreHeader/>
       <Navbar/>
       <HeroSection/>
       <FeaturedSection/>
