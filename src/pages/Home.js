@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react'
 import {Redirect} from 'react-router-dom'
 import Navbar from '../Components/navbar'
 import FeaturedSection from '../Components/featuredSection'
-import HeroSection from '../Components/hero-section'
+// import HeroSection from '../Components/hero-section'
 import Banner from "../Components/banner/Banner";
 import firebase from 'firebase'
 import CategoriesSection from '../Components/CategoriesSection'
@@ -10,6 +10,10 @@ import FindRoommatesContent from '../Components/FindRoommatesContent'
 import Footer from '../Components/footer/Footer.jsx'
 import PreHeader from '../Components/preheader/PreHeader'
 import Services from '../Components/Home component/services/Services'
+import Workflow from '../Components/Home component/workflow/Workflow'
+import Support from '../Components/Home component/support/Support'
+import Ads from '../Components/Home component/ads/Ads'
+import Stats from '../Components/Home component/stats/Stats'
 
 export default function Home() {
 
@@ -44,11 +48,17 @@ export default function Home() {
       <Navbar/>
       {/* <HeroSection/> */}
       <Banner/>
+      
       <FeaturedSection/>
       <CategoriesSection/>
       <FindRoommatesContent/>
+      <Support/>
+      <Workflow/>
       <Services/>
+      <Ads/>
+      <Stats/>
       <Footer/>
+      
       </>
       )
     }
