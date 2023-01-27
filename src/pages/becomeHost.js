@@ -626,7 +626,7 @@ export default function BecomeHost() {
                     onChange={handleChangeGym}
                   >
                   <option>Select</option>
-                   <option value="Yes">1 year duraction </option>
+                   <option value="Yes">One year duration </option>
                     <option value="No">More than 1 year</option>
                   </Form.Control>
                 </Form.Group>

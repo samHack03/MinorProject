@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {Link} from "react-router-dom"
 import "./Banner.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import home1 from "../../img/img/home1.jpg"
+import {UserContext} from '../../context/UserContext'
 // import slider2 from "../../../img/slider2.webp";
 // import slider3 from "../../../img/slider3.webp";
 // import { useNavigate, Navigate } from "react-router-dom";
@@ -19,6 +20,8 @@ const Banner = () => {
       callback: (redirectPage) => setRedirectUrl(redirectPage)
     }
   ];
+
+  const context = useContext(UserContext);
 
   // const { transcript } = useSpeechRecognition({ commands });
   const [redirectUrl, setRedirectUrl] = useState("");
@@ -81,7 +84,7 @@ const Banner = () => {
           <div>
             <div className="flex flex-col justify-center -mt-10 wrapper">
               <p className="text-2xl font-normal text-white">
-              नमस्ते, welcome to Krish-e-Hal.
+              नमस्ते {context?.user?.email?.split(".")[0]?.toUpperCase()}, welcome to Krish-e-Hal.
               </p>
               <h1 className="text-4xl font-bold text-white">
                 <span className="text-[#219653]">Farmer’s Eqipments</span> at

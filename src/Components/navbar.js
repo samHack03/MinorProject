@@ -49,7 +49,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        context.setUser({email: user.email, uid: user.uid})
+        context.setUser({email: user.email, uid: user.uid, name:user.name})
       }
     });
   }, [])
@@ -61,6 +61,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
             setAuthState(false)
           }else{
             setAuthState(true)
+
           }
         });
       }, [])
@@ -105,7 +106,8 @@ const addToast=()=>{
 }
 
 
-
+let name = context?.user?.email?.split(".")[0];
+console.log(name?.toUpperCase());
 
   return (
   <Navbar expand="lg" className="navbar" 
@@ -121,12 +123,14 @@ const addToast=()=>{
       >Home</Nav.Link>
       
       <React.Fragment>
-      <Nav.Link as={Link} to="/dashboard" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Dashboard</Nav.Link>
-      <Nav.Link as={Link} to="/heavy-machinery" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Heavy Machinery</Nav.Link>
-      <Nav.Link as={Link} to="/medium-tools" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Medium Tools</Nav.Link>
-      <Nav.Link as={Link} to="/small-tools" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Small Tools</Nav.Link>
-      <Nav.Link as={Link} to="/become-host" onClick={addToast} className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Add Product</Nav.Link>
-      <Nav.Link as={Link} to="/contact" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Contact</Nav.Link>
+      <Nav.Link as={Link} to="/dashboard" className={" pl-2  tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Dashboard</Nav.Link>
+      <Nav.Link as={Link} to="/heavy-machinery" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Heavy Machinery</Nav.Link>
+      <Nav.Link as={Link} to="/medium-tools" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Medium Tools</Nav.Link>
+      <Nav.Link as={Link} to="/small-tools" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Small Tools</Nav.Link>
+      <Nav.Link as={Link} to="/become-host" onClick={addToast} className={"pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Add Product</Nav.Link>
+      <Nav.Link as={Link} to="/contact" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Contact</Nav.Link>
+
+
 
 
       </React.Fragment>

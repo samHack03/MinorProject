@@ -108,6 +108,11 @@ export default function FamilyApartments() {
 
      
       <Container>
+       
+      <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"150px", marginLeft:"20px"}}>Medium Tools</h4>
+        <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
+
+
         <Row className="mt-32" >
           {listings.map((data, id) => (
            <Col sm={12} md={4} lg={4} key={uuidv4()}>

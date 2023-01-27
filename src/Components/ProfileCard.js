@@ -6,6 +6,7 @@ import { faMapMarkerAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { v4 as uuidv4 } from "uuid";
 import firebase from 'firebase'
 import { auth, database} from "../config";
+import Footer from '../Components/footer/Footer'
 
 export default function ProfileCard() {
 
@@ -119,6 +120,8 @@ database.ref("My-Profile").orderByChild("userUid").equalTo(userUid).on('value', 
       </Jumbotron>
 
         ))}
+
+       
         </div>
     )
 }

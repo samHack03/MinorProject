@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from '../Components/navbar'
 import Footer from "../Components/footer/Footer"
 
+import logo from "../img/img/logo.png";
+
 export default function Signup() {
 
 
@@ -20,6 +22,15 @@ export default function Signup() {
       <ToastContainer/>
       <ToastContainer/>
       <Navbar/>
+
+      <center>
+      <div style={{display:"flex", justifyContent:"center"}}>
+      <div className='mt-56'>
+        <img src={logo} width="250px" height="250px"/>
+        {/* <h3 className='m-8 mb-16 text-green-600 hover:text-green-200'>Krish e-Hal</h3> */}
+      </div>
+  
+      <div>
       <center>
         <h3 className='mt-32 x mb-8 text-2xl font-semibold uppercase text-center text-green-800'>Signup</h3>
       <form class="w-full max-w-lg p-8">
@@ -80,6 +91,14 @@ export default function Signup() {
 
 <Link to="/login" onClick={addAlert} type="button" class="m-8 mb-16 text-white bg-green-600 hover:bg-green-200 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">Submit</Link>
       </center>
+      </div>
+
+      </div>
+      </center>
+
+
+
+
 
 <Footer/>
       </div>
