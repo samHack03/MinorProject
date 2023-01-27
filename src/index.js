@@ -24,6 +24,8 @@ import PartnerDispute from "./Components/dispute/PartnerDispute";
 import FAQ from "./Components/faq/FAQ";
 import Feedback from "./Components/feedback/Feedback"
 import ContactUs from './Components/contactUs/ContactUs';
+import Dashboard from './pages/Dashboard';
+import Login from "./pages/Login";
 
 const routing = (
   
@@ -32,6 +34,7 @@ const routing = (
     <Route exact path="/" component={App}/>
     <Route exact path="/become-host" component={becomeHost}/>
     <Route exact path="/signup" component={Signup}/>
+    <Route exact path="/login" component={Login} />
     <Route exact path="/home" component={Home}/>
     <Route exact path="/done-posting-home" component={SuccessfulPosting}/>
     <Route exact path="/my-profile" component={MyProfile}/>
@@ -41,14 +44,16 @@ const routing = (
     <Route exact path="/my-bookings" component={MyBookings}/>
     <Route exact path="/my-home-bookings" component={MyHomeBookings}/>
     <Route exact path="/heavy-machinery" component={PersonalRooms}/>
-    <Route exact path="/family-apartments" component={FamilyApartments}/>
-    <Route exact path="/vacation-villas" component={VacationVillas}/>
+    <Route exact path="/medium-tools" component={FamilyApartments}/>
+    <Route exact path="/small-tools" component={VacationVillas}/>
     <Route exact path="/find-roommates" component={PublicProfilePage}/>
     <Route exact path="/help" component={Help}/>
     <Route exact path="/faq" component={FAQ} />
     <Route exact path="/partner-dispute" component={PartnerDispute}/>
     <Route path="/feedback" component={Feedback} />
     <Route exact path="/contact" component={ContactUs} />
+    <Route exact path="/dashboard" component={Dashboard} />
+    
     
         
   </Router>

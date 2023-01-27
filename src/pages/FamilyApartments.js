@@ -108,7 +108,7 @@ export default function FamilyApartments() {
 
      
       <Container>
-        <Row>
+        <Row className="mt-32" >
           {listings.map((data, id) => (
            <Col sm={12} md={4} lg={4} key={uuidv4()}>
 

@@ -178,7 +178,7 @@ a:link {
 }
 
 .my-listings-thumbnail {
-  min-height: 250px;
+  min-height: 200px;
   max-height: 250px;
 }
 .create-profile-button {
@@ -310,9 +310,9 @@ a:link {
   color: #fff;
 }
 
-.all-properties {
+/* .all-properties {
   margin-top: 100px;
-}
+} */
 .auth-btn {
   margin-top: 200px;
 }

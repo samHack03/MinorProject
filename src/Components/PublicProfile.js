@@ -120,12 +120,15 @@ export default function PublicProfiles() {
                   <Card.Title className="text-dark">{data.name}</Card.Title>
                   <Card.Text className="text-dark">
                   <p>
-                      {data.homeSearch == "Yes" ? "I'm Searching for homes": ""}
+                      {data.homeSearch == "Yes" ? "I'm Searching for farming equipment": ""}
                     </p>
                     <FontAwesomeIcon icon={faMapMarkerAlt} /> {data.city}&nbsp;
                    <p className="pt-2">
                    <a href={`mailto:${data.email}`} ><FontAwesomeIcon icon={faEnvelope} />&nbsp;{data.email}</a>
                    </p>
+                   <center>
+                   <button type="button" class="text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">Chat</button>
+                   </center>
                   </Card.Text>
                 </Card.Body>
               </Card>

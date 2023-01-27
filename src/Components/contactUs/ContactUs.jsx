@@ -36,7 +36,7 @@ const ContactUs = () => {
                     <h1 className='text-3xl pt-6 text-gray-900 font-bold opacity-[0.9]'>Contact Us</h1>
                     <p className='mt-12 text-gray-800 text-lg font-semibold'>Head Office</p>
                     <p className='mt-3 text-gray-500 text-md font-semibold'>JSSATE, Sector 62, Block C, Noida</p>
-                    <p className='mt-3 text-gray-500 text-md font-semibold'><i className="text-green-400 fa-solid fa-envelope"></i> Email : <a href="" className='text-green-700 font-semibold'>krishisadhan7@gmail.com</a></p>
+                    <p className='mt-3 text-gray-500 text-md font-semibold'><i className="text-green-400 fa-solid fa-envelope"></i> Email : <a href="" className='text-green-700 font-semibold'>krishiehal7799@gmail.com</a></p>
                 </div>
 
                 <div className='flex-1'>
@@ -49,10 +49,10 @@ const ContactUs = () => {
                             <div className="w-full md:w-2/5 ml-3 border border-green-400 px-3">
                                 <input onChange={(e) => setEmail(e.target.value)} value={email} className="cInput appearance-none block w-full rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="email" name="user_email" placeholder="Email" />
                             </div>
-                            <div className="w-full md:w-2/5 mt-3 mr-3 px-3 mb-6 border border-green-400 md:mb-0">
+                            <div className="w-full md:w-2/5 mt-3 mr-3 px-3 mb-6 border-green-400 md:mb-0">
                                 <input onChange={(e) => setPhone(e.target.value)} value={phone} className="cInput appearance-none block w-full rounded py-3 px-4 mb-3 leading-tight border border-green-100 focus:outline-none focus:bg-white" id="grid-first-name" type="text" name="user_phone" placeholder="Mobile No.*" />
                             </div>
-                            <div className="w-full md:w-2/5 ml-3 mt-3 px-3 border border-green-400 mb-6 md:mb-0">
+                            <div className="w-full md:w-2/5 ml-3 mt-3 px-3 border-green-400 mb-6 md:mb-0">
                                 <input onChange={(e) => setSubject(e.target.value)} value={subject} className="cInput appearance-none block w-full rounded py-3 px-4 mb-3 leading-tight border border-green-100 focus:outline-none focus:bg-white" id="grid-first-name" type="text" name="subject" placeholder="Subject" />
                             </div>
                             <div className="w-full h-20 md:w-[450px] mt-3 mb-6 md:mb-0">
@@ -61,12 +61,12 @@ const ContactUs = () => {
                                     rows="3" cols="6"
                                     placeholder="Message*"
                                 ></textarea> */}
-                                <textarea rows={3} cols={10} type="text" name="phone_number" id="phone_number" autocomplete="given-number" class="mt-1 px-2 py-1 focus:ring-indigo-500 border border-green-400 outline-none block w-full shadow-sm sm:text-sm rounded-md" />
+                                <textarea rows={3} cols={10} type="text" name="phone_number" placeholder='Enter you query !!' id="phone_number" autocomplete="given-number" class="mt-1 px-2 py-1 focus:ring-indigo-500 border border-green-400 outline-none block w-full shadow-sm sm:text-sm rounded-md" />
                             </div>
                             {done && (
                                 <h1 style={{color: '#59b256', fontSize: '18px', marginTop: '12px'}}>Thank you, Your email has been sent</h1>
                             )}
-                            <button className="mt-7 ml-auto bg-darkgreen mr-16 hover:bg-green-700 text-white font-bold py-2 px-8 rounded-full">
+                            <button className="mt-7 ml-auto bg-darkgreen mr-16 bg-green-700 text-white font-bold py-2 px-8 rounded-full">
                                 Send Message
                             </button>
                             

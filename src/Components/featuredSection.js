@@ -13,9 +13,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBed,
+  faClock,
   faShower,
   faMapMarkerAlt,
   faRupeeSign,
+  faCalendarDays,
+  faIndianRupeeSign
 } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 import firebase from "firebase";
@@ -79,6 +82,7 @@ export default function MyListings() {
             bathrooms: data.bathrooms,
             city: data.city,
             per_month: data.per_month,
+            per_week: data.per_week,
           });
         });
         setListings(items);
@@ -121,11 +125,11 @@ export default function MyListings() {
                 <Card.Body>
                   <Card.Title className="text-dark">{data.title}</Card.Title>
                   <Card.Text className="p-2 text-dark">
-                    <FontAwesomeIcon icon={faBed} /> {data.bedrooms}&nbsp;&nbsp;
-                    <FontAwesomeIcon icon={faShower} /> {data.bathrooms}&nbsp;&nbsp;
+                    <FontAwesomeIcon icon={  faClock} />  {data.bedrooms}&nbsp;&nbsp;
+                    <FontAwesomeIcon icon={faCalendarDays} /> {data.bathrooms}&nbsp;&nbsp;
                     <FontAwesomeIcon icon={faMapMarkerAlt} /> {data.city}&nbsp;&nbsp;
                     <span className="p-2">
-                      <FontAwesomeIcon icon={faRupeeSign} /> {data.per_month}
+                      <FontAwesomeIcon icon={faIndianRupeeSign} /> {data.per_week}
                     </span>
                   </Card.Text>
                 </Card.Body>

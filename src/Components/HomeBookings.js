@@ -124,6 +124,8 @@ console.log(listings, "listings at 94 line")
        }
      
      <Container>
+     <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>My Booking</h4>
+     <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
        <Row>
          {listings.map((data, id) => (
           <Col sm={12} md={4} lg={4} key={id}>

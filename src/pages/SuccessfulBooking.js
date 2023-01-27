@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import Navbar from '../Components/navbar'
 import {Button, Container, Card, Row, Col } from "react-bootstrap";
-import successPic from '../pictures/done.svg'
+import successPic from '../pictures/successPic.gif'
 
 export default function SuccessfulBooking() {
     return (
@@ -15,10 +15,11 @@ export default function SuccessfulBooking() {
          <img src={successPic} fluid="true" className="done-img"/>
          </Col>
          <Col md={6} sm={12} lg={6} className="h4 align-self-center">     
-             <div className="text-center successful-post-text">Property is Booked Successfully</div>
+             <div className="text-center successful-post-text">Equipment is Booked Successfully</div>
+            <center> <Link to="/"><button className="btn btn-primary text-center mt-5">Redirect to Home</button></Link></center>
          </Col>
          </Row>
-        <center><Link to="/"><button className="btn btn-primary text-center mt-5">Go to Home</button></Link></center>
+
          </Container>
         </>
      )

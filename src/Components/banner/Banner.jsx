@@ -87,17 +87,15 @@ const Banner = () => {
                 <span className="text-[#219653]">Farmer’s Eqipments</span> at
                 reasonable <br /> and affordable prices.
               </h1>
-              {/* <p className="text-lg font-normal mt-2 mb-4 text-white">
+              <p className="text-lg font-normal mt-2 mb-4 text-white">
                 Start now with just one click.
-              </p> */}
+                <br/>
+                <br/>
+                <Link to="/dashboard" class="mt-4 text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900" style={{marginTop:"30px", marginLeft:"20px"}}>Book Now</Link>
+              </p>
               <div className="flex justify-center items-center mx-auto">
-                {/* <button
-                  // onClick={() => navigate("/dashboard")}
-                  className="shadow-md mr-3 tooltip bg-[#219653] hover:bg-[#64a55a] text-white font-semibold text-lg w-[200px] py-2 px-2 rounded"
-                >
-                  Book Now
-                </button> */}
-                {/* <Link to="/vacation-villas" className="bg-[#219653] bg-white border-2 transition border-[#219653] text-[#219653] hover:text-white font-bold py-1 px-8 rounded mx-2">Book Now</Link> */}
+
+                {/* <Link to="/small-tools" className="bg-[#219653] bg-white border-2 transition border-[#219653] text-[#219653] hover:text-white font-bold py-1 px-8 rounded mx-2">Book Now</Link> */}
                 <i
                   // onClick={SpeechRecognition.startListening}
                   className="text-darkgreen tooltip cursor-pointer text-2xl mr-5 fa-solid fa-microphone"

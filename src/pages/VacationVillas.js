@@ -109,7 +109,7 @@ export default function VacationVillas() {
 
      
       <Container>
-        <Row>
+        <Row className="mt-32 mb-8" >
           {listings.map((data, id) => (
            <Col sm={12} md={4} lg={4} key={uuidv4()}>
 

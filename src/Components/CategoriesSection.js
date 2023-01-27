@@ -19,7 +19,7 @@ export default function CategoriesSection() {
           <Link to="/heavy-machinery"><Card className="category-cards text-dark mt-3">
             <Card.Img variant="top" src={home1} className="category-img pa-3"/>
             <Card.Body>
-              <Card.Title>Heavy Machinery</Card.Title>
+              <Card.Title className="font-bold">Heavy Machinery</Card.Title>
               <Card.Text>
               Find the most premium equipments used for very high utility, it includes very large tractors and Papé Machinery.
               </Card.Text>
@@ -27,10 +27,10 @@ export default function CategoriesSection() {
           </Card></Link>
           </Col>
           <Col sm={8} md={4} lg={4}>
-          <Link to="/family-apartments"><Card className="category-cards text-dark mt-3">
+          <Link to="/medium-tools"><Card className="category-cards text-dark mt-3">
             <Card.Img variant="top" src={home2} className="category-img"/>
             <Card.Body>
-              <Card.Title>Medium Tools</Card.Title>
+              <Card.Title className="font-bold">Medium Tools</Card.Title>
               <Card.Text>
               Find the most advanced farming equipments at very affordable prise, including small size tractors
               </Card.Text>
@@ -38,10 +38,10 @@ export default function CategoriesSection() {
           </Card></Link>
           </Col>
           <Col sm={8} md={4} lg={4}>
-          <Link to="/vacation-villas"><Card className="category-cards text-dark mt-3">
+          <Link to="/small-tools"><Card className="category-cards text-dark mt-3">
             <Card.Img variant="top" src={home3} className="category-img"/>
             <Card.Body>
-              <Card.Title>Small Tools</Card.Title>
+              <Card.Title className="font-bold">Small Tools</Card.Title>
               <Card.Text>
               Find the india's best small farming equipments(shovel,kassi) and make your life easy
               </Card.Text>

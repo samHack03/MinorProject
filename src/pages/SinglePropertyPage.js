@@ -486,7 +486,7 @@ export default function SinglePropertyPage() {
                         />
                       </Form.Group>
                       <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Number of Guestes</Form.Label>
+                        <Form.Label>Approximate days required</Form.Label>
                         <Form.Control
                           type="number" required
                           onChange={(e) => setGuests(e.target.value)}
@@ -508,7 +508,7 @@ export default function SinglePropertyPage() {
                   
                   <Card.Footer className="text-muted">
                     <Link to={`/find-roommates?${data.city}Yes`}><Button variant="warning">
-                      Find Lender in {data.city}
+                      Contact owner in {data.city}
                     </Button></Link>
                   </Card.Footer>
 

@@ -75,26 +75,26 @@ const Logout = () => {
   })
 }
 
-const googleAuth = () => {
-  firebase.auth()
- .signInWithPopup(provider)
- .then((result) => {
-   /** @type {firebase.auth.OAuthCredential} */
-   // var credential = result.credential;
-   // var token = credential.accessToken;
-   // The signed-in user info.
-   // var Signeduser = result.user;
-   toast(`Welcome ${result.user.displayName}`,{type: "success"})
- }).catch((error) => {
-   // Handle Errors here.
-   // var errorCode = error.code;
-   var errorMessage = error.message;
-   // var email = error.email;
-   // var credential = error.credential;
-   toast(errorMessage, { type: "error"});
-   // ...
- });
-}
+// const googleAuth = () => {
+//   firebase.auth()
+//  .signInWithPopup(provider)
+//  .then((result) => {
+//    /** @type {firebase.auth.OAuthCredential} */
+//    // var credential = result.credential;
+//    // var token = credential.accessToken;
+//    // The signed-in user info.
+//    // var Signeduser = result.user;
+//    toast(`Welcome ${result.user.displayName}`,{type: "success"})
+//  }).catch((error) => {
+//    // Handle Errors here.
+//    // var errorCode = error.code;
+//    var errorMessage = error.message;
+//    // var email = error.email;
+//    // var credential = error.credential;
+//    toast(errorMessage, { type: "error"});
+//    // ...
+//  });
+// }
 
 const addToast=()=>{
   console.log(context.user,"at 100 line in navbar")
@@ -120,17 +120,18 @@ const addToast=()=>{
       className={"text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}
       >Home</Nav.Link>
       
-       <React.Fragment>
+      <React.Fragment>
+      <Nav.Link as={Link} to="/dashboard" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Dashboard</Nav.Link>
       <Nav.Link as={Link} to="/heavy-machinery" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Heavy Machinery</Nav.Link>
-      <Nav.Link as={Link} to="/family-apartments" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Medium Tools</Nav.Link>
-      <Nav.Link as={Link} to="/vacation-villas" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Small Tools</Nav.Link>
+      <Nav.Link as={Link} to="/medium-tools" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Medium Tools</Nav.Link>
+      <Nav.Link as={Link} to="/small-tools" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Small Tools</Nav.Link>
       <Nav.Link as={Link} to="/become-host" onClick={addToast} className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Add Product</Nav.Link>
-      <Nav.Link as={Link} to="/contact" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Contact Us</Nav.Link>
+      <Nav.Link as={Link} to="/contact" className={" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Contact</Nav.Link>
 
 
       </React.Fragment>
-      <div id="google_translate_element" style={{marginLeft:"10px"}}></div>
-      {!authState &&   <button type="button" class=" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5" onClick={googleAuth}>Login</button>  }
+      <div id="google_translate_element" style={{marginLeft:"5px"}}></div>
+      {/* {!authState &&   <button type="button" class=" pl-4 tracing-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5" onClick={googleAuth}>Login</button>  } */}
     </Nav>
 
     <Navbar.Collapse className="justify-content-end">
@@ -150,11 +151,13 @@ const addToast=()=>{
         </>
         ) : (
           <>
-        <NavDropdown.Item><Nav.Link as={Link} to="/">Login</Nav.Link></NavDropdown.Item>
-        <NavDropdown.Item><Nav.Link as={Link} to="/">Signup</Nav.Link></NavDropdown.Item>
+        <NavDropdown.Item><Nav.Link as={Link} to="/login" >Login</Nav.Link></NavDropdown.Item>
+        {/* {!authState &&   <button type="button" class=" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5" >Login</button>  } */}
+        <NavDropdown.Item><Nav.Link as={Link} to="/signup">Signup</Nav.Link></NavDropdown.Item>
         <NavDropdown.Divider />
         </>
-        )}
+        )
+        }
         {authState ? (
         <>
         <NavDropdown.Item><Button className="btn btn-danger" onClick={Logout}>Logout</Button></NavDropdown.Item>
