@@ -142,11 +142,7 @@ export default function SinglePropertyPage() {
 			order_id: data.id,
 			handler: async (response) => {
         setSubmit("Submitted");
-				try {
-					const verifyUrl = "http://localhost:8080/api/payment/verify";
-					const { data } = await axios.post(verifyUrl, response);
-					console.log(data);
-          if(authState){
+                 if(authState){
             database.ref("Bookings").push({
               userUid: userUid,
               arrivalDate: arrivalDate,
@@ -165,6 +161,11 @@ export default function SinglePropertyPage() {
             toast.success("Payment Successful !!")
             console.log("inside the verify payemnts at 163")
           }
+				try {
+					const verifyUrl = "http://localhost:8080/api/payment/verify";
+					const { data } = await axios.post(verifyUrl, response);
+					console.log(data);
+
 				} catch (error) {
 					console.log(error);
 				}
