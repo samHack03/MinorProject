@@ -26,7 +26,7 @@ export default function Home() {
       return(
       <>
       <PreHeader/>
-      <Navbar/>
+
       {/* <HeroSection/> */}
       <Banner/>
       <Support/>
@@ -38,7 +38,7 @@ export default function Home() {
       <Stats/>
       {/* <FindRoommatesContent/> */}
       <Equipments/>
-      <Footer/>
+
       </>
       )
     }

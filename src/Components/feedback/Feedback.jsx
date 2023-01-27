@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import Navbar from '../navbar';
+import Footer from '../footer/Footer';
+
 import './Feedback.css';
 
 const initial_values = {
@@ -18,13 +21,15 @@ const Feedback = () => {
         setFeedback({ ...feedback, [e.target.name]: e.target.value });
     }
 
-    const handleSubmit = async (e) => {
-        toast.success("Feedback submitted successfully")
+    const handleSubmit = () => {
+
+        alert("Feedback submitted successfully")
     }
 
 
     return (
-        <div>
+        <div> 
+            <Navbar/>
             <div class="flex items-center justify-center bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
             <div class="max-w-md w-full space-y-6">
                 <div>
@@ -35,7 +40,7 @@ const Feedback = () => {
 
                 <div class="rounded bg-white max-w-md overflow-hidden shadow-xl p-5">
 
-                    <form class="space-y-4" onSubmit={handleSubmit} method="POST">
+                    <form class="space-y-4" onSubmit={handleSubmit}>
                         <input type="hidden" name="remember" value="True" />
                         <div class="rounded-md shadow-sm -space-y-px">
                             <div class="grid gap-6">
@@ -72,6 +77,7 @@ const Feedback = () => {
         </div>
 
         </div>
+        <Footer/>
         </div>
     )
 }

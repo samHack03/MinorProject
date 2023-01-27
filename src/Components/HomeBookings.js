@@ -86,7 +86,9 @@ export default function HoneBookings() {
             price: data.price,
           });
         });
-        setListings(items);
+        let firstBooking = items.splice(0,2);
+
+        setListings(firstBooking);
       });
   }, [userUid]);
   //

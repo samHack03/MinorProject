@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../Components/navbar";
 import { Link, Redirect } from "react-router-dom";
 import {
@@ -127,29 +128,74 @@ export default function SinglePropertyPage() {
   }, [userUid]);
   //
 
-  const submitBooking = (e) => {
+  const initPayment = (data) => {
+		const options = {
+			key: "rzp_test_s1la8q9ZjeePPd",
+			amount: price,
+			currency: data.currency,
+			name: name,
+			description: "Test Transaction",
+			image: imageUrl,
+			order_id: data.id,
+			handler: async (response) => {
+        setSubmit("Submitted");
+				try {
+					const verifyUrl = "http://localhost:8080/api/payment/verify";
+					const { data } = await axios.post(verifyUrl, response);
+					console.log(data);
+          if(authState){
+            database.ref("Bookings").push({
+              userUid: userUid,
+              arrivalDate: arrivalDate,
+              departDate: departDate,
+              guests: guests,
+              propertyKey: propertyKey,
+              hostUid: hostUid,
+              imageUrl : imageUrl,
+              price: price,
+              title: heading,
+              city: city,
+              address: address,
+              name:name
+            });
+
+            toast.success("Payment Successful !!")
+            console.log("inside the verify payemnts at 163")
+          }
+				} catch (error) {
+					console.log(error);
+				}
+			},
+			theme: {
+				color: "#3399cc",
+			},
+		};
+		const rzp1 = new window.Razorpay(options);
+		rzp1.open();
+	};
+  
+
+
+  const submitBooking = async (e) => {
     e.preventDefault();
+     
     if(authState){
-      database.ref("Bookings").push({
-        userUid: userUid,
-        arrivalDate: arrivalDate,
-        departDate: departDate,
-        guests: guests,
-        propertyKey: propertyKey,
-        hostUid: hostUid,
-        imageUrl : imageUrl,
-        price: price,
-        title: heading,
-        city: city,
-        address: address,
-        name:name
-      });
-      setSubmit("Submitted");
+      try {
+        const orderUrl = "http://localhost:8080/api/payment/orders";
+        const { data } = await axios.post(orderUrl, { amount: price });
+        console.log(price)
+        console.log(data);
+        initPayment(data.data);
+      } catch (error) {
+        console.log(error, "not able to connect axios");
+      }
     }else{
       toast.error("Login first to book any equipment");
     }
 
   };
+
+
 
   const submitReview = (e) => {
     e.preventDefault();
@@ -229,7 +275,7 @@ export default function SinglePropertyPage() {
                     <FontAwesomeIcon icon={faMapMarkerAlt} /> {data.city},
                     {data.address}&nbsp;&nbsp;
                   <span></span>
-                  <FontAwesomeIcon icon={  faScrewdriverWrench } style={{marginLeft:"20px"}} /> {data.category=="Personal Rooms"?"Heavy Equipment":data.category=="Family Apartments"?"Medium Tools":"Small Tools"}
+                  <FontAwesomeIcon icon={  faScrewdriverWrench } style={{marginLeft:"20px"}} /> {data.category=="Personal Rooms"?"Heavy Machinery":data.category=="Family Apartments"?"Medium Tools":"Small Tools"}
                   </p>
                   
 
@@ -237,7 +283,7 @@ export default function SinglePropertyPage() {
                     <Col lg={4} md={4} sm={4}>
                       <Card className="mt-2">
                         <Card.Body>
-                          <FontAwesomeIcon icon={faScrewdriverWrench} /> {data.category=="Personal Rooms"?"Heavy Equipment":data.category=="Family Apartments"?"Medium Tools":"Small Tools"}
+                          <FontAwesomeIcon icon={faScrewdriverWrench} /> {data.category=="Personal Rooms"?"Heavy Machinery":data.category=="Family Apartments"?"Medium Tools":"Small Tools"}
                         </Card.Body>
                       </Card>
                     </Col>

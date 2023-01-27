@@ -2,10 +2,14 @@ import React from "react";
 
 //Components
 import { Link } from "react-router-dom";
+import Navbar from "../navbar";
+import Footer from "../footer/Footer"
 
 const FAQ = () => {
   return (
     <div>
+      <Navbar/>
+
       <div>
         <section class="text-gray-700">
           <div class="container px-5 py-24 mx-auto">
@@ -85,11 +89,11 @@ const FAQ = () => {
 
                   <span class="px-4 py-2 text-justify">
                     Go to our{" "}
-                    <Link to="/contact">
+                    {/* <Link to="/contact">
                       <p className="text-blue-500 inline underline">
                         Contact Us
                       </p>
-                    </Link>{" "}
+                    </Link>{" "} */}
                     page
                   </span>
                 </details>
@@ -98,6 +102,7 @@ const FAQ = () => {
           </div>
         </section>
       </div>
+      <Footer/>
     </div>
   );
 };
