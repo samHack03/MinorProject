@@ -23,6 +23,7 @@ import Help from "./Components/help/Help";
 import PartnerDispute from "./Components/dispute/PartnerDispute";
 import FAQ from "./Components/faq/FAQ";
 import Feedback from "./Components/feedback/Feedback"
+import ContactUs from './Components/contactUs/ContactUs';
 
 const routing = (
   
@@ -39,14 +40,15 @@ const routing = (
     <Route exact path="/done-booking" component={SuccessfulBooking}/>
     <Route exact path="/my-bookings" component={MyBookings}/>
     <Route exact path="/my-home-bookings" component={MyHomeBookings}/>
-    <Route exact path="/personal-rooms" component={PersonalRooms}/>
+    <Route exact path="/heavy-machinery" component={PersonalRooms}/>
     <Route exact path="/family-apartments" component={FamilyApartments}/>
     <Route exact path="/vacation-villas" component={VacationVillas}/>
     <Route exact path="/find-roommates" component={PublicProfilePage}/>
     <Route exact path="/help" component={Help}/>
-    <Route path="faq" element={FAQ} />
+    <Route exact path="/faq" component={FAQ} />
     <Route exact path="/partner-dispute" component={PartnerDispute}/>
-    <Route path="feedback" element={Feedback} />
+    <Route path="/feedback" component={Feedback} />
+    <Route exact path="/contact" component={ContactUs} />
     
         
   </Router>

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import './App.css';
 import {UserContext} from './context/UserContext'
 import Home from './pages/Home'
+import Navbar from "../src/Components/navbar";
+import Footer from "../src/Components/footer/Footer"
 
 
 function App() {
@@ -11,7 +13,9 @@ function App() {
   
   return (
   <UserContext.Provider value={{user, setUser}}>
+    <Navbar/>
      <Home/>
+     <Footer/>
    </UserContext.Provider>
   );
 

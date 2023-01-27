@@ -2,6 +2,8 @@ import React from "react";
 
 //Components
 import ExpandDropdown from "../expandText";
+import Navbar from "../navbar";
+import Footer from '../footer/Footer';
 
 const Help = () => {
   const booking_help = [
@@ -40,7 +42,8 @@ const Help = () => {
 
   return (
     <div className="" style={{width:"100%"}}>
-      <div className="bg-[#68AC5D] p-9 content-center">
+      <Navbar/>
+      <div className="bg-[#68AC5D] p-9 mt-5 content-center">
         <h1 className="font-bold text-5xl text-center text-white m-8">
           How can we Help?
         </h1>
@@ -79,6 +82,7 @@ const Help = () => {
           </button>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

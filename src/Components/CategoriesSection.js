@@ -16,10 +16,10 @@ export default function CategoriesSection() {
     
         <Row className="mt-5">
         <Col sm={8} md={4} lg={4}>
-          <Link to="/personal-rooms"><Card className="category-cards text-dark mt-3">
+          <Link to="/heavy-machinery"><Card className="category-cards text-dark mt-3">
             <Card.Img variant="top" src={home1} className="category-img pa-3"/>
             <Card.Body>
-              <Card.Title>Heavy Equipment</Card.Title>
+              <Card.Title>Heavy Machinery</Card.Title>
               <Card.Text>
               Find the most premium equipments used for very high utility, it includes very large tractors and Papé Machinery.
               </Card.Text>

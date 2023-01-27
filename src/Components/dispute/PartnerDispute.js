@@ -5,6 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 //Components
 import InputField from "../input/InputField";
 
+import Navbar from '../navbar';
+import Footer from '../footer/Footer';
+
 
 
 const PartnerDispute = () => {
@@ -24,7 +27,8 @@ const PartnerDispute = () => {
 
   return (
     <div>
-      <div className="text-center">
+      <Navbar/>
+      <div className="text-center mt-5">
         <div className="p-9" style={{ backgroundColor: "#68AC5D" }}>
           <h1 className="text-4xl font-bold text-white">
             Partner Dispute : Resolution Center
@@ -105,6 +109,7 @@ const PartnerDispute = () => {
         </div>
         {/* <Footer /> */}
       </div>
+      <Footer/>
     </div>
   );
 };

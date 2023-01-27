@@ -5,7 +5,7 @@ import logo1 from "../../img//logo1.png";
 import Vector from "../../img//Vector.png";
 import Vector1 from "../../img//Vector1.png";
 import Vector2 from "../../img//Vector2.png";
-import footerBg from "../../img//footerBg.png";
+import footerBg from '../../img/bpitLogo.png';
 
 const Footer = () => {
   // const navigate = useNavigate();
@@ -104,9 +104,9 @@ const Footer = () => {
           </p>
         </div>
         <div className="flex-1 flex mr-6">
-          <img src={footerBg} className="footerBgImg" alt="" />
+          <img src={footerBg} className="footerBgImg" />
           <h1 className="text-xl text-white font-bold mt-6">
-            Ministry of Skill Development and Entrepreneurship
+            Bhagwan Parshuram Institute of Techology
           </h1>
         </div>
       </div>

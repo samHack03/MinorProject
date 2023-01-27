@@ -421,7 +421,7 @@ export default function BecomeHost() {
                     onChange={handleChange}
                   >
                     <option>Select</option>
-                    <option value="Personal Rooms">Heavy Equipment</option>
+                    <option value="Personal Rooms">Heavy Machinery</option>
                     <option value="Family Apartments">Medium Tools</option>
                     <option value="Villas For Vacation"> Small Tools</option>
                   </Form.Control>
@@ -685,7 +685,7 @@ export default function BecomeHost() {
 
 
               <Button variant="primary" className="btn btn-block" type="submit">
-                Post My Property
+                Post My Equipment
               </Button>
               <br/>
               <br/>
