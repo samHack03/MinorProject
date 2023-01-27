@@ -84,7 +84,7 @@ const Banner = () => {
           <div>
             <div className="flex flex-col justify-center -mt-10 wrapper">
               <p className="text-2xl font-normal text-white">
-              नमस्ते {context?.user?.email?.split(".")[0]?.toUpperCase()}, welcome to Krish-e-Hal.
+              नमस्ते {context?.user?.email?.split("@")[0]?.toUpperCase()}, welcome to Krish-e-Hal.
               </p>
               <h1 className="text-4xl font-bold text-white">
                 <span className="text-[#219653]">Farmer’s Eqipments</span> at

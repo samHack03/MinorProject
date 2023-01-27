@@ -85,7 +85,7 @@ database.ref("My-Profile").orderByChild("userUid").equalTo(userUid).on('value', 
     return (
         <div>
 
-        {profileCheck == false ? <div className="text-center"><Link to="/create-profile"><Button variant="primary mr-top">Create Profile Now</Button></Link></div>:""}
+        {/* {profileCheck == false ? <div className="text-center"><Link to="/create-profile"><Button variant="primary mr-top">Create Profile Now</Button></Link></div>:""} */}
 
         {/* SPINNER */}
         { loading==true ? (<div className="spinner-border spinner text-primary"></div>) : ""}
@@ -101,7 +101,7 @@ database.ref("My-Profile").orderByChild("userUid").equalTo(userUid).on('value', 
         <p className="lead"><FontAwesomeIcon icon={faMapMarkerAlt}/> {data.city}</p>
         <p><FontAwesomeIcon icon={faEnvelope}/> {data.email}</p>
         <hr className="my-2" />
-        <p>{data.homeSearch=="Yes" ? "I'm Searching For Homes" : ""}</p>
+        <p>{data.homeSearch=="Yes" ? "Tools Available, Please book. Contact if any query" : ""}</p>
         
         <p>{data.homeSearch =="Yes" ?<Button variant="warning"
         onClick={()=>{
@@ -114,7 +114,7 @@ database.ref("My-Profile").orderByChild("userUid").equalTo(userUid).on('value', 
           firebase.database().ref("My-Profile").child(childKey)
         .set({ homeSearch: "Yes", city: city, email: email, name: name, thumbnail: thumbnail, userUid: userUid, filter: city+yes})}
         }
-        >Change Status To: I'm searching for homes</Button>}</p>
+        >Change Status To: Tools available</Button>}</p>
         </Col>
         </Row>
       </Jumbotron>

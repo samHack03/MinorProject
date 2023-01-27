@@ -15,10 +15,11 @@ export default function SuccessfulPosting() {
         <img src={successPic} fluid="true" className="done-img"/>
         </Col>
         <Col md={6} sm={12} lg={6} className="h4 align-self-center">     
-            <div className="text-center successful-post-text">Your Listing is Successfully Posted</div>
+            <div className="text-center successful-post-text">Your Equipment is Successfully Posted</div>
+            <center><Link to="/"><button className="btn btn-primary text-center mt-5">Redirect to Home</button></Link></center>
         </Col>
         </Row>
-       <center><Link to="/"><button className="btn btn-primary text-center mt-5">Go to Home</button></Link></center>
+      
         </Container>
        </>
     )

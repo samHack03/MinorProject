@@ -20,7 +20,10 @@ import {
   faArrowCircleRight,
   faCheckSquare,
   faTimesCircle,
-  faScrewdriverWrench
+  faScrewdriverWrench,
+  faCalendarDays,
+  faIndianRupeeSign,
+  faClock
 } from "@fortawesome/free-solid-svg-icons";
 import firebase from "firebase";
 import { auth, database } from "../config";
@@ -290,7 +293,7 @@ export default function SinglePropertyPage() {
                     <Col lg={4} md={4} sm={4} className="mt-2">
                       <Card>
                         <Card.Body>
-                          <FontAwesomeIcon icon={faBed} /> Purchasing year:
+                          <FontAwesomeIcon icon={faClock} /> Purchasing year:
                           {data.bedrooms}
                         </Card.Body>
                       </Card>
@@ -298,7 +301,7 @@ export default function SinglePropertyPage() {
                     <Col lg={4} md={4} sm={4} className="mt-2">
                       <Card>
                         <Card.Body>
-                          <FontAwesomeIcon icon={faShower} /> Usage duration:
+                          <FontAwesomeIcon icon={faCalendarDays} /> Usage duration:
                           {data.bathrooms}
                         </Card.Body>
                       </Card>

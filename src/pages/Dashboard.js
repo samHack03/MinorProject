@@ -18,6 +18,9 @@ import {
   faShower,
   faMapMarkerAlt,
   faRupeeSign,
+  faCalendarDays,
+  faIndianRupeeSign,
+  faClock
 } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 import firebase from "firebase";
@@ -86,7 +89,7 @@ export default function FamilyApartments() {
             per_month: data.per_month,
           });
         });
-        setHeavyMachine(items);
+        setHeavyMachine(items.splice(0,3));
       });
   }, [userUid]);
 
@@ -110,7 +113,7 @@ export default function FamilyApartments() {
             per_month: data.per_month,
           });
         });
-        setMediumTools(items);
+        setMediumTools(items.splice(0,3));
       });
   }, [userUid]);
 
@@ -134,7 +137,7 @@ export default function FamilyApartments() {
             per_month: data.per_month,
           });
         });
-        setSmallTools(items);
+        setSmallTools(items.splice(0,3));
       });
   }, [userUid]);
   //
@@ -182,11 +185,11 @@ export default function FamilyApartments() {
                 <Card.Body>
                   <Card.Title className="text-dark">{data.title}</Card.Title>
                   <Card.Text className="p-2 text-dark">
-                    <FontAwesomeIcon icon={faBed} /> {data.bedrooms}&nbsp;
-                    <FontAwesomeIcon icon={faShower} /> {data.bathrooms}&nbsp;
+                    <FontAwesomeIcon icon={faClock} /> {data.bedrooms}&nbsp;
+                    <FontAwesomeIcon icon={faCalendarDays} /> {data.bathrooms}&nbsp;
                     <FontAwesomeIcon icon={faMapMarkerAlt} /> {data.city}&nbsp;
                     <span className="p-2">
-                      <FontAwesomeIcon icon={faRupeeSign} /> {data.per_month}
+                      <FontAwesomeIcon icon={faIndianRupeeSign} /> {data.per_month}
                     </span>
                   </Card.Text>
                 </Card.Body>
@@ -223,11 +226,11 @@ export default function FamilyApartments() {
                 <Card.Body>
                   <Card.Title className="text-dark">{data.title}</Card.Title>
                   <Card.Text className="p-2 text-dark">
-                    <FontAwesomeIcon icon={faBed} /> {data.bedrooms}&nbsp;
-                    <FontAwesomeIcon icon={faShower} /> {data.bathrooms}&nbsp;
+                    <FontAwesomeIcon icon={faClock} /> {data.bedrooms}&nbsp;
+                    <FontAwesomeIcon icon={faCalendarDays} /> {data.bathrooms}&nbsp;
                     <FontAwesomeIcon icon={faMapMarkerAlt} /> {data.city}&nbsp;
                     <span className="p-2">
-                      <FontAwesomeIcon icon={faRupeeSign} /> {data.per_month}
+                      <FontAwesomeIcon icon={faIndianRupeeSign} /> {data.per_month}
                     </span>
                   </Card.Text>
                 </Card.Body>
@@ -265,11 +268,11 @@ export default function FamilyApartments() {
                 <Card.Body>
                   <Card.Title className="text-dark">{data.title}</Card.Title>
                   <Card.Text className="p-2 text-dark">
-                    <FontAwesomeIcon icon={faBed} /> {data.bedrooms}&nbsp;
-                    <FontAwesomeIcon icon={faShower} /> {data.bathrooms}&nbsp;
+                    <FontAwesomeIcon icon={faClock} /> {data.bedrooms}&nbsp;
+                    <FontAwesomeIcon icon={faCalendarDays} /> {data.bathrooms}&nbsp;
                     <FontAwesomeIcon icon={faMapMarkerAlt} /> {data.city}&nbsp;
                     <span className="p-2">
-                      <FontAwesomeIcon icon={faRupeeSign} /> {data.per_month}
+                      <FontAwesomeIcon icon={faIndianRupeeSign} /> {data.per_month}
                     </span>
                   </Card.Text>
                 </Card.Body>
