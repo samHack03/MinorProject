@@ -23,6 +23,7 @@ export default function MyBookingsSection() {
   const [listingsCheck, setListingsCheck] = useState(null);
   //snapshots
   const [listings, setListings] = useState([]);
+  const [tableData,setTableData] = useState([]);
   console.log(listings)
    //spinner
    const [loading, setLoading] = useState(true)
@@ -68,6 +69,7 @@ export default function MyBookingsSection() {
         snapshot.forEach((childSnapshot) => {
           var childKey = childSnapshot.key;
           var data = childSnapshot.val();
+          console.log(data)
           items.push({
             key: data.propertyKey,
             arrivalDate: data.arrivalDate,
@@ -82,9 +84,12 @@ export default function MyBookingsSection() {
             city: data.city,
             address: data.address,
             price: data.price,
+            name:data.name
           });
         });
-        setListings(items);
+        setListings(items.slice(items.length-3, items.length));
+        setTableData(items);
+        console.log(items);
       });
   }, [userUid]);
   //
@@ -118,13 +123,13 @@ export default function MyBookingsSection() {
        }
      
      <Container>
-     <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>All Booking</h4>
+     <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Latest Booking</h4>
      <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
        <Row>
          {listings.map((data, id) => (
           <Col sm={12} md={4} lg={4} key={uuidv4()}>
 
-          <Link to={{ pathname: '/property', search: `?${data.key}`, state: { fromDashboard: true }}}>
+          <Link >
 
           <Card className="mt-4">
                <Card.Img
@@ -134,8 +139,9 @@ export default function MyBookingsSection() {
                />
                <Card.Body>
                  <Card.Title className="text-dark">{data.title}</Card.Title>
+                 <p>{data?.name ?? "Lakshit Batra"}</p>
                  <Card.Text className="p-2 text-dark">
-                   <FontAwesomeIcon icon={faMapMarkerAlt} /> {data.address}&nbsp;,{data.city}
+                   <FontAwesomeIcon icon={faMapMarkerAlt} /> 
                    <span className="p-2">
                      <FontAwesomeIcon icon={faRupeeSign} /> {data.price} /Night <br/>
                      <FontAwesomeIcon icon={faCalendar} /> <b>Arrival Date:</b> {data.arrivalDate} <br/>
@@ -150,6 +156,45 @@ export default function MyBookingsSection() {
           
          ))}
        </Row>
+
+       <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>All Booking</h4>
+       <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
+       <table class="table" id="myTable">
+          <thead>
+            <tr>
+              <th scope="col">Equipment</th>
+              <th scope="col">Title</th>
+              <th scope="col">Username</th>
+              <th scope="col">Address</th>
+              <th scope="col">Starting Date</th>
+              <th scope="col">Ending Date</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+          {tableData.map((data,id)=>{
+            return (        
+              <tr>
+              <th scope='row'> <Link ><img src={data.imageUrl} width={"100px"} height={"100px"}/></Link> </th>
+              <td>{data.title}</td>
+              <td>{data?.name ?? "Lakshit Batra"}</td>
+              <td>{data.address}&nbsp;,{data.city}</td>
+              <td>{data.arrivalDate}</td>
+              <td> {data.departDate}</td>
+              <td> <center><button type="button" class=" mt-3 focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Booked</button></center> </td> 
+            </tr>
+            )
+       })}
+
+          </tbody>
+        </table>
+
+
+
+
      </Container>
 
 

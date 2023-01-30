@@ -15,6 +15,13 @@ import Support from '../Components/support/Support'
 import Ads from '../Components/ads/Ads'
 import Stats from '../Components/stats/Stats'
 import Services from '../Components/services/Services'
+import Chat from "../Components/chatbot/chatbot";
+
+import Chatbot from 'react-chatbot-kit'
+
+import ActionProvider from './ActionProvider';
+import MessageParser from './MessageParser';
+import config from './config';
 
 import {UserContext} from '../context/UserContext'
 
@@ -38,7 +45,7 @@ export default function Home() {
       <Stats/>
       {/* <FindRoommatesContent/> */}
       <Equipments/>
-
+       <Chat/>
       </>
       )
     }
