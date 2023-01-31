@@ -70,7 +70,29 @@ const Ads = () => {
             </div>
           </div>
         </div>
+
+        <div className="h-1/2 py-4 bg-green-100 bg-grey" >
+      <div className="">
+        <div className="flex justify-center flex-col">
+          <h1 className="mx-auto tracking-wide text-4xl font-bold uppercase opacity-[0.7]">
+            Dial Our Help center at +1 9895850237 
+          </h1>
+          {/* <p className="mx-48 leading-7 tracking-wide my-6 text-md font-medium">
+            We open the door to thousands of farmers. Rent your equipment for
+            the off-season, and create an advertisement on our platform. Through
+            our rigorous customer compliance, we make sure that only reliable
+            users gain access to our digital marketplace.{" "}
+            <span className="text-darkgreen">
+              There are two ways to get started
+            </span>
+            :
+          </p> */}
+       
+        </div>
       </div>
+    </div>
+      </div>
+
     </div>
   );
 };

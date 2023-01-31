@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Navbar from "../Components/navbar";
 import { Link, Redirect } from "react-router-dom";
@@ -23,14 +23,15 @@ import {
   faScrewdriverWrench,
   faCalendarDays,
   faIndianRupeeSign,
-  faClock
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import firebase from "firebase";
 import { auth, database } from "../config";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
-import ReadReviews from '../Components/ReadReviews'
+import ReadReviews from "../Components/ReadReviews";
 
+import {BookingContext} from '../context/BookingContext';
 
 export default function SinglePropertyPage() {
   //Authstate
@@ -38,9 +39,9 @@ export default function SinglePropertyPage() {
   const [userUid, setUserUid] = useState(null);
   const [listings, setListings] = useState([]);
   //Booking form states
-  const [arrivalDate, setArrivalDate] = useState("");
-  const [departDate, setDepartDate] = useState("");
-  const [guests, setGuests] = useState("");
+  // const [arrivalDate, setArrivalDate] = useState("");
+  // const [departDate, setDepartDate] = useState("");
+  // const [guests, setGuests] = useState("");
   const [propertyKey, setPropertyKey] = useState("");
   const [hostUid, setHostUid] = useState("");
   const [submit, setSubmit] = useState("");
@@ -50,12 +51,17 @@ export default function SinglePropertyPage() {
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   //Review form states
-  const [stars, setStars] = useState("")
-  const [review, setReview] = useState("")
-  const [name, setName] = useState("")
+  const [stars, setStars] = useState("");
+  const [review, setReview] = useState("");
+  const [name, setName] = useState("");
+
+  const contextBooking = useContext(BookingContext);
+  console.log(contextBooking, "in singleProperty")
+
+  // const {setArrivalDate, setDepartDate, setGuests} = contextBooking
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function(user) {
       if (!user) {
         setAuthState(false);
       } else {
@@ -76,8 +82,9 @@ export default function SinglePropertyPage() {
     database
       .ref("properties")
       .child(RetrivedchildKey)
-      .once("value", function (snapshot) {
+      .once("value", function(snapshot) {
         const items = [];
+        console.log(snapshot.val(), "snapshort at 81");
         var val = snapshot.val();
         var hostUid = snapshot.val().userUid;
         var img = snapshot.val().imageOneURL;
@@ -93,11 +100,11 @@ export default function SinglePropertyPage() {
         var gatedSecurity = snapshot.val().gatedSecurity;
         var waterSupply = snapshot.val().waterSupply;
         setHostUid(hostUid);
-        setImageUrl(img)
-        setPrice(amount)
-        setheading(title_head)
-        setCity(city_vr)
-        setAddress(address_vr)
+        setImageUrl(img);
+        setPrice(amount);
+        setheading(title_head);
+        setCity(city_vr);
+        setAddress(address_vr);
         items.push({
           key: RetrivedchildKey,
           userUid: userUid,
@@ -131,75 +138,69 @@ export default function SinglePropertyPage() {
   }, [userUid]);
   //
 
-  const initPayment = (data) => {
-		const options = {
-			key: "rzp_test_s1la8q9ZjeePPd",
-			amount: price,
-			currency: data.currency,
-			name: name,
-			description: "Test Transaction",
-			image: imageUrl,
-			order_id: data.id,
-			handler: async (response) => {
-        setSubmit("Submitted");
-                 if(authState){
-            database.ref("Bookings").push({
-              userUid: userUid,
-              arrivalDate: arrivalDate,
-              departDate: departDate,
-              guests: guests,
-              propertyKey: propertyKey,
-              hostUid: hostUid,
-              imageUrl : imageUrl,
-              price: price,
-              title: heading,
-              city: city,
-              address: address,
-              name:name
-            });
+  // const initPayment = (data) => {
+  //   const options = {
+  //     key: "rzp_test_wfXnqFw2mVZiNE",
+  //     amount: price,
+  //     currency: data.currency,
+  //     name: name,
+  //     description: "Test Transaction",
+  //     image: imageUrl,
+  //     order_id: data.id,
+  //     handler: async (response) => {
+  //       setSubmit("Submitted");
+  //       if (authState) {
+  //         database.ref("Bookings").push({
+  //           userUid: userUid,
+  //           arrivalDate: arrivalDate,
+  //           departDate: departDate,
+  //           guests: guests,
+  //           propertyKey: propertyKey,
+  //           hostUid: hostUid,
+  //           imageUrl: imageUrl,
+  //           price: price,
+  //           title: heading,
+  //           city: city,
+  //           address: address,
+  //           name: name,
+  //         });
 
-            toast.success("Payment Successful !!")
-            console.log("inside the verify payemnts at 163")
-          }
-				try {
-					const verifyUrl = "http://localhost:8080/api/payment/verify";
-					const { data } = await axios.post(verifyUrl, response);
-					console.log(data);
+  //         toast.success("Payment Successful !!");
+  //         console.log("inside the verify payemnts at 163");
+  //       }
+  //       try {
+  //         const verifyUrl = "http://localhost:8080/api/payment/verify";
+  //         const { data } = await axios.post(verifyUrl, response);
+  //         console.log(data);
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     },
+  //     theme: {
+  //       color: "#3399cc",
+  //     },
+  //   };
+  //   const rzp1 = new window.Razorpay(options);
+  //   rzp1.open();
+  // };
 
-				} catch (error) {
-					console.log(error);
-				}
-			},
-			theme: {
-				color: "#3399cc",
-			},
-		};
-		const rzp1 = new window.Razorpay(options);
-		rzp1.open();
-	};
-  
+  // const submitBooking = async (e) => {
+  //   e.preventDefault();
 
-
-  const submitBooking = async (e) => {
-    e.preventDefault();
-     
-    if(authState){
-      try {
-        const orderUrl = "http://localhost:8080/api/payment/orders";
-        const { data } = await axios.post(orderUrl, { amount: price });
-        console.log(price)
-        console.log(data);
-        initPayment(data.data);
-      } catch (error) {
-        console.log(error, "not able to connect axios");
-      }
-    }else{
-      toast.error("Login first to book any equipment");
-    }
-
-  };
-
-
+  //   if (authState) {
+  //     try {
+  //       const orderUrl = "http://localhost:8080/api/payment/orders";
+  //       const { data } = await axios.post(orderUrl, { amount: price });
+  //       console.log(price);
+  //       console.log(data);
+  //       initPayment(data.data);
+  //     } catch (error) {
+  //       console.log(error, "not able to connect axios");
+  //     }
+  //   } else {
+  //     toast.error("Login first to book any equipment");
+  //   }
+  // };
 
   const submitReview = (e) => {
     e.preventDefault();
@@ -211,15 +212,14 @@ export default function SinglePropertyPage() {
       review: review,
       name: name,
     });
-    toast("Review has been successfullt posted", {type:"success"})
+    toast("Review has been successfullt posted", { type: "success" });
     document.getElementById("review-form").reset();
   };
 
-    //Option values
-    function handleChange(event) {
-      setStars(event.target.value);
-    }
-  
+  //Option values
+  function handleChange(event) {
+    setStars(event.target.value);
+  }
 
   //Redirect after form submission
   if (submit === "Submitted") {
@@ -275,19 +275,31 @@ export default function SinglePropertyPage() {
               <Col lg={8} md={8} sm={12}>
                 <Card>
                   <h4 className="pl-2 pt-2">{data.title}</h4>
-                  <p className={"text-lead pl-2"} >
+                  <p className={"text-lead pl-2"}>
                     <FontAwesomeIcon icon={faMapMarkerAlt} /> {data.city},
                     {data.address}&nbsp;&nbsp;
-                  <span></span>
-                  <FontAwesomeIcon icon={  faScrewdriverWrench } style={{marginLeft:"20px"}} /> {data.category=="Personal Rooms"?"Heavy Machinery":data.category=="Family Apartments"?"Medium Tools":"Small Tools"}
+                    <span></span>
+                    <FontAwesomeIcon
+                      icon={faScrewdriverWrench}
+                      style={{ marginLeft: "20px" }}
+                    />{" "}
+                    {data.category == "Personal Rooms"
+                      ? "Heavy Machinery"
+                      : data.category == "Family Apartments"
+                      ? "Medium Tools"
+                      : "Small Tools"}
                   </p>
-                  
 
                   <Row className="p-2">
                     <Col lg={4} md={4} sm={4}>
                       <Card className="mt-2">
                         <Card.Body>
-                          <FontAwesomeIcon icon={faScrewdriverWrench} /> {data.category=="Personal Rooms"?"Heavy Machinery":data.category=="Family Apartments"?"Medium Tools":"Small Tools"}
+                          <FontAwesomeIcon icon={faScrewdriverWrench} />{" "}
+                          {data.category == "Personal Rooms"
+                            ? "Heavy Machinery"
+                            : data.category == "Family Apartments"
+                            ? "Medium Tools"
+                            : "Small Tools"}
                         </Card.Body>
                       </Card>
                     </Col>
@@ -302,7 +314,8 @@ export default function SinglePropertyPage() {
                     <Col lg={4} md={4} sm={4} className="mt-2">
                       <Card>
                         <Card.Body>
-                          <FontAwesomeIcon icon={faCalendarDays} /> Usage duration:
+                          <FontAwesomeIcon icon={faCalendarDays} /> Usage
+                          duration:
                           {data.bathrooms}
                         </Card.Body>
                       </Card>
@@ -315,8 +328,8 @@ export default function SinglePropertyPage() {
                     <Row>
                       <Col sm={12} lg={3} md={3}>
                         <p className="text-lead">
-                          <FontAwesomeIcon icon={faArrowCircleRight} /> Per
-                          Day: {data.per_night}
+                          <FontAwesomeIcon icon={faArrowCircleRight} /> Per Day:{" "}
+                          {data.per_night}
                         </p>
                       </Col>
                       <Col sm={12} lg={3} md={3}>
@@ -343,68 +356,82 @@ export default function SinglePropertyPage() {
                     <h4 className="mt-4">Other Details</h4>
                     <Row>
                       <Col sm={15} lg={4} md={4}>
-                      <p className="text-lead">
-                      Electric Equipment:&nbsp;
-                        {data.livingRoom == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
-                         
+                        <p className="text-lead">
+                          Electric Equipment:&nbsp;
+                          {data.livingRoom == "Yes" ? (
+                            <FontAwesomeIcon icon={faCheckSquare} />
+                          ) : (
+                            <FontAwesomeIcon icon={faTimesCircle} />
+                          )}
                         </p>
                       </Col>
                       <Col sm={15} lg={4} md={4}>
-                      <p className="text-lead">
-                      Uasge for large area:&nbsp;
-                        {data.internet == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
-                          
+                        <p className="text-lead">
+                          Uasge for large area:&nbsp;
+                          {data.internet == "Yes" ? (
+                            <FontAwesomeIcon icon={faCheckSquare} />
+                          ) : (
+                            <FontAwesomeIcon icon={faTimesCircle} />
+                          )}
                         </p>
                       </Col>
                       <Col sm={15} lg={4} md={4}>
-                      <p className="text-lead">
-                      Life of Equipment:&nbsp;
-                        {data.gym == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
-                          
+                        <p className="text-lead">
+                          Life of Equipment:&nbsp;
+                          {data.gym == "Yes" ? (
+                            <FontAwesomeIcon icon={faCheckSquare} />
+                          ) : (
+                            <FontAwesomeIcon icon={faTimesCircle} />
+                          )}
                         </p>
                       </Col>
-
                     </Row>
 
                     <Row>
-
-                    <Col sm={15} lg={4} md={4}>
-                      <p className="text-lead">
-                      Weight(More than 100kg):&nbsp;
-                        {data.gatedSecurity == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
-                        </p>
-                        </Col>
-
-                    <Col sm={15} lg={4} md={4}>
-                      <p className="text-lead">
-                      Indian Manufacture: &nbsp;
-                        {data.waterSupply == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
-                        </p>
-                        </Col>
-
-                        <Col sm={15} lg={4} md={4}>
-                      <p className="text-lead">
-                      Aadhar Linked : &nbsp;
-                        {data.ac == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
-                        </p>
-                        </Col>
-
-                    <Col sm={15} lg={4} md={4}>
-
-  
-                      <p className="text-lead">
-                      KYC:&nbsp;
-                        {data.parking == "Yes" ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faTimesCircle} />}
-                          
+                      <Col sm={15} lg={4} md={4}>
+                        <p className="text-lead">
+                          Weight(More than 100kg):&nbsp;
+                          {data.gatedSecurity == "Yes" ? (
+                            <FontAwesomeIcon icon={faCheckSquare} />
+                          ) : (
+                            <FontAwesomeIcon icon={faTimesCircle} />
+                          )}
                         </p>
                       </Col>
 
+                      <Col sm={15} lg={4} md={4}>
+                        <p className="text-lead">
+                          Indian Manufacture: &nbsp;
+                          {data.waterSupply == "Yes" ? (
+                            <FontAwesomeIcon icon={faCheckSquare} />
+                          ) : (
+                            <FontAwesomeIcon icon={faTimesCircle} />
+                          )}
+                        </p>
+                      </Col>
 
+                      <Col sm={15} lg={4} md={4}>
+                        <p className="text-lead">
+                          Aadhar Linked : &nbsp;
+                          {data.ac == "Yes" ? (
+                            <FontAwesomeIcon icon={faCheckSquare} />
+                          ) : (
+                            <FontAwesomeIcon icon={faTimesCircle} />
+                          )}
+                        </p>
+                      </Col>
 
-
-
+                      <Col sm={15} lg={4} md={4}>
+                        <p className="text-lead">
+                          KYC:&nbsp;
+                          {data.parking == "Yes" ? (
+                            <FontAwesomeIcon icon={faCheckSquare} />
+                          ) : (
+                            <FontAwesomeIcon icon={faTimesCircle} />
+                          )}
+                        </p>
+                      </Col>
                     </Row>
-
 
                     {/*TODO*/}
                     {/* <iframe
@@ -419,51 +446,55 @@ export default function SinglePropertyPage() {
                     ></iframe> */}
 
                     <hr />
-                    
+
                     <Form onSubmit={submitReview} id="review-form">
-                    <Form.Row>
-                      <Form.Group
-                        as={Col}
-                        lg={8}
-                        md={8}
-                        sm={12}
-                        controlId="formBasicText"
-                      >
-                        <Form.Label>Write Your Review</Form.Label>
-                        <Form.Control type="text" placeholder="Write here..." required onChange={(e)=>setReview(e.target.value)}/>
-                      </Form.Group>
-                      <Form.Group
-                        as={Col}
-                        lg={4}
-                        md={4}
-                        sm={12}
-                        controlId="formBasicText"
-                      >
-                        <Form.Label>Rating</Form.Label>
-                        <Form.Control
-                    as="select"
-                    name="category"
-                    onChange={handleChange}
-                  >
-                    <option>Select</option>
-                    <option value="5">5 Star</option>
-                    <option value="4">4 Star</option>
-                    <option value="3">3 Star</option>
-                    <option value="2">2 Star</option>
-                    <option value="1">1 Star</option>
-                  </Form.Control>
-                      </Form.Group>
+                      <Form.Row>
+                        <Form.Group
+                          as={Col}
+                          lg={8}
+                          md={8}
+                          sm={12}
+                          controlId="formBasicText"
+                        >
+                          <Form.Label>Write Your Review</Form.Label>
+                          <Form.Control
+                            type="text"
+                            placeholder="Write here..."
+                            required
+                            onChange={(e) => setReview(e.target.value)}
+                          />
+                        </Form.Group>
+                        <Form.Group
+                          as={Col}
+                          lg={4}
+                          md={4}
+                          sm={12}
+                          controlId="formBasicText"
+                        >
+                          <Form.Label>Rating</Form.Label>
+                          <Form.Control
+                            as="select"
+                            name="category"
+                            onChange={handleChange}
+                          >
+                            <option>Select</option>
+                            <option value="5">5 Star</option>
+                            <option value="4">4 Star</option>
+                            <option value="3">3 Star</option>
+                            <option value="2">2 Star</option>
+                            <option value="1">1 Star</option>
+                          </Form.Control>
+                        </Form.Group>
                       </Form.Row>
-                     
+
                       <Button variant="success" type="submit">
                         Post Review
                       </Button>
-                      
                     </Form>
-                   
+
                     <hr />
-                    <ReadReviews/>
-                    <br/>
+                    <ReadReviews />
+                    <br />
                   </Container>
                 </Card>
               </Col>
@@ -474,48 +505,61 @@ export default function SinglePropertyPage() {
                     ₹ {data.per_night}/Night
                   </Card.Header>
                   <Card.Body>
-                    <Form onSubmit={submitBooking}>
+                    <Form >
                       <Form.Group controlId="formBasicEmail">
                         <Form.Label>Arrival Date</Form.Label>
                         <Form.Control
-                          type="date" required
-                          onChange={(e) => setArrivalDate(e.target.value)}
+                          type="date"
+                          required
+                          onChange={(e) => contextBooking.setArrivalDate(e.target.value)}
                         />
                       </Form.Group>
                       <Form.Group controlId="formBasicPassword">
                         <Form.Label>Depart Date</Form.Label>
                         <Form.Control
-                          type="date" required
-                          onChange={(e) => setDepartDate(e.target.value)}
+                          type="date"
+                          required
+                          onChange={(e) => contextBooking.setDepartDate(e.target.value)}
                         />
                       </Form.Group>
                       <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Approximate days required</Form.Label>
+                        <Form.Label>Total days required</Form.Label>
                         <Form.Control
-                          type="number" required
-                          onChange={(e) => setGuests(e.target.value)}
+                          type="number"
+                          required
+                          onChange={(e) => contextBooking.setGuests(e.target.value)}
                         />
                       </Form.Group>
                       {/* TODO Booking button */}
                       {/* {userUid==hostUid? "" : ""} */}
-                      <Button
+                      <center>
+                      <Link
                         variant="primary"
-                        className="btn-block"
+                        className="btn-block bg-green-600 text-white "
                         type="submit"
+                        to={{
+                          pathname: "/booking-details",
+                          search: `?${propertyKey}`,
+                          state: { fromDashboard: true },
+                        }}
+                        style={{borderRadius:"20px", width:"40%", padding:"10px"}}
                       >
                         Book Now
-                      </Button>
+                      </Link>
+                      </center>
+
                     </Form>
                   </Card.Body>
 
                   {/* TODO: */}
-                  
-                  <Card.Footer className="text-muted">
-                    <Link to={`/find-roommates?${data.city}Yes`}><Button variant="warning">
-                      Contact owner in {data.city}
-                    </Button></Link>
-                  </Card.Footer>
 
+                  <Card.Footer className="text-muted">
+                    <Link to={`/find-roommates?${data.city}Yes`}>
+                      <Button variant="warning">
+                        Contact owner in {data.city}
+                      </Button>
+                    </Link>
+                  </Card.Footer>
                 </Card>
               </Col>
             </Row>

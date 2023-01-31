@@ -26,12 +26,17 @@ import Feedback from "./Components/feedback/Feedback"
 import ContactUs from './Components/contactUs/ContactUs';
 import Dashboard from './pages/Dashboard';
 import Login from "./pages/Login";
+import BookingDetails from "./pages/BookingDetails";
+
+import ContextBookingDetails from './context/BookingContext';
 
 const routing = (
   
   <Router>
   <ScrollToTop/>
-    <Route exact path="/" component={App}/>
+
+  <ContextBookingDetails>
+  <Route exact path="/" component={App}/>
     <Route exact path="/become-host" component={becomeHost}/>
     <Route exact path="/signup" component={Signup}/>
     <Route exact path="/login" component={Login} />
@@ -40,6 +45,7 @@ const routing = (
     <Route exact path="/my-profile" component={MyProfile}/>
     <Route exact path="/create-profile" component={CreateProfile}/>
     <Route exact path="/property" component={SingleProperty}/>
+    <Route exact path="/booking-details" component={BookingDetails}/>
     <Route exact path="/done-booking" component={SuccessfulBooking}/>
     <Route exact path="/my-bookings" component={MyBookings}/>
     <Route exact path="/my-home-bookings" component={MyHomeBookings}/>
@@ -53,6 +59,8 @@ const routing = (
     <Route path="/feedback" component={Feedback} />
     <Route exact path="/contact" component={ContactUs} />
     <Route exact path="/dashboard" component={Dashboard} />
+  </ContextBookingDetails>
+   
     
     
         
