@@ -86,7 +86,8 @@ export default function PersonalRooms() {
             bathrooms: data.bathrooms,
             city: data.city,
             per_month: data.per_month,
-            per_week:data.per_week
+            per_week:data.per_week,
+            name:data.name
           });
         });
         setListings(items);
@@ -130,6 +131,7 @@ export default function PersonalRooms() {
                 />
                 <Card.Body>
                   <Card.Title className="text-dark">{data.title}</Card.Title>
+                  <p>{data.name}</p>
                   <Card.Text className="p-2 text-dark">
                     <FontAwesomeIcon icon={  faClock} />  {data.bedrooms}&nbsp;&nbsp;
                     <FontAwesomeIcon icon={faCalendarDays} /> {data.bathrooms}&nbsp;&nbsp;

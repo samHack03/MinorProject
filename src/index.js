@@ -50,8 +50,8 @@ const routing = (
     <Route exact path="/my-bookings" component={MyBookings}/>
     <Route exact path="/my-home-bookings" component={MyHomeBookings}/>
     <Route exact path="/heavy-machinery" component={PersonalRooms}/>
-    <Route exact path="/medium-tools" component={FamilyApartments}/>
-    <Route exact path="/small-tools" component={VacationVillas}/>
+    <Route exact path="/light-weight-tools" component={FamilyApartments}/>
+    <Route exact path="/daily-use-tools" component={VacationVillas}/>
     <Route exact path="/find-roommates" component={PublicProfilePage}/>
     <Route exact path="/help" component={Help}/>
     <Route exact path="/faq" component={FAQ} />

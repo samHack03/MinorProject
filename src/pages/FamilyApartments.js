@@ -85,7 +85,8 @@ export default function FamilyApartments() {
             bathrooms: data.bathrooms,
             city: data.city,
             per_month: data.per_month,
-            per_week:data.per_week
+            per_week:data.per_week,
+            name:data.name
           });
         });
         setListings(items);
@@ -113,7 +114,7 @@ export default function FamilyApartments() {
      
       <Container>
        
-      <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"150px", marginLeft:"20px"}}>Medium Tools</h4>
+      <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"150px", marginLeft:"20px"}}>Light-Weight Tools</h4>
         <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
 
 
@@ -131,6 +132,7 @@ export default function FamilyApartments() {
                 />
                 <Card.Body>
                   <Card.Title className="text-dark">{data.title}</Card.Title>
+                  <p>{data.name}</p>
                   <Card.Text className="p-2 text-dark">
                     <FontAwesomeIcon icon={  faClock} />  {data.bedrooms}&nbsp;&nbsp;
                     <FontAwesomeIcon icon={faCalendarDays} /> {data.bathrooms}&nbsp;&nbsp;

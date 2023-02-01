@@ -98,7 +98,7 @@ const Banner = () => {
               </p>
               <div className="flex justify-center items-center mx-auto">
 
-                {/* <Link to="/small-tools" className="bg-[#219653] bg-white border-2 transition border-[#219653] text-[#219653] hover:text-white font-bold py-1 px-8 rounded mx-2">Book Now</Link> */}
+                {/* <Link to="/daily-use-tools" className="bg-[#219653] bg-white border-2 transition border-[#219653] text-[#219653] hover:text-white font-bold py-1 px-8 rounded mx-2">Book Now</Link> */}
                 <i
                   // onClick={SpeechRecognition.startListening}
                   className="text-darkgreen tooltip cursor-pointer text-2xl mr-5 fa-solid fa-microphone"

@@ -125,8 +125,8 @@ console.log(name?.toUpperCase());
       <React.Fragment>
       <Nav.Link as={Link} to="/dashboard" className={" pl-2  tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Dashboard</Nav.Link>
       <Nav.Link as={Link} to="/heavy-machinery" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Heavy Machinery</Nav.Link>
-      <Nav.Link as={Link} to="/medium-tools" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Medium Tools</Nav.Link>
-      <Nav.Link as={Link} to="/small-tools" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Small Tools</Nav.Link>
+      <Nav.Link as={Link} to="/light-weight-tools" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Light-Weight Tools</Nav.Link>
+      <Nav.Link as={Link} to="/daily-use-tools" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Daily-Use Tools</Nav.Link>
       <Nav.Link as={Link} to="/become-host" onClick={addToast} className={"pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Add Product</Nav.Link>
       <Nav.Link as={Link} to="/contact" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Contact</Nav.Link>
 

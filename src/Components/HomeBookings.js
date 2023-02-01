@@ -84,9 +84,10 @@ export default function HoneBookings() {
             city: data.city,
             address: data.address,
             price: data.price,
+            name:data.name
           });
         });
-        let firstBooking = items.splice(0,2);
+        let firstBooking = items
 
         setListings(firstBooking);
       });
@@ -140,6 +141,7 @@ console.log(listings, "listings at 94 line")
                />
                <Card.Body>
                  <Card.Title className="text-dark">{data.title}</Card.Title>
+                 <p>{data.name}</p>
                  <Card.Text className="p-2 text-dark">
                    <FontAwesomeIcon icon={faMapMarkerAlt} /> {data.address}&nbsp;,{data.city}
                    <span className="p-2">

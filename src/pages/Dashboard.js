@@ -41,6 +41,7 @@ export default function FamilyApartments() {
   const [smallTools, setSmallTools] = useState([]);
    //spinner
    const [loading, setLoading] = useState(true)
+   const [name, setName] = useState("");;
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -91,6 +92,7 @@ export default function FamilyApartments() {
             bathrooms: data.bathrooms,
             city: data.city,
             per_month: data.per_month,
+            name:data.name
           });
         });
         setHeavyMachine(items.splice(0,3));
@@ -115,6 +117,7 @@ export default function FamilyApartments() {
             bathrooms: data.bathrooms,
             city: data.city,
             per_month: data.per_month,
+            name:data.name
           });
         });
         setMediumTools(items.splice(0,3));
@@ -139,6 +142,7 @@ export default function FamilyApartments() {
             bathrooms: data.bathrooms,
             city: data.city,
             per_month: data.per_month,
+            name:data.name
           });
         });
         setSmallTools(items.splice(0,3));
@@ -196,6 +200,7 @@ export default function FamilyApartments() {
                 />
                 <Card.Body>
                   <Card.Title className="text-dark">{data.title}</Card.Title>
+                  <p>{data.name}</p>
                   <Card.Text className="p-2 text-dark">
                     <FontAwesomeIcon icon={faClock} /> {data.bedrooms}&nbsp;
                     <FontAwesomeIcon icon={faCalendarDays} /> {data.bathrooms}&nbsp;
@@ -217,8 +222,8 @@ export default function FamilyApartments() {
 
       <Container>
       <div style={{display:"flex",flexDirection:"row", justifyContent:"space-between"}}>
-        <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Medium Tools</h4>
-      <Link to="/medium-tools" class="text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900" style={{marginTop:"50px"}}>View More</Link>
+        <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Light-Weight Tools</h4>
+      <Link to="/light-weight-tools" class="text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900" style={{marginTop:"50px"}}>View More</Link>
 
         </div>
         <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
@@ -237,6 +242,7 @@ export default function FamilyApartments() {
                 />
                 <Card.Body>
                   <Card.Title className="text-dark">{data.title}</Card.Title>
+                  <p>{data.name}</p>
                   <Card.Text className="p-2 text-dark">
                     <FontAwesomeIcon icon={faClock} /> {data.bedrooms}&nbsp;
                     <FontAwesomeIcon icon={faCalendarDays} /> {data.bathrooms}&nbsp;
@@ -257,8 +263,8 @@ export default function FamilyApartments() {
 
       <Container>
         <div style={{display:"flex",flexDirection:"row", justifyContent:"space-between"}}>
-        <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Small Tools</h4>
-      <Link to="/small-tools" class="text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900" style={{marginTop:"50px"}}>View More</Link>
+        <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Daily-Use Tools</h4>
+      <Link to="/daily-use-tools" class="text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900" style={{marginTop:"50px"}}>View More</Link>
       {/* <button type="button" >Green</button> */}
         </div>
 
@@ -279,6 +285,7 @@ export default function FamilyApartments() {
                 />
                 <Card.Body>
                   <Card.Title className="text-dark">{data.title}</Card.Title>
+                  <p>{data.name}</p>
                   <Card.Text className="p-2 text-dark">
                     <FontAwesomeIcon icon={faClock} /> {data.bedrooms}&nbsp;
                     <FontAwesomeIcon icon={faCalendarDays} /> {data.bathrooms}&nbsp;

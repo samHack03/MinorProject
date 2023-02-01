@@ -28,6 +28,8 @@ const ContactUs = () => {
         // });
     }
 
+    // DIAL OUR HELP CENTER AT +1 9895850237
+
     return (
         <div className='h-[460px] py-12 bg-[rgba(255,255,255,0.8)]'>
             <Navbar/>
@@ -37,6 +39,7 @@ const ContactUs = () => {
                     <p className='mt-12 text-gray-800 text-lg font-semibold'>Head Office</p>
                     <p className='mt-3 text-gray-500 text-md font-semibold'>JSSATE, Sector 62, Block C, Noida</p>
                     <p className='mt-3 text-gray-500 text-md font-semibold'><i className="text-green-400 fa-solid fa-envelope"></i> Email : <a href="" className='text-green-700 font-semibold'>krishiehal7799@gmail.com</a></p>
+                    <p className='mt-3 text-gray-500 text-md font-semibold'><i className="text-green-400 fa-solid fa-envelope"></i> Dial our help center at : <a href="" className='text-green-700 font-semibold'>+1 9895850237</a></p>
                 </div>
 
                 <div className='flex-1'>

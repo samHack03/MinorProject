@@ -16,7 +16,7 @@ function Sidebar() {
   return (
     <div className="sidebar mt-32 bg-[#68AC5D] prFilter" style={{padding:"20px", borderRadius:"20px"}}>
       <div className="sidebar-header">
-        <input type="text" placeholder="Search products" style={{padding:"5px"}}/>
+        <input  type="text" placeholder="Search products" style={{padding:"5px",marginTop:"20px"}}/>
         <select>
           <option value="all">All Categories</option>
           <option value="electronics">Electronics</option>

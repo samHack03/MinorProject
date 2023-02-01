@@ -87,7 +87,8 @@ export default function VacationVillas() {
             bathrooms: data.bathrooms,
             city: data.city,
             per_month: data.per_month,
-            per_week:data.per_week
+            per_week:data.per_week,
+            name:data.name
           });
         });
         setListings(items);
@@ -132,7 +133,7 @@ export default function VacationVillas() {
 
         {/* <input onChange={(e) => setQuery(e.target.value)} value={query} placeholder="Search any equipment" className="mt-32 border full-rounded " style={{width:'80%', padding:"5px", height:"40px"}} /> */}
       
-        <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"150px", marginLeft:"20px"}}>Small Tools</h4>
+        <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"150px", marginLeft:"20px"}}>Daily-Use Tools</h4>
         <hr className="h-px  bg-green-800 border-2 dark:bg-green-700"/>
         <Row className="mt-28 mb-8" >
           {listings.map((data, id) => (
@@ -148,6 +149,7 @@ export default function VacationVillas() {
                 />
                 <Card.Body>
                   <Card.Title className="text-dark">{data.title}</Card.Title>
+                  <p>{data.name}</p>
                   <Card.Text className="p-2 text-dark">
                     <FontAwesomeIcon icon={  faClock} />  {data.bedrooms}&nbsp;&nbsp;
                     <FontAwesomeIcon icon={faCalendarDays} /> {data.bathrooms}&nbsp;&nbsp;

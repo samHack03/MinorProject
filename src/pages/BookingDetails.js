@@ -5,11 +5,11 @@ import { auth, database } from ".././config";
 import { toast } from "react-toastify";
 import Navbar from "../Components/navbar";
 
-import logo from '../img/logo1.png'
+import logo from "../img/logo1.png";
 
 import { BookingContext } from "../context/BookingContext";
 
-import Footer from "../Components/footer/Footer"
+import Footer from "../Components/footer/Footer";
 
 import axios from "axios";
 
@@ -18,9 +18,9 @@ const BookingRequest = () => {
   const [userUid, setUserUid] = useState(null);
   const [listings, setListings] = useState([]);
   //Booking form states
-//   const [arrivalDate, setArrivalDate] = useState("");
-//   const [departDate, setDepartDate] = useState("");
-//   const [guests, setGuests] = useState("");
+  //   const [arrivalDate, setArrivalDate] = useState("");
+  //   const [departDate, setDepartDate] = useState("");
+  //   const [guests, setGuests] = useState("");
   const [propertyKey, setPropertyKey] = useState("");
   const [hostUid, setHostUid] = useState("");
   const [submit, setSubmit] = useState("");
@@ -29,19 +29,17 @@ const BookingRequest = () => {
   const [heading, setheading] = useState("");
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
-  const [title,setTitle] = useState("");
+  const [title, setTitle] = useState("");
   //Review form states
   const [stars, setStars] = useState("");
   const [review, setReview] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [category,setCategory] = useState("");
-
+  const [category, setCategory] = useState("");
 
   const contextBooking = useContext(BookingContext);
 
-  console.log(contextBooking,"contextBooking at 36")
-
+  console.log(contextBooking, "contextBooking at 36");
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function(user) {
@@ -50,7 +48,7 @@ const BookingRequest = () => {
       } else {
         setAuthState(true);
         setUserUid(user.uid);
-        setName(user.displayName);
+      
       }
     });
   }, []);
@@ -89,8 +87,9 @@ const BookingRequest = () => {
         setCity(city_vr);
         setAddress(address_vr);
         setTitle(val.title);
-        setEmail(val.email)
+        setEmail(val.email);
         setCategory(val.category);
+        setName(val.name);
         items.push({
           key: RetrivedchildKey,
           userUid: userUid,
@@ -110,7 +109,7 @@ const BookingRequest = () => {
           category: val.category,
           about: val.about,
           name: val.name,
-          email:val.email,
+          email: val.email,
 
           livingRoom: livingRoom,
           internet: internet,
@@ -176,7 +175,9 @@ const BookingRequest = () => {
     if (authState) {
       try {
         const orderUrl = "http://localhost:8080/api/payment/orders";
-        const { data } = await axios.post(orderUrl, { amount: price*contextBooking.guests });
+        const { data } = await axios.post(orderUrl, {
+          amount: price * contextBooking.guests,
+        });
         console.log(price);
         console.log(data);
         initPayment(data.data);
@@ -202,12 +203,15 @@ const BookingRequest = () => {
     subtotal: "",
   });
 
-  
-
   let current = new Date();
-  let cDate = current.getDate() + "-" + (current.getMonth() + 1) + "-" + current.getFullYear();
-  
-  let total =price*contextBooking.guests;
+  let cDate =
+    current.getDate() +
+    "-" +
+    (current.getMonth() + 1) +
+    "-" +
+    current.getFullYear();
+
+  let total = price * contextBooking.guests;
 
   if (submit === "Submitted") {
     return (
@@ -221,74 +225,88 @@ const BookingRequest = () => {
     <>
       <Navbar />
 
-      <div className="flex relative bg-white-800 mt-44 mb-8" style={{background:"green", width:"60%"}}>
-                <h1 className="absolute top-0 left-24 font-semibold text-green-600 text-2xl ">
-                  Booking Details
-                </h1>
-                <p className="absolute top-0 right-24 text-[#68AC5D] font-semibold text-md">
-                  <i className="pr-2 fa-solid fa-arrow-left-long"></i>{" "}
-                  <Link  to={{ pathname: '/property', search: `?${propertyKey}`, state: { fromDashboard: true }}} className="text-green-600"  >Back</Link>
-                </p>
-              </div>
+      <div className="mt-28">
+        <div
+          className="flex relative bg-white-800 mb-8 mt-16"
+          style={{ width: "60%" }}
+        >
+          <h1
+            className="absolute top-0 left-24 font-semibold text-green-600 text-2xl"
+            style={{ paddingBottom: "20px" }}
+          >
+            Booking Details
+          </h1>
+          <p className="absolute top-0 right-24 text-[#68AC5D] font-semibold text-md">
+            <i className="pr-2 fa-solid fa-arrow-left-long"></i>{" "}
+            <Link
+              to={{
+                pathname: "/property",
+                search: `?${propertyKey}`,
+                state: { fromDashboard: true },
+              }}
+              className="text-green-600"
+            >
+              Back
+            </Link>
+          </p>
+        </div>
 
-      <div className=" bg-gray-100">
-        <div className="max-w-7xl mt-8 mx-auto innerWrapper">
-          <div  style={{display:"flex", flexDirection:"row"}}>
-            <div style={{width:"75%"}} >
-
-
-              <div className="flex flex-col border-b-2 pb-6">
-                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                  <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                    <div className="overflow-x-auto">
-                      <table className="min-w-full">
-                        <thead className="border-b bg-gray-100 h-2">
-                          <tr>
-                            <th
-                              scope="col"
-                              className="text-center text-gray-600 text-md px-6 py-4 font-bold"
-                            >
-                            Date
-                            </th>
-                            <th
-                              className="text-gray-600 text-md  px-6 py-4 text-center font-bold "
-                              scope="col"
-                            >
-                              Booking Id
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-gray-600 text-md  px-6 py-4 text-center font-bold"
-                            >
-                              Equipment
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-gray-600 text-md  px-6 py-4 text-center font-bold"
-                            >
-                              Category
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr className="bg-white py-6">
-                            <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
-                            {cDate}
-                            </td>
-                            <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
-                              {userUid}
-                            </td>
-                            <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
-                              {title}
-                            </td>
-                            <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
-                            {category == "Personal Rooms"
-                      ? "Heavy Machinery"
-                      : category == "Family Apartments"
-                      ? "Medium Tools"
-                      : "Small Tools"}
-                            </td>
-                            {/* <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
+        <div className=" bg-gray-100">
+          <div className="max-w-7xl mt-8 mx-auto innerWrapper">
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div style={{ width: "75%" }}>
+                <div className="flex flex-col border-b-2 pb-6">
+                  <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                      <div className="overflow-x-auto">
+                        <table className="min-w-full">
+                          <thead className="border-b bg-gray-100 h-2">
+                            <tr>
+                              <th
+                                scope="col"
+                                className="text-center text-gray-600 text-md px-6 py-4 font-bold"
+                              >
+                                Date
+                              </th>
+                              <th
+                                className="text-gray-600 text-md  px-6 py-4 text-center font-bold "
+                                scope="col"
+                              >
+                                Booking Id
+                              </th>
+                              <th
+                                scope="col"
+                                className="text-gray-600 text-md  px-6 py-4 text-center font-bold"
+                              >
+                                Equipment
+                              </th>
+                              <th
+                                scope="col"
+                                className="text-gray-600 text-md  px-6 py-4 text-center font-bold"
+                              >
+                                Category
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr className="bg-white py-6">
+                              <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
+                                {cDate}
+                              </td>
+                              <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
+                                {userUid}
+                              </td>
+                              <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
+                                {title}
+                              </td>
+                              <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
+                                {category == "Personal Rooms"
+                                  ? "Heavy Machinery"
+                                  : category == "Family Apartments"
+                                  ? "Light-Weight Tools"
+                                  : "Daily-Use Tools"}
+                              </td>
+                              {/* <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
                               <span
                                 style={{
                                   height: "12px",
@@ -298,37 +316,37 @@ const BookingRequest = () => {
                               ></span>{" "}
                               Pending
                             </td> */}
-                          </tr>
-                        </tbody>
-                      </table>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                  <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                    <div className="overflow-x-auto">
-                      <table className="min-w-full">
-                        <thead className="border-b bg-gray-100 h-2">
-                          <tr>
-                            <th
-                              scope="col"
-                              className="text-center text-gray-600 text-md font-bold px-6 py-4"
-                            >
-                              Owner Name
-                            </th>
-                            <th
-                              className="text-gray-600 text-md font-bold px-6 py-4 text-center"
-                              scope="col"
-                            >
-                              Owner Email
-                            </th>
-                            <th
-                              scope="col"
-                              className="text-gray-600 text-md font-bold px-6 py-4 text-center"
-                            >
-                              Owner City
-                            </th>
-                            {/* <th
+                  <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                      <div className="overflow-x-auto">
+                        <table className="min-w-full">
+                          <thead className="border-b bg-gray-100 h-2">
+                            <tr>
+                              <th
+                                scope="col"
+                                className="text-center text-gray-600 text-md font-bold px-6 py-4"
+                              >
+                                Owner Name
+                              </th>
+                              <th
+                                className="text-gray-600 text-md font-bold px-6 py-4 text-center"
+                                scope="col"
+                              >
+                                Owner Email
+                              </th>
+                              <th
+                                scope="col"
+                                className="text-gray-600 text-md font-bold px-6 py-4 text-center"
+                              >
+                                Owner City
+                              </th>
+                              {/* <th
                               scope="col"
                               className="text-gray-600 text-md font-medium px-6 py-4 text-center"
                             >
@@ -346,20 +364,20 @@ const BookingRequest = () => {
                             >
                               From/To Date
                             </th> */}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr className="bg-white py-6">
-                            <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
-                             {name}
-                            </td>
-                            <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
-                              {email}
-                            </td>
-                            <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
-                             {city}
-                            </td>
-                            {/* <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr className="bg-white py-6">
+                              <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
+                                {name}
+                              </td>
+                              <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
+                                {email}
+                              </td>
+                              <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
+                                {city}
+                              </td>
+                              {/* <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
                               Parth Sharma
                             </td>
                             <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
@@ -372,89 +390,88 @@ const BookingRequest = () => {
                               ></span>{" "}
                               Pending
                             </td> */}
-                            {/* <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
+                              {/* <td className="text-gray-600 font-normal text-center text-md px-6 py-4 whitespace-nowrap">
                               {contextBooking?.arrivalDate} - {contextBooking?.departDate}
                             </td> */}
-                          </tr>
-                        </tbody>
-                      </table>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div style={{width:"40%"}}>
-              <div className="flex justify-around my-2">
-                <div style={{width:'100%', marginLeft:"60px"}} className="border-2 rounded-3xl p-5 w-1/5 bg-white">
-                  <h1 className="text-md text-gray-500 " >
-                    Rent Details
-                  </h1>
+              <div style={{ width: "40%" }}>
+                <div className="flex justify-around my-2">
+                  <div
+                    style={{ width: "100%", marginLeft: "60px" }}
+                    className="border-2 rounded-3xl p-5 w-1/5 bg-white"
+                  >
+                    <h1 className="text-md text-gray-500 ">Rent Details</h1>
 
-                  <div style={{border:"1px dotted gray"}}>
- 
-                  </div>
-                  
-                  <div className="flex justify-between my-3">
-                    <p className="text-sm font-bold text-[#4F4F4F]">From</p>
-                    <p className="text-sm font-normal text-[#4F4F4F]">
-                      {contextBooking.arrivalDate}
-                    </p>
-                  </div>
-                  <div className="flex justify-between mb-3">
-                    <p className="text-sm font-bold text-[#4F4F4F]">
-                      To
-                    </p>
-                    <p className="text-sm font-normal text-[#4F4F4F]">{contextBooking.departDate}</p>
-                  </div>
+                    <div style={{ border: "1px dotted gray" }}></div>
 
-                  <div style={{border:"1px dotted gray"}}>
-
-                  </div>
-
-         
-
-                  <div className="flex justify-between my-3">
-                    <p className="text-sm font-bold text-[#4F4F4F]">Total</p>
-                    <p className="text-sm font-normal text-[#4F4F4F]">
-                      Rs {price} / day
-                    </p>
-                  </div>
-                  <div className="flex justify-between mb-3">
-                    <p className="text-sm font-bold text-[#4F4F4F]">
-                      No. of days
-                    </p>
-                    <p className="text-sm font-normal text-[#4F4F4F]">{contextBooking.guests}</p>
-                  </div>
-                  <div style={{border:"1px dotted gray"}}>
- 
+                    <div className="flex justify-between my-3">
+                      <p className="text-sm font-bold text-[#4F4F4F]">From</p>
+                      <p className="text-sm font-normal text-[#4F4F4F]">
+                        {contextBooking.arrivalDate}
+                      </p>
                     </div>
-                  <div className="flex justify-between mt-2">
+                    <div className="flex justify-between mb-3">
+                      <p className="text-sm font-bold text-[#4F4F4F]">To</p>
+                      <p className="text-sm font-normal text-[#4F4F4F]">
+                        {contextBooking.departDate}
+                      </p>
+                    </div>
 
+                    <div style={{ border: "1px dotted gray" }}></div>
 
-
-                    <p className="text-md font-bold text-gray-600">Sub Total</p>
-                    <p className="text-md font-bold text-[#68AC5D]">
-                      {total}{" "}
-                    </p>
+                    <div className="flex justify-between my-3">
+                      <p className="text-sm font-bold text-[#4F4F4F]">Total</p>
+                      <p className="text-sm font-normal text-[#4F4F4F]">
+                        Rs {price} / day
+                      </p>
+                    </div>
+                    <div className="flex justify-between mb-3">
+                      <p className="text-sm font-bold text-[#4F4F4F]">
+                        No. of days
+                      </p>
+                      <p className="text-sm font-normal text-[#4F4F4F]">
+                        {contextBooking.guests}
+                      </p>
+                    </div>
+                    <div style={{ border: "1px dotted gray" }}></div>
+                    <div className="flex justify-between mt-2">
+                      <p className="text-md font-bold text-gray-600">
+                        Sub Total
+                      </p>
+                      <p className="text-md font-bold text-[#68AC5D]">
+                        {total}{" "}
+                      </p>
+                    </div>
                   </div>
                 </div>
+
+                <center>
+                  {/* <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"  >Book Now</button>    */}
+                  <button
+                    type="button"
+                    class="text-gray-900 bg-white hover:bg-gray-100 border-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-100 font-semibold rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-800 dark:bg-white dark:border-gray-700 dark:text-gray-900 dark:hover:bg-gray-200 mr-2 mb-2 ml-16"
+                    onClick={submitBooking}
+                    style={{ borderRadius: "50px", border: "2px solid" }}
+                  >
+                    <img src={logo} width={"40px"} height={"40px"} />
+                    Proceed to Payment
+                  </button>
+                </center>
               </div>
-
-
-            <center>  
-                {/* <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"  >Book Now</button>    */}
-            <button type="button" class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-semibold rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-800 dark:bg-white dark:border-gray-700 dark:text-gray-900 dark:hover:bg-gray-200 mr-2 mb-2 ml-16" onClick={submitBooking} style={{borderRadius:"50px", border:"2px solid"}} >
-            <img src={logo} width={"40px"} height={"40px"}/>
-  Proceed to Payment
-</button>
-            </center> 
             </div>
           </div>
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </>
   );
 };

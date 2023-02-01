@@ -422,8 +422,8 @@ export default function BecomeHost() {
                   >
                     <option>Select</option>
                     <option value="Personal Rooms">Heavy Machinery</option>
-                    <option value="Family Apartments">Medium Tools</option>
-                    <option value="Villas For Vacation"> Small Tools</option>
+                    <option value="Family Apartments">Light-Weight Tools</option>
+                    <option value="Villas For Vacation"> Daily-Use Tools</option>
                   </Form.Control>
                 </Form.Group>
               </Form.Row>

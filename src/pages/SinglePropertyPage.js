@@ -31,7 +31,8 @@ import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 import ReadReviews from "../Components/ReadReviews";
 
-import {BookingContext} from '../context/BookingContext';
+import { BookingContext } from "../context/BookingContext";
+import context from "react-bootstrap/esm/AccordionContext";
 
 export default function SinglePropertyPage() {
   //Authstate
@@ -56,7 +57,7 @@ export default function SinglePropertyPage() {
   const [name, setName] = useState("");
 
   const contextBooking = useContext(BookingContext);
-  console.log(contextBooking, "in singleProperty")
+  console.log(contextBooking, "in singleProperty");
 
   // const {setArrivalDate, setDepartDate, setGuests} = contextBooking
 
@@ -230,6 +231,17 @@ export default function SinglePropertyPage() {
     );
   }
 
+  const addAlert = ()=>{
+    toast.error("Login First to Book any equipment !!")
+  }
+
+  let startDate = new Date(contextBooking.arrivalDate);
+  let endDate = new Date(contextBooking.departDate);
+  let diffTime = endDate.getTime() - startDate.getTime();
+  let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  console.log(diffDays + " days");
+  contextBooking.setGuests(diffDays);
+
   return (
     <>
       <Navbar />
@@ -286,8 +298,8 @@ export default function SinglePropertyPage() {
                     {data.category == "Personal Rooms"
                       ? "Heavy Machinery"
                       : data.category == "Family Apartments"
-                      ? "Medium Tools"
-                      : "Small Tools"}
+                      ? "Light-Weight Tools"
+                      : "Daily-Use Tools"}
                   </p>
 
                   <Row className="p-2">
@@ -298,8 +310,8 @@ export default function SinglePropertyPage() {
                           {data.category == "Personal Rooms"
                             ? "Heavy Machinery"
                             : data.category == "Family Apartments"
-                            ? "Medium Tools"
-                            : "Small Tools"}
+                            ? "Light-Weight Tools"
+                            : "Daily-Use Tools"}
                         </Card.Body>
                       </Card>
                     </Col>
@@ -505,13 +517,15 @@ export default function SinglePropertyPage() {
                     ₹ {data.per_night}/Night
                   </Card.Header>
                   <Card.Body>
-                    <Form >
+                    <Form>
                       <Form.Group controlId="formBasicEmail">
                         <Form.Label>Arrival Date</Form.Label>
                         <Form.Control
                           type="date"
                           required
-                          onChange={(e) => contextBooking.setArrivalDate(e.target.value)}
+                          onChange={(e) =>
+                            contextBooking.setArrivalDate(e.target.value)
+                          }
                         />
                       </Form.Group>
                       <Form.Group controlId="formBasicPassword">
@@ -519,35 +533,53 @@ export default function SinglePropertyPage() {
                         <Form.Control
                           type="date"
                           required
-                          onChange={(e) => contextBooking.setDepartDate(e.target.value)}
+                          onChange={(e) =>
+                            contextBooking.setDepartDate(e.target.value)
+                          }
                         />
                       </Form.Group>
                       <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Total days required</Form.Label>
-                        <Form.Control
-                          type="number"
-                          required
-                          onChange={(e) => contextBooking.setGuests(e.target.value)}
-                        />
+                        <Form.Label>
+                          <b>{"Total days required : "}</b>
+                        </Form.Label>
+                        {"  "} {diffDays ? diffDays : " 0"}
                       </Form.Group>
                       {/* TODO Booking button */}
                       {/* {userUid==hostUid? "" : ""} */}
                       <center>
-                      <Link
-                        variant="primary"
-                        className="btn-block bg-green-600 text-white "
-                        type="submit"
-                        to={{
-                          pathname: "/booking-details",
-                          search: `?${propertyKey}`,
-                          state: { fromDashboard: true },
-                        }}
-                        style={{borderRadius:"20px", width:"40%", padding:"10px"}}
-                      >
-                        Book Now
-                      </Link>
+                        {authState ? (
+                          <Link
+                            variant="primary"
+                            className="btn-block bg-green-600 text-white "
+                            type="submit"
+                            to={{
+                              pathname: "/booking-details",
+                              search: `?${propertyKey}`,
+                              state: { fromDashboard: true },
+                            }}
+                            style={{
+                              borderRadius: "20px",
+                              width: "40%",
+                              padding: "10px",
+                            }}
+                          >
+                            Book Now
+                          </Link>
+                        ) : (
+                          <button
+                            style={{
+                              borderRadius: "20px",
+                              width: "40%",
+                              padding: "10px",
+                            }}
+                            variant="primary"
+                            className="btn-block bg-green-600 text-white "
+                            onClick={addAlert}
+                          >
+                            Book Now
+                          </button>
+                        )}
                       </center>
-
                     </Form>
                   </Card.Body>
 
