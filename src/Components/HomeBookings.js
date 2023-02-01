@@ -145,7 +145,7 @@ console.log(listings, "listings at 94 line")
                  <Card.Text className="p-2 text-dark">
                    <FontAwesomeIcon icon={faMapMarkerAlt} /> {data.address}&nbsp;,{data.city}
                    <span className="p-2">
-                     <FontAwesomeIcon icon={faRupeeSign} /> {data.price} /Night <br/>
+                     <FontAwesomeIcon icon={faRupeeSign} /> {data.price} /Day <br/>
                      <FontAwesomeIcon icon={faCalendar} /> <b>Arrival Date:</b> {data.arrivalDate} <br/>
                      <FontAwesomeIcon icon={faCalendarAlt} /> <b>Departure Date:</b> {data.departDate} <br/>
                    </span>

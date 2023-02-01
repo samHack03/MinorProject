@@ -66,10 +66,33 @@ export default function PublicProfiles() {
 
   //get listing data
   useEffect(() => {
-    database
+    // database
+    //   .ref("My-Profile")
+    //   .orderByChild("filter")
+    //   .equalTo(filterQuery)
+    //   .on("value", (snapshot) => {
+    //     const items = [];
+    //     snapshot.forEach((childSnapshot) => {
+    //       var childKey = childSnapshot.key;
+    //       var data = childSnapshot.val();
+    //       items.push({
+    //         name: data.name,           
+    //         city: data.city,
+    //         thumbnail: data.thumbnail,
+    //         homeSearch: data.homeSearch,
+    //         email: data.email,
+           
+    //       });
+    //     });
+    //     setProfiles(items);
+    //     console.log(items, "items at 87")
+    //   });
+
+
+      database
       .ref("My-Profile")
-      .orderByChild("filter")
-      .equalTo(filterQuery)
+      .orderByChild("city")
+      .equalTo(filterQuery.split("Y")[0])
       .on("value", (snapshot) => {
         const items = [];
         snapshot.forEach((childSnapshot) => {
@@ -81,10 +104,14 @@ export default function PublicProfiles() {
             thumbnail: data.thumbnail,
             homeSearch: data.homeSearch,
             email: data.email,
+           
           });
         });
         setProfiles(items);
+        console.log(items, "items at 87")
       });
+
+
   }, [userUid]);
   //
 
@@ -105,8 +132,8 @@ export default function PublicProfiles() {
   <div className="sk-cube sk-cube9"></div>
 </div> : ""}
 
-     
-      <Container>
+    <div className="mt-32">
+    <Container>
         <Row>
           {profiles.map((data, id) => (
            <Col sm={12} md={4} lg={4} key={uuidv4()}>
@@ -137,6 +164,10 @@ export default function PublicProfiles() {
           ))}
         </Row>
       </Container>
+
+    </div>
+     
+
       <br />
       <br />
     </>

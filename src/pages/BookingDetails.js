@@ -125,7 +125,7 @@ const BookingRequest = () => {
 
   const initPayment = (data) => {
     const options = {
-      key: "rzp_test_wfXnqFw2mVZiNE",
+      key: "rzp_test_DlYRgTliIZIUSw",
       amount: price,
       currency: data.currency,
       name: name,

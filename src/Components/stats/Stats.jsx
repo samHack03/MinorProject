@@ -12,7 +12,7 @@ const Stats = () => {
       <div className="flex items-center justify-center mx-20 my-[50px]">
         <div className="flex flex-1 flex-col justify-center items-center">
           <img className="statsImg" src={people1} alt="" />
-          <h1 className="text-2xl font-bold mt-7">1,567,890</h1>
+          <h1 className="text-2xl font-bold mt-7">4</h1>
           <p className="text-lg font-normal w-1/2 text-center">
             Latest number of acquired customers.
           </p>

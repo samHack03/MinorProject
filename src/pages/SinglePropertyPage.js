@@ -249,29 +249,29 @@ export default function SinglePropertyPage() {
         <>
           <div className="caraousel-slider mr-top-slider">
             <Container>
-              <Carousel>
-                <Carousel.Item>
+              <Carousel style={{objectFit:"fill"}}>
+                <Carousel.Item style={{objectFit:"fill"}}>
                   <img
                     className="d-block w-100 img-thumbnail"
                     src={data.imageOneURL}
                     alt="First slide"
                   />
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item style={{objectFit:"fill"}}>
                   <img
                     className="d-block w-100 img-thumbnail"
                     src={data.imageTwoURL}
                     alt="Second slide"
                   />
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item style={{objectFit:"fill"}}>
                   <img
                     className="d-block w-100 img-thumbnail"
                     src={data.imageThreeURL}
                     alt="Third slide"
                   />
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item style={{objectFit:"fill"}}>
                   <img
                     className="d-block w-100 img-thumbnail"
                     src={data.imageFourURL}
@@ -514,7 +514,7 @@ export default function SinglePropertyPage() {
               <Col lg={4} md={4} sm={12}>
                 <Card className="text-center booking-form ml-2">
                   <Card.Header className="card-booking-form-header">
-                    ₹ {data.per_night}/Night
+                    ₹ {data.per_night}/Day
                   </Card.Header>
                   <Card.Body>
                     <Form>

@@ -6,7 +6,7 @@ const crypto = require("crypto");
 router.post("/orders", async (req, res) => {
 	try {
 		const instance = new Razorpay({
-			key_id: "rzp_test_wfXnqFw2mVZiNE",
+			key_id: "rzp_test_DlYRgTliIZIUSw",
 			key_secret: "955nTy24iDB6ekDAUvfeSHCB",
 		});
 

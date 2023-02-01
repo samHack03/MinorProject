@@ -19,9 +19,9 @@ function Sidebar() {
         <input  type="text" placeholder="Search products" style={{padding:"5px",marginTop:"20px"}}/>
         <select>
           <option value="all">All Categories</option>
-          <option value="electronics">Electronics</option>
-          <option value="fashion">Fashion</option>
-          <option value="home">Home & Kitchen</option>
+          <option value="electronics">Heavy Machinery</option>
+          <option value="fashion">Light-Weight Tool</option>
+          <option value="home">Daily-Use Tool</option>
         </select>
       </div>
       <p  className="price-value text-white" style={{textAlign:"left"}} >Price Range:</p>
