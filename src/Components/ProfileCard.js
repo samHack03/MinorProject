@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from "uuid";
 import firebase from 'firebase'
 import { auth, database} from "../config";
 import Footer from '../Components/footer/Footer'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ProfileCard() {
 
@@ -50,7 +52,7 @@ useEffect(() => {
         {setLoading(false)}
       }
     }).catch((error) => {
-      console.error(error);
+      toast.error(error);
     });
     },[userUid])
 //

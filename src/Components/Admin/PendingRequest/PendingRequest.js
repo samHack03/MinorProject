@@ -1,23 +1,15 @@
 import React,{useState, useEffect} from 'react'
 import {Row, Col, Card, Container} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import Navbar from '../Components/navbar'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBed,
-  faShower,
-  faMapMarkerAlt,
-  faRupeeSign,
-  faCalendarAlt,
-  faCalendar
-} from "@fortawesome/free-solid-svg-icons";
+
 import { v4 as uuidv4 } from "uuid";
 import firebase from 'firebase'
-import { auth, database } from "../config";
+import { auth, database } from "../../../config";
+import AdminNavigationBar from '../navbar'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function MyBookingsSection() {
+export default function AllBookings() {
 
     //Authstate
   const [authState, setAuthState] = useState(null);
@@ -26,7 +18,6 @@ export default function MyBookingsSection() {
   //snapshots
   const [listings, setListings] = useState([]);
   const [tableData,setTableData] = useState([]);
-   //spinner
    const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -64,27 +55,48 @@ export default function MyBookingsSection() {
   //get listing data
   useEffect(() => {
     database
-      .ref("Bookings")
+      .ref("pendingBookings")
       .on("value", (snapshot) => {
         const items = [];
         snapshot.forEach((childSnapshot) => {
           var childKey = childSnapshot.key;
           var data = childSnapshot.val();
+
           items.push({
-            key: data.propertyKey,
+            key: childKey,
             arrivalDate: data.arrivalDate,
             departDate: data.departDate,
             guests: data.guests,
             hostUid: data.hostUid,
-            userUid: data.userUid,
             propertyKey: data.propertyKey,
-            imageUrl: data.imageUrl,
-            price: data.price,
+            imageUrl: data.imageOneURL,
             title: data.title,
             city: data.city,
             address: data.address,
-            price: data.price,
-            name:data.name
+            price: data.per_week,
+            name:data.name,
+            category:data.category,
+            email: data.email,
+            per_night: data.per_night,
+            per_week: data.per_week,
+            per_month: data.per_month,
+            per_year: data.per_year,
+            bedrooms: data.bedrooms,
+            bathrooms: data.bathrooms,
+            livingRoom: data.livingRoom,
+            internet: data.internet,
+            gym: data.gym,
+            parking: data.parking,
+            ac: data.ac,
+            gatedSecurity: data.gatedSecurity,
+            waterSupply: data.waterSupply,
+            about: data.about,
+            userUid: data.userUid,
+            imageOneURL: data.imageOneURL,
+            imageTwoURL: data.imageTwoURL,
+            imageThreeURL: data.imageThreeURL,
+            imageFourURL: data.imageFourURL,
+
           });
         });
         setListings(items.slice(items.length-3, items.length));
@@ -94,9 +106,53 @@ export default function MyBookingsSection() {
   //
 
 
+const deleteItem = (key) => {
+    database.ref("pendingBookings").child(key).remove()
+  .then(() => toast.success('Item deleted successfully'))
+  .catch((error) => toast.error('Error deleting entry:', error));
+};
+
+const addItem = (key) => {
+ 
+    let addingItemData=tableData.filter((list)=>list.key==key)
+
+    database.ref("properties").push({
+        name: addingItemData?.name || '',
+        email: addingItemData?.email || '',
+        category: addingItemData?.category || '',
+        city: addingItemData?.city || '',
+        address: addingItemData?.address || '',
+        title: addingItemData?.title || '',
+        per_night: addingItemData?.per_night || 0,
+        per_week: addingItemData?.per_week || 0,
+        per_month: addingItemData?.per_month || 0,
+        per_year: addingItemData?.per_year || 0,
+        bedrooms: addingItemData?.bedrooms || '',
+        bathrooms: addingItemData?.bathrooms || '',
+        livingRoom: addingItemData?.livingRoom || '',
+        internet: addingItemData?.internet || '',
+        gym: addingItemData?.gym || '',
+        parking: addingItemData?.parking || '',
+        ac: addingItemData?.ac || '',
+        gatedSecurity: addingItemData?.gatedSecurity || '',
+        waterSupply: addingItemData?.waterSupply || '',
+        about: addingItemData?.about || '',
+        userUid: uuidv4() || '',
+        imageOneURL: addingItemData?.imageOneURL || '',
+        imageTwoURL: addingItemData?.imageTwoURL || '',
+        imageThreeURL: addingItemData?.imageThreeURL || '',
+        imageFourURL: addingItemData?.imageFourURL || '',
+      })
+    .then(() => toast.success('Item updated as Listing successfully'),
+        database.ref("pendingBookings").child(key).remove())
+  .catch((error) => toast.error('Error deleting entry:', error));
+};
+
+
 
     return (
         <>
+           <AdminNavigationBar/>
            {/* Spinner */}  
     {loading==true ? <div className="sk-cube-grid">
   <div className="sk-cube sk-cube1"></div>
@@ -111,7 +167,7 @@ export default function MyBookingsSection() {
 </div> : ""}
        
 
-       {listingsCheck== true ?  <h2 className="text-center p-2 mt-4">My Bookings</h2> : 
+       {/* {listingsCheck== true ?  <h2 className="text-center p-2 mt-4">My Bookings</h2> : 
        
        <Container>
       <div className="outer text-center">
@@ -119,12 +175,12 @@ export default function MyBookingsSection() {
        </div>
        </Container>
 
-       }
+       } */}
      
      <Container>
-     <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Latest Booking</h4>
-     <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
-       <Row>
+     {/* <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Latest Booking</h4>
+     <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/> */}
+       {/* <Row>
          {listings.map((data, id) => (
           <Col sm={12} md={4} lg={4} key={uuidv4()}>
 
@@ -154,7 +210,7 @@ export default function MyBookingsSection() {
            </Col>
           
          ))}
-       </Row>
+       </Row> */}
 
        <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>All Booking</h4>
        <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
@@ -165,8 +221,8 @@ export default function MyBookingsSection() {
               <th scope="col">Title</th>
               <th scope="col">Username</th>
               <th scope="col">Address</th>
-              <th scope="col">Starting Date</th>
-              <th scope="col">Ending Date</th>
+              <th scope="col"></th>
+              {/* <th scope="col">Ending Date</th> */}
               <th scope="col">Status</th>
               <th scope="col"></th>
             </tr>
@@ -181,9 +237,11 @@ export default function MyBookingsSection() {
               <td>{data.title}</td>
               <td>{data?.name ?? "Lakshit Batra"}</td>
               <td>{data.address}&nbsp;,{data.city}</td>
-              <td>{data.arrivalDate}</td>
-              <td> {data.departDate}</td>
-              <td> <center><button type="button" class=" mt-3 focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Booked</button></center> </td> 
+              {/* <td>{data.arrivalDate}</td>
+              <td> {data.departDate}</td> */}
+              <td> <center><button onClick={()=>addItem(data.key)} type="button" class=" mt-3 focus:outline-none text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900">Accept</button></center> </td> 
+              <td> <center><button onClick={()=>deleteItem(data.key)} type="button" class=" mt-3 focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Cancel</button></center> </td> 
+
             </tr>
             )
        })}

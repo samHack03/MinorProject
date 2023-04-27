@@ -14,6 +14,8 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import firebase from 'firebase'
 import { auth, database } from "../config";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function HoneBookings() {
 
@@ -23,7 +25,6 @@ export default function HoneBookings() {
   const [listingsCheck, setListingsCheck] = useState(null);
   //snapshots
   const [listings, setListings] = useState([]);
-  console.log(listings)
    //spinner
    const [loading, setLoading] = useState(true)
 
@@ -54,7 +55,7 @@ export default function HoneBookings() {
         }
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(error);
       });
   }, [userUid]);
   //
@@ -92,9 +93,6 @@ export default function HoneBookings() {
         setListings(firstBooking);
       });
   }, [userUid]);
-  //
-
-console.log(listings, "listings at 94 line")
 
     return (
         <>

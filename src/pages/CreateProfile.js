@@ -71,7 +71,6 @@ export default function CreateProfile() {
                 }
               },
               (error) => {
-                console.log(error);
                 toast(error, {type: "error"})
               },
               () => {
@@ -113,7 +112,7 @@ database.ref("My-Profile").orderByChild("userUid").equalTo(userUid).once("value"
     setProfileCheck(true)
   }
 }).catch((error) => {
-  console.error(error);
+  toast.error(error);
 });
 },[handleSubmit])
 //

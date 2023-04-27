@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import {Row, Col, Card, Container} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import Navbar from '../Components/navbar'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBed,
@@ -13,11 +12,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 import firebase from 'firebase'
-import { auth, database } from "../config";
+import { auth, database } from "../../../config";
+import AdminNavigationBar from '../navbar'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function MyBookingsSection() {
+export default function AllBookings() {
 
     //Authstate
   const [authState, setAuthState] = useState(null);
@@ -93,10 +93,18 @@ export default function MyBookingsSection() {
   }, [userUid]);
   //
 
+  const deleteItem = (key) =>{
+//     database.ref("Bookings").child(key).remove()
+//   .then(() => console.log(key))
+//   .catch((error) => console.error('Error deleting entry:', error));
+ console.log(key) 
+}
+
 
 
     return (
         <>
+           <AdminNavigationBar/>
            {/* Spinner */}  
     {loading==true ? <div className="sk-cube-grid">
   <div className="sk-cube sk-cube1"></div>
@@ -111,7 +119,7 @@ export default function MyBookingsSection() {
 </div> : ""}
        
 
-       {listingsCheck== true ?  <h2 className="text-center p-2 mt-4">My Bookings</h2> : 
+       {/* {listingsCheck== true ?  <h2 className="text-center p-2 mt-4">My Bookings</h2> : 
        
        <Container>
       <div className="outer text-center">
@@ -119,12 +127,12 @@ export default function MyBookingsSection() {
        </div>
        </Container>
 
-       }
+       } */}
      
      <Container>
-     <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Latest Booking</h4>
-     <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
-       <Row>
+     {/* <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Latest Booking</h4>
+     <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/> */}
+       {/* <Row>
          {listings.map((data, id) => (
           <Col sm={12} md={4} lg={4} key={uuidv4()}>
 
@@ -154,7 +162,7 @@ export default function MyBookingsSection() {
            </Col>
           
          ))}
-       </Row>
+       </Row> */}
 
        <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>All Booking</h4>
        <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
@@ -183,7 +191,7 @@ export default function MyBookingsSection() {
               <td>{data.address}&nbsp;,{data.city}</td>
               <td>{data.arrivalDate}</td>
               <td> {data.departDate}</td>
-              <td> <center><button type="button" class=" mt-3 focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Booked</button></center> </td> 
+              <td> <center><button onClick={()=>deleteItem(data.propertyKey)} type="button" class=" mt-3 focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button></center> </td> 
             </tr>
             )
        })}

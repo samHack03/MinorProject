@@ -49,7 +49,7 @@ export default function BecomeHost() {
 
   //form submit status
   const [submit, setSubmit] = useState("")
-  console.log(submit)
+
 
 
     //Authstate
@@ -100,7 +100,7 @@ export default function BecomeHost() {
               }
             },
             (error) => {
-              console.log(error);
+            
               toast(error, {type: "error"})
             },
             () => {
@@ -150,7 +150,6 @@ export default function BecomeHost() {
             }
           },
           (error) => {
-            console.log(error);
             toast(error, {type: "error"})
           },
           () => {
@@ -201,7 +200,6 @@ export default function BecomeHost() {
             }
           },
           (error) => {
-            console.log(error);
             toast(error, {type: "error"})
           },
           () => {
@@ -251,7 +249,6 @@ export default function BecomeHost() {
           }
         },
         (error) => {
-          console.log(error);
           toast(error, {type: "error"})
         },
         () => {
@@ -313,7 +310,7 @@ export default function BecomeHost() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    database.ref("properties").push({
+    database.ref("pendingBookings").push({
       name: name,
       email: email,
       category: category,

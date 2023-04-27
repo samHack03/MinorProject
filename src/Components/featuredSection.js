@@ -23,6 +23,8 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import firebase from "firebase";
 import { auth, database } from "../config";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function MyListings() {
   //Authstate
@@ -59,7 +61,7 @@ export default function MyListings() {
         }
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(error);
       });
   }, [userUid]);
   //

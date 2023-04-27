@@ -11,13 +11,13 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import firebase from 'firebase'
 import { Container } from 'react-bootstrap';
 // import Button from 'react-google-button'
-import {UserContext} from '../context/UserContext'
+import {UserContext} from '../../context/UserContext'
 
-import logo from "../img/img/logo.png"
+import logo from "../../img/img/logo.png"
 
-import home1 from '../img/img/home1.jpg'
+import home1 from '../../img/img/home1.jpg'
 
-export default function NavigationBar({companyName="Krish e-Hal"}) {
+export default function AdminNavigationBar({companyName="Krish e-Hal"}) {
 
     //Authstate
     const [authState, setAuthState ] = useState(null);
@@ -98,11 +98,14 @@ const Logout = () => {
 // }
 
 const addToast=()=>{
+
   if(context.user==null){
     alert("Login first to add product")
     toast.error("Login first to add product");
   }
 }
+
+
 let name = context?.user?.email?.split(".")[0];
 
   return (
@@ -110,20 +113,20 @@ let name = context?.user?.email?.split(".")[0];
   style={{backgroundColor: "#219653"}}
   > 
   <img  width="60px" height="55px"  src={logo}/>
-  <Link to="/"><Navbar.Brand  className={"text-light pl-4 pr-4 text-3xl tracking-wide cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5 "}>{companyName}</Navbar.Brand></Link>
+  <Navbar.Brand  className={"text-light pl-4 pr-4 text-3xl tracking-wide cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5 "}>{companyName}</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="me-auto ml-7">
-      <Nav.Link as={Link} to="/"
+      {/* <Nav.Link as={Link} to="/"
       className={"text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}
-      >Home</Nav.Link>
+      >Home</Nav.Link> */}
       
       <React.Fragment>
-      <Nav.Link as={Link} to="/dashboard" className={" pl-2  tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Dashboard</Nav.Link>
-      <Nav.Link as={Link} to="/heavy-machinery" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Heavy Machinery</Nav.Link>
-      <Nav.Link as={Link} to="/light-weight-tools" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Light-Weight Tools</Nav.Link>
-      <Nav.Link as={Link} to="/daily-use-tools" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Daily-Use Tools</Nav.Link>
-      <Nav.Link as={Link} to="/become-host" onClick={addToast} className={"pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Add Product</Nav.Link>
+      <Nav.Link as={Link} to="/admin" className={" pl-2  tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>All Listings</Nav.Link>
+      <Nav.Link as={Link} to="/pending-requests" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Pending Request</Nav.Link>
+      <Nav.Link as={Link} to="/add-advertisement" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Add Advertisement</Nav.Link>
+      <Nav.Link as={Link} to="/all-bookings" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>All Booking</Nav.Link>
+      {/* <Nav.Link as={Link} to="/become-host" onClick={addToast} className={"pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Add Product</Nav.Link> */}
       <Nav.Link as={Link} to="/contact" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Contact</Nav.Link>
 
 

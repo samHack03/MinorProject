@@ -39,7 +39,6 @@ const BookingRequest = () => {
 
   const contextBooking = useContext(BookingContext);
 
-  console.log(contextBooking, "contextBooking at 36");
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function(user) {
@@ -65,7 +64,6 @@ const BookingRequest = () => {
       .child(RetrivedchildKey)
       .once("value", function(snapshot) {
         const items = [];
-        console.log(snapshot.val(), "snapshort at 81");
         var val = snapshot.val();
         var hostUid = snapshot.val().userUid;
         var img = snapshot.val().imageOneURL;
@@ -151,14 +149,12 @@ const BookingRequest = () => {
           });
 
           toast.success("Payment Successful !!");
-          console.log("inside the verify payemnts at 163");
         }
         try {
           const verifyUrl = "http://localhost:8080/api/payment/verify";
           const { data } = await axios.post(verifyUrl, response);
-          console.log(data);
         } catch (error) {
-          console.log(error);
+          toast.error(error);
         }
       },
       theme: {
@@ -178,11 +174,9 @@ const BookingRequest = () => {
         const { data } = await axios.post(orderUrl, {
           amount: price * contextBooking.guests,
         });
-        console.log(price);
-        console.log(data);
         initPayment(data.data);
       } catch (error) {
-        console.log(error, "not able to connect axios");
+        toast.error(error, "not able to connect axios");
       }
     } else {
       toast.error("Login first to book any equipment");

@@ -27,6 +27,10 @@ import ContactUs from './Components/contactUs/ContactUs';
 import Dashboard from './pages/Dashboard';
 import Login from "./pages/Login";
 import BookingDetails from "./pages/BookingDetails";
+import Admin from './pages/Admin';
+import PendingRequest from './Components/Admin/PendingRequest/PendingRequest';
+import AddAdvertisement from './Components/Admin/AddAdvertisement/AddAdvertisement';
+import AllBookings from './Components/Admin/AllBookings/AllBookings';
 
 import ContextBookingDetails from './context/BookingContext';
 
@@ -59,6 +63,10 @@ const routing = (
     <Route path="/feedback" component={Feedback} />
     <Route exact path="/contact" component={ContactUs} />
     <Route exact path="/dashboard" component={Dashboard} />
+    <Route exact path="/admin" component={Admin} />
+    <Route exact path="/add-advertisement" component={AddAdvertisement} />
+    <Route exact path="/pending-requests" component={PendingRequest} />
+    <Route exact path="/all-bookings" component={AllBookings} />
   </ContextBookingDetails>
    
     

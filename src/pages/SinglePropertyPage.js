@@ -57,7 +57,6 @@ export default function SinglePropertyPage() {
   const [name, setName] = useState("");
 
   const contextBooking = useContext(BookingContext);
-  console.log(contextBooking, "in singleProperty");
 
   // const {setArrivalDate, setDepartDate, setGuests} = contextBooking
 
@@ -85,7 +84,6 @@ export default function SinglePropertyPage() {
       .child(RetrivedchildKey)
       .once("value", function(snapshot) {
         const items = [];
-        console.log(snapshot.val(), "snapshort at 81");
         var val = snapshot.val();
         var hostUid = snapshot.val().userUid;
         var img = snapshot.val().imageOneURL;
@@ -234,12 +232,36 @@ export default function SinglePropertyPage() {
   const addAlert = ()=>{
     toast.error("Login First to Book any equipment !!")
   }
+  function checkIfValueExists(id) {
+    const items = [];
+    database
+      ?.ref("Bookings")
+      ?.orderByChild("propertyKey")
+      ?.equalTo(id)
+      ?.on("value", (snapshot) => {
+        snapshot?.forEach((childSnapshot) => {
+          var childKey = childSnapshot.key;
+          var data = childSnapshot.val();
+          items.push({
+            key: childKey,
+            title: data.title,
+            imageOneURL: data.imageOneURL,
+            bedrooms: data.bedrooms,
+            bathrooms: data.bathrooms,
+            city: data.city,
+            per_month: data.per_month,
+            name: data.name,
+          });
+        });
+      });
+    return items.length;
+
+  }
 
   let startDate = new Date(contextBooking.arrivalDate);
   let endDate = new Date(contextBooking.departDate);
   let diffTime = endDate.getTime() - startDate.getTime();
   let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  console.log(diffDays + " days");
   contextBooking.setGuests(diffDays);
 
   return (
@@ -547,7 +569,8 @@ export default function SinglePropertyPage() {
                       {/* TODO Booking button */}
                       {/* {userUid==hostUid? "" : ""} */}
                       <center>
-                        {authState ? (
+                        {authState  ? (
+                          (checkIfValueExists(propertyKey)<1)?
                           <Link
                             variant="primary"
                             className="btn-block bg-green-600 text-white "
@@ -564,7 +587,7 @@ export default function SinglePropertyPage() {
                             }}
                           >
                             Book Now
-                          </Link>
+                          </Link>:<button className="bg-red-500 rounded-md p-2 text-white">Already Booked</button>
                         ) : (
                           <button
                             style={{

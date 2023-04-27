@@ -1,9 +1,8 @@
-import React from "react";
-// import {useNavigate} from "react-router-dom"
+import React from 'react';
+import {Link} from "react-router-dom"
 import "./Ads.css";
 
 const Ads = () => {
-  // const navigate = useNavigate();
   return (
     <div className="h-1/2 py-4 bg-green-100 bg-grey" >
       <div className="">
@@ -33,9 +32,9 @@ const Ads = () => {
               equipments by providing available timeline to the buyers/customers
               and get rapid reactions from nearby interested customers.
             </p>
-            <div className="flex justify-content items-center">
+            <div className="flex justify-center">
               <p className="text-sm text-darkgreen font-medium">
-                *Register now and start posting Ads with one click.
+               <Link><button className="bg-blue-500 text-white p-2 rounded-md w-[150px]">Post Advertisement</button></Link>
               </p>
               {/* <button onClick={() => navigate('/register')} className="bg-darkgreen ml-8 hover:bg-green-700 text-lg text-white font-bold py-1 px-8 rounded">
                                 Register
@@ -56,9 +55,9 @@ const Ads = () => {
               negotiation/offers, and book great deals while experiencing
               satisfaction.
             </p>
-            <div className="flex justify-content items-center">
+            <div className="flex justify-center">
               <p className="text-sm text-darkgreen font-medium">
-                *Start exploring the equipments with one click.
+             <Link to="/dashboard"> <button className="bg-blue-500 text-white p-2 rounded-md w-[150px]">Explore</button></Link>
               </p>
               <br />
               {/* <button onClick={() => navigate('/dashboard')} className="bg-darkgreen ml-8 hover:bg-green-700 text-white text-lg font-bold py-1 px-8 rounded">

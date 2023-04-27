@@ -54,7 +54,7 @@ const Banner = () => {
   // if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
   //   return null;
   // }
-  console.log(redirectUrl, "redirect url");
+
 
   let redirect = "";
 

@@ -27,8 +27,6 @@ import {UserContext} from '../context/UserContext'
 
 export default function Home() {
 
-    // const [authState, setAuthState ] = useState("");
-    // console.log(authState)
 
       return(
       <>

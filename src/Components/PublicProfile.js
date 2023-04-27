@@ -14,6 +14,8 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import firebase from "firebase";
 import { auth, database } from "../config";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function PublicProfiles() {
   //Authstate
@@ -26,7 +28,6 @@ export default function PublicProfiles() {
    const [loading, setLoading] = useState(true)
 
    const [filterQuery, setFilterQuery] = useState("")
-   console.log(filterQuery)
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -59,7 +60,7 @@ export default function PublicProfiles() {
         }
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(error);
       });
   }, [userUid]);
   //
@@ -108,7 +109,6 @@ export default function PublicProfiles() {
           });
         });
         setProfiles(items);
-        console.log(items, "items at 87")
       });
 
 
