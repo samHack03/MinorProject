@@ -26,8 +26,11 @@ export default function AllBookings() {
   //snapshots
   const [listings, setListings] = useState([]);
   const [tableData,setTableData] = useState([]);
+  const [pendingBooking,setPendingBookings] = useState([])
    //spinner
-   const [loading, setLoading] = useState(true)
+   const [loading, setLoading] = useState(true);
+   const [selectedButton,setSelectedButton] = useState('pendingBooking')
+   const [confirmedBooking,setConfirmedBookings] = useState([]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -91,6 +94,67 @@ export default function AllBookings() {
         setTableData(items);
       });
   }, [userUid]);
+
+
+  useEffect(() => {
+    database
+      .ref("pendingBookings")
+      .on("value", (snapshot) => {
+        const items = [];
+        snapshot.forEach((childSnapshot) => {
+          var childKey = childSnapshot.key;
+          var data = childSnapshot.val();
+          items.push({
+            key: childKey,
+            arrivalDate: data.arrivalDate,
+            departDate: data.departDate,
+            guests: data.guests,
+            hostUid: data.hostUid,
+            userUid: data.userUid,
+            propertyKey: data.propertyKey,
+            imageUrl: data.imageUrl,
+            price: data.price,
+            title: data.title,
+            city: data.city,
+            address: data.address,
+            price: data.price,
+            name:data.name
+          });
+        });
+        // setListings(items.slice(items.length-3, items.length));
+        setPendingBookings(items);
+      });
+  }, [userUid]);
+
+  useEffect(() => {
+    database
+      .ref("confirmedBookings")
+      .on("value", (snapshot) => {
+        const items = [];
+        snapshot.forEach((childSnapshot) => {
+          var childKey = childSnapshot.key;
+          var data = childSnapshot.val();
+          items.push({
+            key: childKey,
+            arrivalDate: data?.arrivalDate || '',
+            departDate: data?.departDate || '',
+            guests: data?.guests || '',
+            hostUid: data?.hostUid || '',
+            userUid: data?.userUid || '',
+            propertyKey: data?.propertyKey || '',
+            imageUrl: data?.imageUrl || '',
+            price: data?.price || '',
+            title: data?.title || '',
+            city: data?.city || '',
+            address: data?.address || '',
+            price: data?.price || '',
+            name:data?.name || ''
+          });
+        });
+        // setListings(items.slice(items.length-3, items.length));
+        setConfirmedBookings(items);
+      });
+  }, [userUid]);
   //
 
   const deleteItem = (key) =>{
@@ -101,10 +165,49 @@ export default function AllBookings() {
 }
 
 
+const addItemPendingToConfirmed = (key) => {
+ 
+  let data=pendingBooking?.filter((list)=>list?.key==key)
+
+  console.log(data ,key,'data at 172 inside the add ItemPending')
+  console.log(data?.title)
+
+  if(data && data.length){
+    database.ref("confirmedBookings").push({
+      key: data?.propertyKey || '',
+      arrivalDate: data?.arrivalDate || '',
+      departDate: data?.departDate || '',
+      guests: data?.guests || '',
+      hostUid: data?.hostUid || '',
+      userUid: data?.userUid || '',
+      propertyKey: data?.propertyKey || '',
+      imageUrl: data?.imageUrl || '',
+      price: data?.price || '',
+      title: data?.title || '',
+      city: data?.city || '',
+      address: data?.address || '',
+      price: data?.price || '',
+      name:data?.name || ''
+      })
+  //   .then(() => toast.success('Item updated as Listing successfully'),
+  //       database.ref("pendingBookings").child(key).remove())
+  // .catch((error) => toast.error('Error deleting entry:', error));
+  }
+  
+};
+
+
 
     return (
         <>
            <AdminNavigationBar/>
+
+    <div className="text-center mt-28">
+             <button onClick={()=>setSelectedButton('pendingBooking')} class=" mt-3 mx-2 p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg ">Pending Bookings</button>
+             <button onClick={()=>setSelectedButton('confirmedBooking')} class=" mt-3 mx-2  p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg ">Confirmed Bookings</button>
+             <button onClick={()=>setSelectedButton('allBooking')} class=" mt-3 mx-2 p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg ">All Bookings</button>
+       </div>
+
            {/* Spinner */}  
     {loading==true ? <div className="sk-cube-grid">
   <div className="sk-cube sk-cube1"></div>
@@ -118,53 +221,11 @@ export default function AllBookings() {
   <div className="sk-cube sk-cube9"></div>
 </div> : ""}
        
-
-       {/* {listingsCheck== true ?  <h2 className="text-center p-2 mt-4">My Bookings</h2> : 
-       
-       <Container>
-      <div className="outer text-center">
-
-       </div>
-       </Container>
-
-       } */}
      
-     <Container>
-     {/* <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Latest Booking</h4>
-     <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/> */}
-       {/* <Row>
-         {listings.map((data, id) => (
-          <Col sm={12} md={4} lg={4} key={uuidv4()}>
-
-          <Link >
-
-          <Card className="mt-4">
-               <Card.Img
-                 variant="top"
-                 src={data.imageUrl}
-                 className="my-listings-thumbnail"
-               />
-               <Card.Body>
-                 <Card.Title className="text-dark">{data.title}</Card.Title>
-                 <p>{data?.name ?? "Lakshit Batra"}</p>
-                 <Card.Text className="p-2 text-dark">
-                   <FontAwesomeIcon icon={faMapMarkerAlt} /> 
-                   <span className="p-2">
-                     <FontAwesomeIcon icon={faRupeeSign} /> {data.price} /Day <br/>
-                     <FontAwesomeIcon icon={faCalendar} /> <b>Arrival Date:</b> {data.arrivalDate} <br/>
-                     <FontAwesomeIcon icon={faCalendarAlt} /> <b>Departure Date:</b> {data.departDate} <br/>
-                   </span>
-                   <center><button type="button" class=" mt-3 focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Booked</button></center>
-                 </Card.Text>
-               </Card.Body>
-             </Card>
-             </Link>
-           </Col>
-          
-         ))}
-       </Row> */}
-
-       <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>All Booking</h4>
+     <Container className='mt-16'>
+    
+    {selectedButton === 'allBooking' &&        <>
+       <h4 className="font-bold text-2xl  uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>All Booking</h4>
        <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
        <table class="table" id="myTable">
           <thead>
@@ -191,13 +252,89 @@ export default function AllBookings() {
               <td>{data.address}&nbsp;,{data.city}</td>
               <td>{data.arrivalDate}</td>
               <td> {data.departDate}</td>
-              <td> <center><button onClick={()=>deleteItem(data.propertyKey)} type="button" class=" mt-3 focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button></center> </td> 
+              <td> <center><button onClick={()=>deleteItem(data.propertyKey)} type="button" class=" focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button></center> </td> 
             </tr>
             )
        })}
 
           </tbody>
         </table>
+       </>}   
+
+           {selectedButton === 'pendingBooking' &&        <>
+       <h4 className="font-bold text-2xl  uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>All Booking</h4>
+       <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
+       <table class="table" id="myTable">
+          <thead>
+            <tr>
+              <th scope="col">Equipment</th>
+              <th scope="col">Title</th>
+              <th scope="col">Username</th>
+              <th scope="col">Address</th>
+              <th scope="col">Starting Date</th>
+              <th scope="col">Ending Date</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+          {pendingBooking.map((data,id)=>{
+            return (        
+              <tr>
+              <th scope='row'> <Link ><img src={data.imageUrl} width={"100px"} height={"100px"}/></Link> </th>
+              <td>{data.title}</td>
+              <td>{data?.name ?? "Lakshit Batra"}</td>
+              <td>{data.address}&nbsp;,{data.city}</td>
+              <td>{data.arrivalDate}</td>
+              <td> {data.departDate}</td>
+              <td> <center><button onClick={()=>addItemPendingToConfirmed(data.key)} type="button" class=" p-2 focus:outline-none text-white bg-blue-500 hover:bg-blue-800">Pending</button></center> </td> 
+            </tr>
+            )
+       })}
+
+          </tbody>
+        </table>
+       </>} 
+
+
+       {selectedButton === 'confirmedBooking' &&        <>
+       <h4 className="font-bold text-2xl  uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>All Booking</h4>
+       <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
+       <table class="table" id="myTable">
+          <thead>
+            <tr>
+              <th scope="col">Equipment</th>
+              <th scope="col">Title</th>
+              <th scope="col">Username</th>
+              <th scope="col">Address</th>
+              <th scope="col">Starting Date</th>
+              <th scope="col">Ending Date</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+          {confirmedBooking.map((data,id)=>{
+            return (        
+              <tr>
+              <th scope='row'> <Link ><img src={data.imageUrl} width={"100px"} height={"100px"}/></Link> </th>
+              <td>{data.title}</td>
+              <td>{data?.name ?? "Lakshit Batra"}</td>
+              <td>{data.address}&nbsp;,{data.city}</td>
+              <td>{data.arrivalDate}</td>
+              <td> {data.departDate}</td>
+              <td> <center><button type="button" class=" p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800">Confirmed</button></center> </td> 
+            </tr>
+            )
+       })}
+
+          </tbody>
+        </table>
+       </>}       
 
 
 

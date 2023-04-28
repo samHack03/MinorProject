@@ -310,7 +310,7 @@ export default function BecomeHost() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    database.ref("pendingBookings").push({
+    database.ref("pendingRequest").push({
       name: name,
       email: email,
       category: category,

@@ -123,7 +123,7 @@ const BookingRequest = () => {
 
   const initPayment = (data) => {
     const options = {
-      key: "rzp_test_D3LevBV2zp25Gw",
+      key: "rzp_test_q2AmwienXLIjzh",
       amount: price,
       currency: data.currency,
       name: name,
@@ -134,6 +134,21 @@ const BookingRequest = () => {
         setSubmit("Submitted");
         if (authState) {
           database.ref("Bookings").push({
+            userUid: userUid,
+            arrivalDate: contextBooking?.arrivalDate,
+            departDate: contextBooking?.departDate,
+            guests: contextBooking?.guests,
+            propertyKey: propertyKey,
+            hostUid: hostUid,
+            imageUrl: imageUrl,
+            price: price,
+            title: heading,
+            city: city,
+            address: address,
+            name: name,
+          });
+
+          database.ref("pendingBookings").push({
             userUid: userUid,
             arrivalDate: contextBooking?.arrivalDate,
             departDate: contextBooking?.departDate,

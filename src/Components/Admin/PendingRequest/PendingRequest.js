@@ -107,7 +107,7 @@ export default function AllBookings() {
 
 
 const deleteItem = (key) => {
-    database.ref("pendingBookings").child(key).remove()
+    database.ref("pendingRequest").child(key).remove()
   .then(() => toast.success('Item deleted successfully'))
   .catch((error) => toast.error('Error deleting entry:', error));
 };
@@ -144,7 +144,7 @@ const addItem = (key) => {
         imageFourURL: addingItemData?.imageFourURL || '',
       })
     .then(() => toast.success('Item updated as Listing successfully'),
-        database.ref("pendingBookings").child(key).remove())
+        database.ref("pendingRequest").child(key).remove())
   .catch((error) => toast.error('Error deleting entry:', error));
 };
 

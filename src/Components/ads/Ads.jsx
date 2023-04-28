@@ -34,14 +34,8 @@ const Ads = () => {
             </p>
             <div className="flex justify-center">
               <p className="text-sm text-darkgreen font-medium">
-               <Link><button className="bg-blue-500 text-white p-2 rounded-md w-[150px]">Post Advertisement</button></Link>
+               <Link to="/post-advertisement"><button className="bg-blue-500 text-white p-2 rounded-md w-[150px]">Post Advertisement</button></Link>
               </p>
-              {/* <button onClick={() => navigate('/register')} className="bg-darkgreen ml-8 hover:bg-green-700 text-lg text-white font-bold py-1 px-8 rounded">
-                                Register
-                            </button> */}
-              {/* <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-                Button
-              </button> */}
             </div>
           </div>
 
@@ -60,12 +54,6 @@ const Ads = () => {
              <Link to="/dashboard"> <button className="bg-blue-500 text-white p-2 rounded-md w-[150px]">Explore</button></Link>
               </p>
               <br />
-              {/* <button onClick={() => navigate('/dashboard')} className="bg-darkgreen ml-8 hover:bg-green-700 text-white text-lg font-bold py-1 px-8 rounded">
-                                Explore
-                            </button> */}
-              {/* <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"> */}
-                {/* Button
-              </button> */}
             </div>
           </div>
         </div>
