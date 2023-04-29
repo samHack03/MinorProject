@@ -16,6 +16,7 @@ import { auth, database } from "../../../config";
 import AdminNavigationBar from '../navbar'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdminHeading from '../AdminHeading/AdminHeading'
 
 export default function AllBookings() {
 
@@ -31,6 +32,8 @@ export default function AllBookings() {
    const [loading, setLoading] = useState(true);
    const [selectedButton,setSelectedButton] = useState('pendingBooking')
    const [confirmedBooking,setConfirmedBookings] = useState([]);
+   const [ userCity, setUserCity] = useState('');
+   const [ buyerName, setBuyerName] = useState('');
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -155,54 +158,80 @@ export default function AllBookings() {
         setConfirmedBookings(items);
       });
   }, [userUid]);
+
+  useEffect(() => {
+    database
+      .ref("My-Profile")
+      .orderByChild("userUid")
+      .equalTo(userUid)
+      .on("value", (snapshot) => {
+        const items = [];
+        snapshot.forEach((childSnapshot) => {
+          var childKey = childSnapshot.key;
+          var data = childSnapshot.val();
+          items.push({
+            key: childKey,
+            name: data.name,
+            thumbnail:data.thumbnail,
+            city: data.city,
+            email: data.email
+          });
+        });
+        setUserCity(items[0]?.city || '');
+        setBuyerName(items[0]?.name || '')
+      });
+  }, [userUid]);
   //
 
-  const deleteItem = (key) =>{
-//     database.ref("Bookings").child(key).remove()
-//   .then(() => console.log(key))
-//   .catch((error) => console.error('Error deleting entry:', error));
- console.log(key) 
-}
+  const deleteItem = (key) => {
+    database.ref("pendingBookings").child(key).remove()
+  .then(() => toast.success('Booking canceled successfully'))
+  .catch((error) => toast.error('Error deleting entry:', error));
+};
 
+console.log(userUid,'this is userid')
 
 const addItemPendingToConfirmed = (key) => {
  
   let data=pendingBooking?.filter((list)=>list?.key==key)
 
   console.log(data ,key,'data at 172 inside the add ItemPending')
-  console.log(data?.title)
+  console.log(data[0]?.title)
 
   if(data && data.length){
     database.ref("confirmedBookings").push({
-      key: data?.propertyKey || '',
-      arrivalDate: data?.arrivalDate || '',
-      departDate: data?.departDate || '',
-      guests: data?.guests || '',
-      hostUid: data?.hostUid || '',
-      userUid: data?.userUid || '',
-      propertyKey: data?.propertyKey || '',
-      imageUrl: data?.imageUrl || '',
-      price: data?.price || '',
-      title: data?.title || '',
-      city: data?.city || '',
-      address: data?.address || '',
-      price: data?.price || '',
-      name:data?.name || ''
+      key: data[0]?.propertyKey || '',
+      arrivalDate: data[0]?.arrivalDate || '',
+      departDate: data[0]?.departDate || '',
+      guests: data[0]?.guests || '',
+      hostUid: data[0]?.hostUid || '',
+      userUid: data[0]?.userUid || '',
+      propertyKey: data[0]?.propertyKey || '',
+      imageUrl: data[0]?.imageUrl || '',
+      price: data[0]?.price || '',
+      title: data[0]?.title || '',
+      city: data[0]?.city || '',
+      address: data[0]?.address || '',
+      price: data[0]?.price || '',
+      name:data[0]?.name || ''
       })
-  //   .then(() => toast.success('Item updated as Listing successfully'),
-  //       database.ref("pendingBookings").child(key).remove())
-  // .catch((error) => toast.error('Error deleting entry:', error));
+    .then(() => toast.success('Item updated as Listing successfully'),
+        database.ref("pendingBookings").child(key).remove())
+  .catch((error) => toast.error('Error deleting entry:', error));
   }
   
 };
 
 
+console.log(confirmedBooking,'confirmedBookings')
 
     return (
         <>
            <AdminNavigationBar/>
 
-    <div className="text-center mt-28">
+           <AdminHeading/>
+
+    <div className="text-center mt-8">
              <button onClick={()=>setSelectedButton('pendingBooking')} class=" mt-3 mx-2 p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg ">Pending Bookings</button>
              <button onClick={()=>setSelectedButton('confirmedBooking')} class=" mt-3 mx-2  p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg ">Confirmed Bookings</button>
              <button onClick={()=>setSelectedButton('allBooking')} class=" mt-3 mx-2 p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg ">All Bookings</button>
@@ -236,7 +265,6 @@ const addItemPendingToConfirmed = (key) => {
               <th scope="col">Address</th>
               <th scope="col">Starting Date</th>
               <th scope="col">Ending Date</th>
-              <th scope="col">Status</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -252,7 +280,6 @@ const addItemPendingToConfirmed = (key) => {
               <td>{data.address}&nbsp;,{data.city}</td>
               <td>{data.arrivalDate}</td>
               <td> {data.departDate}</td>
-              <td> <center><button onClick={()=>deleteItem(data.propertyKey)} type="button" class=" focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button></center> </td> 
             </tr>
             )
        })}
@@ -262,15 +289,17 @@ const addItemPendingToConfirmed = (key) => {
        </>}   
 
            {selectedButton === 'pendingBooking' &&        <>
-       <h4 className="font-bold text-2xl  uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>All Booking</h4>
+       <h4 className="font-bold text-2xl  uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Pending Booking</h4>
        <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
        <table class="table" id="myTable">
           <thead>
             <tr>
               <th scope="col">Equipment</th>
               <th scope="col">Title</th>
-              <th scope="col">Username</th>
-              <th scope="col">Address</th>
+              <th scope="col">Owner Name</th>
+              <th scope="col">Buyer Name</th>
+              <th scope="col">From Address</th>
+              <th scope="col">To Destination</th>
               <th scope="col">Starting Date</th>
               <th scope="col">Ending Date</th>
               <th scope="col">Status</th>
@@ -286,10 +315,14 @@ const addItemPendingToConfirmed = (key) => {
               <th scope='row'> <Link ><img src={data.imageUrl} width={"100px"} height={"100px"}/></Link> </th>
               <td>{data.title}</td>
               <td>{data?.name ?? "Lakshit Batra"}</td>
+              <td>{buyerName}</td>
               <td>{data.address}&nbsp;,{data.city}</td>
+              <td>{userCity}</td>
               <td>{data.arrivalDate}</td>
               <td> {data.departDate}</td>
-              <td> <center><button onClick={()=>addItemPendingToConfirmed(data.key)} type="button" class=" p-2 focus:outline-none text-white bg-blue-500 hover:bg-blue-800">Pending</button></center> </td> 
+              <td> <center><button onClick={()=>addItemPendingToConfirmed(data.key)} type="button" class="rounded-md p-2 focus:outline-none text-white bg-blue-500 hover:bg-blue-800">Delivered</button></center> </td> 
+              <td> <center><button onClick={()=>addItemPendingToConfirmed(data.key)} type="button" class="rounded-md p-2 focus:outline-none text-white bg-red-500 hover:bg-red-800">Cancel</button></center> </td> 
+              
             </tr>
             )
        })}
@@ -300,15 +333,17 @@ const addItemPendingToConfirmed = (key) => {
 
 
        {selectedButton === 'confirmedBooking' &&        <>
-       <h4 className="font-bold text-2xl  uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>All Booking</h4>
+       <h4 className="font-bold text-2xl  uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Confirmed Booking</h4>
        <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
        <table class="table" id="myTable">
           <thead>
             <tr>
-              <th scope="col">Equipment</th>
+            <th scope="col">Equipment</th>
               <th scope="col">Title</th>
-              <th scope="col">Username</th>
-              <th scope="col">Address</th>
+              <th scope="col">Owner Name</th>
+              <th scope="col">Buyer Name</th>
+              <th scope="col">From Address</th>
+              <th scope="col">To Destination</th>
               <th scope="col">Starting Date</th>
               <th scope="col">Ending Date</th>
               <th scope="col">Status</th>
@@ -324,10 +359,27 @@ const addItemPendingToConfirmed = (key) => {
               <th scope='row'> <Link ><img src={data.imageUrl} width={"100px"} height={"100px"}/></Link> </th>
               <td>{data.title}</td>
               <td>{data?.name ?? "Lakshit Batra"}</td>
+              <td>{buyerName}</td>
               <td>{data.address}&nbsp;,{data.city}</td>
+              <td>{userCity}</td>
               <td>{data.arrivalDate}</td>
               <td> {data.departDate}</td>
-              <td> <center><button type="button" class=" p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800">Confirmed</button></center> </td> 
+              <td> <center><button type="button" class="rounded-md p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800">Delivered</button></center> </td> 
+            </tr>
+            )
+       })}
+                 {tableData.map((data,id)=>{
+            return (        
+              <tr>
+              <th scope='row'> <Link ><img src={data.imageUrl} width={"100px"} height={"100px"}/></Link> </th>
+              <td>{data.title}</td>
+              <td>{data?.name ?? "Lakshit Batra"}</td>
+              <td>{buyerName}</td>
+              <td>{data.address}&nbsp;,{data.city}</td>
+              <td>{userCity}</td>
+              <td>{data.arrivalDate}</td>
+              <td> {data.departDate}</td>
+              <td> <center><button type="button" class="rounded-md p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800">Delivered</button></center> </td> 
             </tr>
             )
        })}

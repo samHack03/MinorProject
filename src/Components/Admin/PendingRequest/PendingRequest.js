@@ -8,6 +8,7 @@ import { auth, database } from "../../../config";
 import AdminNavigationBar from '../navbar'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdminHeading from '../AdminHeading/AdminHeading';
 
 export default function AllBookings() {
 
@@ -55,7 +56,7 @@ export default function AllBookings() {
   //get listing data
   useEffect(() => {
     database
-      .ref("pendingBookings")
+      .ref("pendingRequest")
       .on("value", (snapshot) => {
         const items = [];
         snapshot.forEach((childSnapshot) => {
@@ -116,36 +117,37 @@ const addItem = (key) => {
  
     let addingItemData=tableData.filter((list)=>list.key==key)
 
+    console.log(addingItemData[0].email,'addingItemData')
     database.ref("properties").push({
-        name: addingItemData?.name || '',
-        email: addingItemData?.email || '',
-        category: addingItemData?.category || '',
-        city: addingItemData?.city || '',
-        address: addingItemData?.address || '',
-        title: addingItemData?.title || '',
-        per_night: addingItemData?.per_night || 0,
-        per_week: addingItemData?.per_week || 0,
-        per_month: addingItemData?.per_month || 0,
-        per_year: addingItemData?.per_year || 0,
-        bedrooms: addingItemData?.bedrooms || '',
-        bathrooms: addingItemData?.bathrooms || '',
-        livingRoom: addingItemData?.livingRoom || '',
-        internet: addingItemData?.internet || '',
-        gym: addingItemData?.gym || '',
-        parking: addingItemData?.parking || '',
-        ac: addingItemData?.ac || '',
-        gatedSecurity: addingItemData?.gatedSecurity || '',
-        waterSupply: addingItemData?.waterSupply || '',
-        about: addingItemData?.about || '',
+        name: addingItemData[0]?.name,
+        email: addingItemData[0]?.email || '',
+        category: addingItemData[0]?.category || '',
+        city: addingItemData[0]?.city || '',
+        address: addingItemData[0]?.address || '',
+        title: addingItemData[0]?.title || '',
+        per_night: addingItemData[0]?.per_night || 0,
+        per_week: addingItemData[0]?.per_week || 0,
+        per_month: addingItemData[0]?.per_month || 0,
+        per_year: addingItemData[0]?.per_year || 0,
+        bedrooms: addingItemData[0]?.bedrooms || '',
+        bathrooms: addingItemData[0]?.bathrooms || '',
+        livingRoom: addingItemData[0]?.livingRoom || '',
+        internet: addingItemData[0]?.internet || '',
+        gym: addingItemData[0]?.gym || '',
+        parking: addingItemData[0]?.parking || '',
+        ac: addingItemData[0]?.ac || '',
+        gatedSecurity: addingItemData[0]?.gatedSecurity || '',
+        waterSupply: addingItemData[0]?.waterSupply || '',
+        about: addingItemData[0]?.about || '',
         userUid: uuidv4() || '',
-        imageOneURL: addingItemData?.imageOneURL || '',
-        imageTwoURL: addingItemData?.imageTwoURL || '',
-        imageThreeURL: addingItemData?.imageThreeURL || '',
-        imageFourURL: addingItemData?.imageFourURL || '',
+        imageOneURL: addingItemData[0]?.imageOneURL || '',
+        imageTwoURL: addingItemData[0]?.imageTwoURL || '',
+        imageThreeURL: addingItemData[0]?.imageThreeURL || '',
+        imageFourURL: addingItemData[0]?.imageFourURL || '',
       })
-    .then(() => toast.success('Item updated as Listing successfully'),
-        database.ref("pendingRequest").child(key).remove())
-  .catch((error) => toast.error('Error deleting entry:', error));
+ //   .then(() => toast.success('Item updated as Listing successfully'),
+  //       database.ref("pendingRequest").child(key).remove())
+  // .catch((error) => toast.error('Error deleting entry:', error));
 };
 
 
@@ -153,6 +155,7 @@ const addItem = (key) => {
     return (
         <>
            <AdminNavigationBar/>
+           <AdminHeading/>
            {/* Spinner */}  
     {loading==true ? <div className="sk-cube-grid">
   <div className="sk-cube sk-cube1"></div>
@@ -212,7 +215,9 @@ const addItem = (key) => {
          ))}
        </Row> */}
 
-       <h4 className="font-bold text-2xl font-semibold uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>All Booking</h4>
+
+
+<h4 className="font-bold text-2xl  uppercase text-green-800" style={{marginTop:"50px", marginLeft:"20px"}}>Pending Booking</h4>
        <hr className="h-px my-8 bg-green-800 border-2 dark:bg-green-700"/>
        <table class="table" id="myTable">
           <thead>

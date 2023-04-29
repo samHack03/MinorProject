@@ -127,7 +127,7 @@ let name = context?.user?.email?.split(".")[0];
       <Nav.Link as={Link} to="/add-advertisement" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Add Advertisement</Nav.Link>
       <Nav.Link as={Link} to="/all-bookings" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>All Booking</Nav.Link>
       {/* <Nav.Link as={Link} to="/become-host" onClick={addToast} className={"pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Add Product</Nav.Link> */}
-      <Nav.Link as={Link} to="/contact" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Contact</Nav.Link>
+      {/* <Nav.Link as={Link} to="/contact" className={" pl-2 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5"}>Contact</Nav.Link> */}
 
 
 
@@ -137,13 +137,13 @@ let name = context?.user?.email?.split(".")[0];
       {/* {!authState &&   <button type="button" class=" pl-4 tracing-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5" onClick={googleAuth}>Login</button>  } */}
     </Nav>
 
-    <Navbar.Collapse className="justify-content-end">
+    {/* <Navbar.Collapse className="justify-content-end">
     <NavDropdown title={<FontAwesomeIcon icon={faUserCircle} size="xl"
     className={"text-light dropdown-menu-bar"}
-    spin/>}>
+    spin/>}> */}
 
 
-
+{/* 
       {authState ? (
         <>
         <Container>
@@ -155,28 +155,29 @@ let name = context?.user?.email?.split(".")[0];
         ) : (
           <>
         <NavDropdown.Item><Nav.Link as={Link} to="/login" >Login</Nav.Link></NavDropdown.Item>
-        {/* {!authState &&   <button type="button" class=" pl-4 tracking-wide text-light text-lg cursor-pointer font-semibold text-[#219653] hover:opacity-90 ml-6 mr-1.5" >Login</button>  } */}
         <NavDropdown.Item><Nav.Link as={Link} to="/signup">Signup</Nav.Link></NavDropdown.Item>
         <NavDropdown.Divider />
         </>
         )
-        }
-        {authState ? (
+        } */}
+
+
+        {/* {authState ? (
         <>
         <NavDropdown.Item><Button className="btn btn-danger" onClick={Logout}>Logout</Button></NavDropdown.Item>
         </>
-        ) :""}
-      </NavDropdown>
+        ) :""} */}
+      {/* </NavDropdown> */}
 
-    {authState ? (
+    {/* {authState ? (
     <>
     <Navbar.Text>
 
     </Navbar.Text>
     </>
-      ):""}
+      ):""} */}
 
-  </Navbar.Collapse>
+  {/* </Navbar.Collapse> */}
   </Navbar.Collapse>
   {/* Error toast */}
   <ToastContainer/>
