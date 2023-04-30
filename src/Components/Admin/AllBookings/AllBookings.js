@@ -232,9 +232,9 @@ console.log(confirmedBooking,'confirmedBookings')
            <AdminHeading/>
 
     <div className="text-center mt-8">
-             <button onClick={()=>setSelectedButton('pendingBooking')} class=" mt-3 mx-2 p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg ">Pending Bookings</button>
-             <button onClick={()=>setSelectedButton('confirmedBooking')} class=" mt-3 mx-2  p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg ">Confirmed Bookings</button>
-             <button onClick={()=>setSelectedButton('allBooking')} class=" mt-3 mx-2 p-2 focus:outline-none text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg ">All Bookings</button>
+             <button onClick={()=>setSelectedButton('pendingBooking')} class={`${selectedButton==='pendingBooking'?'bg-green-800':'bg-green-500'} mt-3 mx-2 p-2 focus:outline-none text-white  hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg `}>Pending Bookings</button>
+             <button onClick={()=>setSelectedButton('confirmedBooking')} class={`${selectedButton==='confirmedBooking'?'bg-green-800':'bg-green-500'} mt-3 mx-2 p-2 focus:outline-none text-white  hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg `}>Confirmed Bookings</button>
+             <button onClick={()=>setSelectedButton('allBooking')} class={`${selectedButton==='allBooking'?'bg-green-800':'bg-green-500'} mt-3 mx-2 p-2 focus:outline-none text-white  hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg `}>All Bookings</button>
        </div>
 
            {/* Spinner */}  

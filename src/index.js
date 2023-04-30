@@ -33,6 +33,7 @@ import AddAdvertisement from './Components/Admin/AddAdvertisement/AdsForm';
 import AllBookings from './Components/Admin/AllBookings/AllBookings';
 import PostAdvertisement from './Components/ads/AdsForm';
 import ContextBookingDetails from './context/BookingContext';
+import ChatWithOwner from './Components/ChatWithOwner';
 
 const routing = (
   
@@ -41,6 +42,7 @@ const routing = (
 
   <ContextBookingDetails>
   <Route exact path="/" component={App}/>
+  <Route exact path="/chat" component={ChatWithOwner}/>
     <Route exact path="/become-host" component={becomeHost}/>
     <Route exact path="/signup" component={Signup}/>
     <Route exact path="/login" component={Login} />

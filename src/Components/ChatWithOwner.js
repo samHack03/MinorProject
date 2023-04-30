@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {Link} from "react-router-dom";
 import {
   Row,
   Col,
@@ -17,8 +16,9 @@ import firebase from "firebase";
 import { auth, database } from "../config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Chat from './Chat/Chat';
 
-export default function PublicProfiles() {
+export default function ChatWithOwner() {
   //Authstate
   const [authState, setAuthState] = useState(null);
   const [userUid, setUserUid] = useState(null);
@@ -49,83 +49,58 @@ export default function PublicProfiles() {
     setFilterQuery(RetrivedchildKey);
 
 
-    database
-      .ref("properties")
-      .once("value", (snapshot) => {
-        if (snapshot.exists()) {
-          setProfilesCheck(true);
-          {setLoading(false)}
-        } else {
-          setProfilesCheck(false);
-          {setLoading(false)}
-        }
-      })
-      .catch((error) => {
-        toast.error(error);
-      });
+    // database
+    //   .ref("properties")
+    //   .once("value", (snapshot) => {
+    //     if (snapshot.exists()) {
+    //       setProfilesCheck(true);
+    //       {setLoading(false)}
+    //     } else {
+    //       setProfilesCheck(false);
+    //       {setLoading(false)}
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     toast.error(error);
+    //   });
   }, [userUid]);
   //
 
   //get listing data
-  useEffect(() => {
-    // database
-    //   .ref("My-Profile")
-    //   .orderByChild("filter")
-    //   .equalTo(filterQuery)
-    //   .on("value", (snapshot) => {
-    //     const items = [];
-    //     snapshot.forEach((childSnapshot) => {
-    //       var childKey = childSnapshot.key;
-    //       var data = childSnapshot.val();
-    //       items.push({
-    //         name: data.name,           
-    //         city: data.city,
-    //         thumbnail: data.thumbnail,
-    //         homeSearch: data.homeSearch,
-    //         email: data.email,
+//   useEffect(() => {
+//       database
+//       .ref("My-Profile")
+//       .orderByChild("city")
+//       .equalTo(filterQuery.split("Y")[0])
+//       .on("value", (snapshot) => {
+//         const items = [];
+//         snapshot.forEach((childSnapshot) => {
+//           var childKey = childSnapshot.key;
+//           var data = childSnapshot.val();
+//           items.push({
+//             name: data.name,           
+//             city: data.city,
+//             thumbnail: data.thumbnail,
+//             homeSearch: data.homeSearch,
+//             email: data.email,
            
-    //       });
-    //     });
-    //     setProfiles(items);
-    //     console.log(items, "items at 87")
-    //   });
+//           });
+//         });
+//         setProfiles(items);
+//       });
 
 
-      database
-      .ref("My-Profile")
-      .orderByChild("city")
-      .equalTo(filterQuery.split("Y")[0])
-      .on("value", (snapshot) => {
-        const items = [];
-        snapshot.forEach((childSnapshot) => {
-          var childKey = childSnapshot.key;
-          var data = childSnapshot.val();
-          items.push({
-            name: data.name,           
-            city: data.city,
-            thumbnail: data.thumbnail,
-            homeSearch: data.homeSearch,
-            email: data.email,
-           
-          });
-        });
-        setProfiles(items);
-      });
+//   }, [userUid]);
 
 
-  }, [userUid]);
   //
-
-const consoleItMan = () =>{
-  console.log("inside the chat");
-}
 
   return (
     <>
     <Navbar/>
 
     {/* Spinner */}  
-    {loading==true ? <div className="sk-cube-grid">
+    {/* {loading==true ? <div className="sk-cube-grid">
   <div className="sk-cube sk-cube1"></div>
   <div className="sk-cube sk-cube2"></div>
   <div className="sk-cube sk-cube3"></div>
@@ -135,10 +110,10 @@ const consoleItMan = () =>{
   <div className="sk-cube sk-cube7"></div>
   <div className="sk-cube sk-cube8"></div>
   <div className="sk-cube sk-cube9"></div>
-</div> : ""}
+</div> : ""} */}
 
     <div className="mt-32">
-    <Container>
+    {/* <Container>
         <Row>
           {profiles.map((data, id) => (
            <Col sm={12} md={4} lg={4} key={uuidv4()}>
@@ -159,10 +134,7 @@ const consoleItMan = () =>{
                    <a href={`mailto:${data.email}`} ><FontAwesomeIcon icon={faEnvelope} />&nbsp;{data.email}</a>
                    </p>
                    <center>
-                 <Link onClick={()=>consoleItMan} to={`/chat?${data.name}`} className="text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
-                 Chat
-                  
-                 </Link> 
+                   <button type="button" class="text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">Chat</button>
                    </center>
                   </Card.Text>
                 </Card.Body>
@@ -171,7 +143,8 @@ const consoleItMan = () =>{
            
           ))}
         </Row>
-      </Container>
+      </Container> */}
+      <Chat/>
 
     </div>
      
