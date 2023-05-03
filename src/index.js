@@ -34,6 +34,7 @@ import AllBookings from './Components/Admin/AllBookings/AllBookings';
 import PostAdvertisement from './Components/ads/AdsForm';
 import ContextBookingDetails from './context/BookingContext';
 import ChatWithOwner from './Components/ChatWithOwner';
+import AdminLogin from './Components/Admin/AdminLogin/AdminLogin'
 
 const routing = (
   
@@ -65,6 +66,7 @@ const routing = (
     <Route path="/feedback" component={Feedback} />
     <Route exact path="/contact" component={ContactUs} />
     <Route exact path="/dashboard" component={Dashboard} />
+    <Route exact path="/admin-login" component={AdminLogin} />
     <Route exact path="/admin" component={Admin} />
     <Route exact path="/post-advertisement" component={PostAdvertisement} />
     <Route exact path="/add-advertisement" component={AddAdvertisement} />
